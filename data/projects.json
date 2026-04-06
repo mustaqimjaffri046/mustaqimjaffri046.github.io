@@ -1,0 +1,318 @@
+{
+  "site": {
+    "name": "Muhammad Mustakeem",
+    "title": "Senior Unity Developer | AR/VR & 3D Game Specialist",
+    "intro": "Senior Unity Developer specializing in AR/VR simulations, multiplayer systems, and high-performance 3D games.",
+    "about": "I am a Unity developer with 4+ years of experience building production-ready games and simulations. My focus is AR/VR application development, multiplayer architecture, and aggressive performance optimization for mobile and standalone VR headsets. I have shipped mobile games with 500K+ total downloads and consistently deliver stable, scalable systems for both consumer and enterprise products.",
+    "location": "Islamabad, Pakistan",
+    "experienceYears": "4+ years",
+    "copyright": "Muhammad Mustakeem",
+    "seo": {
+      "description": "Muhammad Mustakeem is a Senior Unity Developer delivering AR/VR simulations, multiplayer systems, and high-performance 3D games for studios and enterprise clients.",
+      "keywords": "Unity developer, AR VR developer, multiplayer game developer, Photon, Netcode, Quest 2 optimization, Islamabad",
+      "ogImage": "assets/images/og-cover.svg"
+    }
+  },
+  "navigation": [
+    { "label": "Home", "target": "#home" },
+    { "label": "About", "target": "#about" },
+    { "label": "Services", "target": "#services" },
+    { "label": "Portfolio", "target": "#projects" },
+    { "label": "Skills", "target": "#skills" },
+    { "label": "Experience", "target": "#experience" },
+    { "label": "Contact", "target": "#contact" }
+  ],
+  "sections": [
+    { "id": "hero", "title": "Hero", "enabled": true, "order": 1 },
+    { "id": "about", "title": "About Me", "enabled": true, "order": 2 },
+    { "id": "services", "title": "Services", "enabled": true, "order": 3 },
+    { "id": "projects", "title": "Portfolio", "enabled": true, "order": 4 },
+    { "id": "skills", "title": "Technical Skills", "enabled": true, "order": 5 },
+    { "id": "experience", "title": "Experience", "enabled": true, "order": 6 },
+    { "id": "achievements", "title": "Achievements", "enabled": true, "order": 7 },
+    { "id": "testimonials", "title": "Testimonials", "enabled": true, "order": 8 },
+    { "id": "certifications", "title": "Certifications", "enabled": true, "order": 9 },
+    { "id": "contact", "title": "Contact", "enabled": true, "order": 10 },
+    { "id": "social", "title": "Social", "enabled": true, "order": 11 }
+  ],
+  "customSections": [],
+  "services": [
+    {
+      "title": "Unity Game Development",
+      "description": "End-to-end Unity 3D game development from prototype to production release across mobile, PC, and standalone VR.",
+      "icon": "UG"
+    },
+    {
+      "title": "AR/VR Application Development",
+      "description": "Immersive AR/VR applications with intuitive interactions, optimized rendering, and deployment for Oculus and OpenXR devices.",
+      "icon": "XR"
+    },
+    {
+      "title": "Multiplayer Game Systems",
+      "description": "Real-time multiplayer architecture using Photon and Unity Netcode with synchronization, lobby systems, and low-latency gameplay.",
+      "icon": "MP"
+    },
+    {
+      "title": "Mobile Game Optimization",
+      "description": "Performance tuning for stable frame rates, reduced memory usage, and improved battery efficiency on Android/iOS.",
+      "icon": "OP"
+    },
+    {
+      "title": "VR Training Simulations",
+      "description": "Enterprise-grade VR training simulations for aviation, warehouse, and operations use cases with measurable outcomes.",
+      "icon": "VT"
+    },
+    {
+      "title": "Game Prototyping",
+      "description": "Rapid prototyping to validate mechanics, user experience, and technical feasibility before full production investment.",
+      "icon": "GP"
+    }
+  ],
+  "skillCategories": [
+    {
+      "title": "Game Engines",
+      "items": ["Unity (URP/HDRP)", "Construct 3"]
+    },
+    {
+      "title": "Programming",
+      "items": ["C#", "C++"]
+    },
+    {
+      "title": "AR/VR Technologies",
+      "items": ["Oculus SDK", "AR Foundation", "OpenXR", "WebXR", "SteamVR", "ARCore"]
+    },
+    {
+      "title": "Multiplayer",
+      "items": ["Photon PUN 2", "Unity Netcode", "Unity Relay"]
+    },
+    {
+      "title": "Optimization",
+      "items": ["GPU Instancing", "Addressables", "Asset Bundles", "Memory Profiling", "Frame Rate Optimization"]
+    },
+    {
+      "title": "Tools",
+      "items": ["Git", "Jira", "Blender", "FMOD"]
+    }
+  ],
+  "skills": [],
+  "experience": [
+    {
+      "role": "Senior Unity Developer",
+      "company": "IDRAK AI",
+      "period": "2023 - Present",
+      "description": "Developed VR training simulations for aviation and warehouse industries, implemented multiplayer collaboration with Photon, and optimized rendering to achieve 90 FPS on Quest 2."
+    },
+    {
+      "role": "Junior Unity Developer",
+      "company": "AR IT ARK France",
+      "period": "2023",
+      "description": "Built WebXR gallery systems and ARCore marker-tracking experiences for interactive product visualization."
+    },
+    {
+      "role": "Freelance Unity Developer",
+      "company": "Independent",
+      "period": "2022",
+      "description": "Published multiple mobile games with Unity Ads monetization and implemented multiplayer game systems for indie products."
+    }
+  ],
+  "achievements": [
+    { "metric": "500K+", "description": "Total mobile game downloads across shipped titles." },
+    { "metric": "4.5+", "description": "Average user ratings across published game releases." },
+    { "metric": "30%", "description": "Retention improvement through multiplayer feature integration." },
+    { "metric": "40%", "description": "VR performance gain through optimization and profiling workflows." },
+    { "metric": "Enterprise", "description": "Delivered VR training solutions for real operational use cases." }
+  ],
+  "testimonials": [
+    {
+      "quote": "Muhammad delivered polished gameplay systems with excellent optimization. The project quality exceeded our expectations.",
+      "author": "Studio Client",
+      "role": "Game Production Lead",
+      "avatar": "SC"
+    },
+    {
+      "quote": "His VR simulation work was technically strong and practical for real training scenarios. Great problem-solving under deadlines.",
+      "author": "Enterprise Client",
+      "role": "XR Program Manager",
+      "avatar": "EC"
+    },
+    {
+      "quote": "Clear communication, reliable delivery, and strong Unity expertise throughout development.",
+      "author": "Freelance Client",
+      "role": "Product Founder",
+      "avatar": "FC"
+    }
+  ],
+  "certifications": [
+    "Unity Certified Professional Programmer",
+    "Unity Certified VR Developer",
+    "Oculus Developer Certification",
+    "Cisco Unity Support Specialist"
+  ],
+  "contact": {
+    "email": "mustakeem.dev@gmail.com",
+    "location": "Islamabad, Pakistan",
+    "message": "Available for freelance Unity development, VR simulation contracts, and full-time opportunities.",
+    "linkedin": "https://www.linkedin.com/",
+    "portfolio": "https://github.com/",
+    "hireUrl": "mailto:mustakeem.dev@gmail.com?subject=Hire%20Me%20-%20Unity%20Project"
+  },
+  "socialLinks": [
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/", "icon": "IN" },
+    { "label": "GitHub", "url": "https://github.com/", "icon": "GH" },
+    { "label": "Portfolio", "url": "https://github.com/", "icon": "PF" }
+  ],
+  "projects": [
+    {
+      "title": "Merge 2048",
+      "slug": "merge-2048",
+      "type": "Mobile Game",
+      "description": "A casual number-merging puzzle game designed for high retention and ad-monetized mobile sessions.",
+      "technologies": ["Unity", "C#", "Unity Ads", "Addressables"],
+      "images": ["assets/images/project-sim-1.svg"],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": ["Mobile", "Puzzle"],
+      "projectDetails": {
+        "platform": "Android / iOS",
+        "role": "Unity Gameplay Developer"
+      },
+      "features": ["Progression systems", "Ad monetization", "Performance tuning"],
+      "screenshots": ["assets/images/project-sim-1.svg"]
+    },
+    {
+      "title": "AiSort Puzzle",
+      "slug": "aisort-puzzle",
+      "type": "Mobile Game",
+      "description": "Sorting-based mobile puzzle experience focused on lightweight runtime performance and smooth UX.",
+      "technologies": ["Unity", "C#", "UI Toolkit"],
+      "images": ["assets/images/project-sim-2.svg"],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": ["Mobile", "Puzzle"],
+      "projectDetails": {
+        "platform": "Android / iOS",
+        "role": "Unity Developer"
+      },
+      "features": ["Modular level setup", "Fast iteration pipeline", "Optimized asset loading"],
+      "screenshots": ["assets/images/project-sim-2.svg"]
+    },
+    {
+      "title": "Sniper 3D",
+      "slug": "sniper-3d",
+      "type": "Mobile Game",
+      "description": "Action shooter gameplay implementation with weapon feedback, responsive controls, and mission progression.",
+      "technologies": ["Unity", "C#", "URP", "Cinemachine"],
+      "images": ["assets/images/project-vr-2.svg"],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": ["Mobile", "Action"],
+      "projectDetails": {
+        "platform": "Android / iOS",
+        "role": "Gameplay Programmer"
+      },
+      "features": ["Weapon systems", "Mission architecture", "Touch control tuning"],
+      "screenshots": ["assets/images/project-vr-2.svg"]
+    },
+    {
+      "title": "CarStunt",
+      "slug": "carstunt",
+      "type": "Mobile Game",
+      "description": "Arcade driving game featuring stunt mechanics, responsive vehicle controls, and optimized physics behavior.",
+      "technologies": ["Unity", "C#", "Physics", "Mobile Optimization"],
+      "images": ["assets/images/project-vr-3.svg"],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": ["Mobile", "Racing"],
+      "projectDetails": {
+        "platform": "Android / iOS",
+        "role": "Unity Developer"
+      },
+      "features": ["Vehicle tuning", "Stunt scoring", "Low-end device optimization"],
+      "screenshots": ["assets/images/project-vr-3.svg"]
+    },
+    {
+      "title": "KnockDown VR Training Simulator",
+      "slug": "knockdown-vr-training-simulator",
+      "type": "VR / Enterprise",
+      "description": "Interactive VR training module with real-world process simulation and measurable user performance tracking.",
+      "technologies": ["Unity", "Oculus SDK", "OpenXR", "C#"],
+      "images": ["assets/images/project-vr-1.svg"],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": ["VR", "Enterprise", "Training"],
+      "projectDetails": {
+        "platform": "Meta Quest 2",
+        "role": "Senior Unity Developer"
+      },
+      "features": ["Scenario simulation", "Training analytics", "90 FPS optimization"],
+      "screenshots": ["assets/images/project-vr-1.svg"]
+    },
+    {
+      "title": "Hotel Room Visualization VR",
+      "slug": "hotel-room-visualization-vr",
+      "type": "VR / Enterprise",
+      "description": "Photorealistic VR walkthrough experience for hospitality visualization and client presentation workflows.",
+      "technologies": ["Unity HDRP", "OpenXR", "Blender", "C#"],
+      "images": ["assets/images/project-vr-2.svg"],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": ["VR", "Visualization"],
+      "projectDetails": {
+        "platform": "PC VR",
+        "role": "Unity XR Developer"
+      },
+      "features": ["Interactive hotspots", "Realtime lighting", "High-fidelity environment setup"],
+      "screenshots": ["assets/images/project-vr-2.svg"]
+    },
+    {
+      "title": "Plane Marshaling Trainer",
+      "slug": "plane-marshaling-trainer",
+      "type": "VR / Enterprise",
+      "description": "Aviation-focused VR training simulator for marshaling procedures with guided instruction and error feedback.",
+      "technologies": ["Unity", "Oculus SDK", "Photon", "C#"],
+      "images": ["assets/images/project-vr-3.svg"],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": ["VR", "Aviation", "Training"],
+      "projectDetails": {
+        "platform": "Meta Quest 2",
+        "role": "Senior Unity Developer"
+      },
+      "features": ["Procedure training", "Multiplayer instructor mode", "Performance analytics"],
+      "screenshots": ["assets/images/project-vr-3.svg"]
+    },
+    {
+      "title": "Warehouse Management VR Simulator",
+      "slug": "warehouse-management-vr-simulator",
+      "type": "VR / Enterprise",
+      "description": "Operational warehouse simulation for safety and process training with collaborative multi-user sessions.",
+      "technologies": ["Unity", "Photon PUN 2", "Oculus SDK", "Addressables"],
+      "images": ["assets/images/project-sim-1.svg"],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": ["VR", "Warehouse", "Multiplayer"],
+      "projectDetails": {
+        "platform": "Meta Quest 2",
+        "role": "Senior Unity Developer"
+      },
+      "features": ["Collaborative training", "Realtime synchronization", "Optimized scene streaming"],
+      "screenshots": ["assets/images/project-sim-1.svg"]
+    }
+  ]
+}

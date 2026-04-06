@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Editor</title>
+  <link rel="stylesheet" href="assets/css/edit.css">
+</head>
+<body data-depth="root">
+  <main class="editor-wrap">
+    <h1>Portfolio Admin Editor</h1>
+    <p class="muted">This editor updates local data in your browser and can export a fresh <code>projects.json</code> for your static site.</p>
+    <p id="editorStatus" class="status"></p>
+
+    <div class="grid">
+      <section class="panel">
+        <h2>Site Settings</h2>
+        <div class="stack">
+          <div><label for="siteName">Name</label><input id="siteName" type="text"></div>
+          <div><label for="siteTitle">Title</label><input id="siteTitle" type="text"></div>
+          <div><label for="siteIntro">Intro</label><textarea id="siteIntro"></textarea></div>
+          <div><label for="siteAbout">About</label><textarea id="siteAbout"></textarea></div>
+          <div class="actions">
+            <button id="saveSiteBtn" type="button">Save Site Settings</button>
+            <a class="muted" href="index.html">Open Portfolio</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Projects</h2>
+        <div class="stack">
+          <div><label for="projectSelect">Select Project</label><select id="projectSelect"></select></div>
+          <div class="actions">
+            <button id="addProjectBtn" type="button">Add Project</button>
+            <button id="deleteProjectBtn" type="button">Delete Project</button>
+            <button id="saveProjectBtn" type="button">Save Project</button>
+          </div>
+          <div><label for="projectTitle">Title</label><input id="projectTitle" type="text"></div>
+          <div><label for="projectSlug">Slug</label><input id="projectSlug" type="text"></div>
+          <div><label for="projectDescription">Description</label><textarea id="projectDescription"></textarea></div>
+          <div><label for="projectTech">Technologies (comma separated)</label><input id="projectTech" type="text"></div>
+          <div><label for="projectTags">Tags (comma separated)</label><input id="projectTags" type="text"></div>
+          <div><label for="projectGitHub">GitHub</label><input id="projectGitHub" type="url"></div>
+          <div><label for="projectDemo">Demo</label><input id="projectDemo" type="url"></div>
+          <div><label for="projectPlayStore">PlayStore</label><input id="projectPlayStore" type="url"></div>
+          <div class="row">
+            <div><label for="projectDuration">Duration</label><input id="projectDuration" type="text"></div>
+            <div><label for="projectTeamSize">Team Size</label><input id="projectTeamSize" type="text"></div>
+          </div>
+          <div class="row">
+            <div><label for="projectPlatform">Platform</label><input id="projectPlatform" type="text"></div>
+            <div><label for="projectRole">Role</label><input id="projectRole" type="text"></div>
+          </div>
+          <div><label for="projectImages">Images (one URL per line)</label><textarea id="projectImages"></textarea></div>
+          <div><label for="uploadImages">Upload Images</label><input id="uploadImages" type="file" accept="image/*" multiple></div>
+          <div><label for="projectVideos">Videos (one URL per line)</label><textarea id="projectVideos"></textarea></div>
+          <div><label for="uploadVideos">Upload Videos</label><input id="uploadVideos" type="file" accept="video/*" multiple></div>
+          <div><label for="projectScreenshots">Screenshots (one URL per line)</label><textarea id="projectScreenshots"></textarea></div>
+          <div><label for="projectFeatures">Features (one line per feature)</label><textarea id="projectFeatures"></textarea></div>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel">
+      <h2>Sections</h2>
+      <div class="actions"><button id="addSectionBtn" type="button">Add Section</button></div>
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Title</th><th>Enabled</th><th>Order</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="sectionsTableBody"></tbody>
+      </table>
+    </section>
+
+    <section class="panel">
+      <h2>JSON Output</h2>
+      <div class="actions">
+        <button id="exportJsonBtn" type="button">Download projects.json</button>
+        <button id="importJsonBtn" type="button">Import JSON</button>
+        <button id="clearLocalBtn" type="button">Clear Local Override</button>
+        <input id="importJsonInput" type="file" accept="application/json" hidden>
+      </div>
+      <textarea id="jsonPreview" class="json-preview"></textarea>
+    </section>
+  </main>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/data-store.js"></script>
+  <script src="assets/js/edit.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muhammad Mustakeem | Senior Unity Developer</title>
+  <meta name="description" content="Senior Unity Developer specializing in AR/VR simulations, multiplayer systems, and high-performance 3D games.">
+  <meta name="keywords" content="Unity Developer, AR VR Developer, Multiplayer Systems, Photon, Quest 2 Optimization">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Muhammad Mustakeem | Senior Unity Developer">
+  <meta property="og:description" content="AR/VR simulations, multiplayer systems, and optimized 3D game development.">
+  <meta property="og:image" content="assets/images/og-cover.svg">
+  <link rel="stylesheet" href="assets/css/portfolio.css">
+</head>
+<body data-depth="root">
+  <div class="bg-fx-layer" data-bg-fx>
+    <canvas id="particleCanvas" aria-hidden="true"></canvas>
+    <div class="cyber-grid" aria-hidden="true"></div>
+    <div class="gradient-orb orb-cyan" aria-hidden="true"></div>
+    <div class="gradient-orb orb-purple" aria-hidden="true"></div>
+    <div class="gradient-orb orb-xr" aria-hidden="true"></div>
+    <div class="floating-geo" data-floating-geo aria-hidden="true"></div>
+  </div>
+  <div id="pointerGlow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html">Portfolio</a>
+      <nav class="site-nav" data-nav-list></nav>
+      <button class="btn btn-ghost" data-theme-toggle type="button">Light Mode</button>
+    </div>
+  </header>
+
+  <main data-root>
+    <section id="home" class="hero container" data-section-id="hero">
+      <h1 data-hero-name></h1>
+      <h2 data-hero-title></h2>
+      <p data-hero-intro></p>
+      <p class="hero-meta" data-hero-meta></p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" data-hero-cta-portfolio href="#projects">View Portfolio</a>
+        <a class="btn btn-secondary" data-hero-cta-hire href="#contact">Hire Me</a>
+        <a class="btn btn-ghost" data-hero-cta-contact href="#contact">Contact Me</a>
+      </div>
+    </section>
+
+    <section id="about" class="container" data-section-id="about">
+      <h2 class="section-heading">About</h2>
+      <p data-about-content></p>
+    </section>
+
+    <section id="services" class="container" data-section-id="services">
+      <h2 class="section-heading">Services</h2>
+      <div class="services-grid" data-services-grid></div>
+    </section>
+
+    <section id="projects" class="container holo-panel" data-section-id="projects">
+      <h2 class="section-heading">Projects</h2>
+      <div class="chip-row" data-project-filters></div>
+      <div class="project-grid" data-project-grid></div>
+    </section>
+
+    <section id="skills" class="container holo-panel" data-section-id="skills">
+      <h2 class="section-heading">Technical Skills</h2>
+      <div class="skills-grid" data-skills-grid></div>
+    </section>
+
+    <section id="experience" class="container" data-section-id="experience">
+      <h2 class="section-heading">Experience</h2>
+      <div class="timeline" data-timeline></div>
+    </section>
+
+    <section id="achievements" class="container" data-section-id="achievements">
+      <h2 class="section-heading">Achievements</h2>
+      <div class="achievements-grid" data-achievements-grid></div>
+    </section>
+
+    <section id="testimonials" class="container holo-panel" data-section-id="testimonials">
+      <h2 class="section-heading">Testimonials</h2>
+      <div class="testimonials-grid" data-testimonials-grid></div>
+    </section>
+
+    <section id="certifications" class="container" data-section-id="certifications">
+      <h2 class="section-heading">Certifications</h2>
+      <div class="certifications-grid" data-certifications-grid></div>
+    </section>
+
+    <section id="contact" class="container holo-panel" data-section-id="contact">
+      <h2 class="section-heading">Contact</h2>
+      <div class="contact-card">
+        <p><strong>Email:</strong> <a data-contact-email href="#"></a></p>
+        <p><strong>Location:</strong> <span data-contact-location></span></p>
+        <p data-contact-message></p>
+        <div class="project-actions">
+          <a class="btn btn-secondary" data-contact-linkedin href="#" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn-secondary" data-contact-portfolio href="#" target="_blank" rel="noopener">Portfolio</a>
+          <a class="btn btn-primary" data-contact-hire href="#">Hire Me</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="social" class="container" data-section-id="social">
+      <h2 class="section-heading">Social</h2>
+      <div class="social-grid" data-social-links></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small data-footer-copy></small>
+    </div>
+  </footer>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/data-store.js"></script>
+  <script src="assets/js/slider.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
