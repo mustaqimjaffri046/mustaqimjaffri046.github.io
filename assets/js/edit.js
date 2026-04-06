@@ -343,6 +343,24 @@
     reader.readAsText(file);
   }
 
+  function saveJSONFromPreview() {
+    try {
+      const parsed = JSON.parse(byId("jsonPreview").value);
+      state.data = window.PortfolioStore.normalizePortfolioData(parsed);
+      const stillExists = (state.data.projects || []).some(function (project) {
+        return project.slug === state.selectedProjectSlug;
+      });
+      state.selectedProjectSlug = stillExists
+        ? state.selectedProjectSlug
+        : (state.data.projects[0] && state.data.projects[0].slug) || "";
+      renderAll();
+      saveData();
+      renderStatus("JSON saved locally and editor refreshed.");
+    } catch (_error) {
+      alert("Invalid JSON. Fix the JSON and try saving again.");
+    }
+  }
+
   function bindEvents() {
     byId("projectSelect").addEventListener("change", function (event) {
       state.selectedProjectSlug = event.target.value;
@@ -412,6 +430,7 @@
     byId("importJsonBtn").addEventListener("click", function () {
       byId("importJsonInput").click();
     });
+    byId("saveJsonBtn").addEventListener("click", saveJSONFromPreview);
   }
 
   function renderSiteFields() {

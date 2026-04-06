@@ -1,15 +1,78 @@
 (function () {
   "use strict";
 
+  function extractGoogleDriveId(value) {
+    const src = String(value || "").trim();
+    const fileMatch = src.match(/drive\.google\.com\/file\/d\/([^/]+)/i);
+    if (fileMatch && fileMatch[1]) {
+      return fileMatch[1];
+    }
+    const openMatch = src.match(/[?&]id=([^&]+)/i);
+    if (openMatch && openMatch[1]) {
+      return openMatch[1];
+    }
+    const ucMatch = src.match(/drive\.google\.com\/uc\?.*id=([^&]+)/i);
+    if (ucMatch && ucMatch[1]) {
+      return ucMatch[1];
+    }
+    return "";
+  }
+
+  function toEmbeddableVideoSource(value) {
+    const src = String(value || "").trim();
+    if (!src) {
+      return { url: "", useIframe: false };
+    }
+
+    const driveId = extractGoogleDriveId(src);
+    if (driveId) {
+      return {
+        url: "https://drive.google.com/file/d/" + driveId + "/preview",
+        useIframe: true,
+        isDriveEmbed: true
+      };
+    }
+
+    const youtubeWatchMatch = src.match(/[?&]v=([a-zA-Z0-9_-]{6,})/);
+    if (youtubeWatchMatch && youtubeWatchMatch[1]) {
+      return {
+        url: "https://www.youtube.com/embed/" + youtubeWatchMatch[1],
+        useIframe: true
+      };
+    }
+
+    const youtubeShortMatch = src.match(/youtu\.be\/([a-zA-Z0-9_-]{6,})/);
+    if (youtubeShortMatch && youtubeShortMatch[1]) {
+      return {
+        url: "https://www.youtube.com/embed/" + youtubeShortMatch[1],
+        useIframe: true
+      };
+    }
+
+    const isKnownEmbed =
+      src.includes("youtube.com/embed") ||
+      src.includes("player.vimeo.com");
+
+    return {
+      url: src,
+      useIframe: isKnownEmbed,
+      isDriveEmbed: false
+    };
+  }
+
   function createSlide(item, index) {
     const figure = document.createElement("figure");
     figure.className = "slider-slide";
     figure.dataset.index = String(index);
 
     if (item.type === "video") {
-      if (item.src.includes("youtube.com/embed") || item.src.includes("player.vimeo.com")) {
+      const videoSource = toEmbeddableVideoSource(item.src);
+      if (videoSource.useIframe) {
+        if (videoSource.isDriveEmbed) {
+          figure.classList.add("slider-slide-drive");
+        }
         const iframe = document.createElement("iframe");
-        iframe.src = item.src;
+        iframe.src = videoSource.url;
         iframe.loading = "lazy";
         iframe.title = item.alt || "Project video";
         iframe.referrerPolicy = "strict-origin-when-cross-origin";
@@ -18,7 +81,7 @@
         figure.appendChild(iframe);
       } else {
         const video = document.createElement("video");
-        video.src = item.src;
+        video.src = videoSource.url;
         video.controls = true;
         video.preload = "none";
         figure.appendChild(video);
@@ -63,12 +126,16 @@
     const prevBtn = document.createElement("button");
     prevBtn.type = "button";
     prevBtn.className = "slider-btn slider-btn-prev";
-    prevBtn.textContent = "<";
+    prevBtn.innerHTML = "<span class='slider-btn-icon' aria-hidden='true'>&larr;</span>";
+    prevBtn.setAttribute("aria-label", "Previous project image");
+    prevBtn.setAttribute("title", "Previous image");
 
     const nextBtn = document.createElement("button");
     nextBtn.type = "button";
     nextBtn.className = "slider-btn slider-btn-next";
-    nextBtn.textContent = ">";
+    nextBtn.innerHTML = "<span class='slider-btn-icon' aria-hidden='true'>&rarr;</span>";
+    nextBtn.setAttribute("aria-label", "Next project image");
+    nextBtn.setAttribute("title", "Next image");
 
     const dots = document.createElement("div");
     dots.className = "slider-dots";
