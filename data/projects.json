@@ -1,0 +1,675 @@
+{
+  "site": {
+    "name": "Muhammad Mustakeem",
+    "title": "Senior Unity Developer | AR/VR & 3D Game Specialist",
+    "intro": "Unity developer specializing in AR/VR simulations, multiplayer systems, and high-performance 3D games.",
+    "about": "I am a Unity developer with 4+ years of experience building mobile games, VR simulations, and multiplayer experiences. I specialize in Oculus Quest, ARFoundation, WebXR, and multiplayer systems using Photon and Netcode. My work includes enterprise VR training simulations and published mobile games with more than 500K downloads.",
+    "heroCtaText": "View Projects",
+    "heroCtaTarget": "#projects",
+    "copyright": "Muhammad Mustakeem"
+  },
+  "navigation": [
+    {
+      "label": "Home",
+      "target": "#home"
+    },
+    {
+      "label": "Projects",
+      "target": "#projects"
+    },
+    {
+      "label": "Skills",
+      "target": "#skills"
+    },
+    {
+      "label": "Experience",
+      "target": "#experience"
+    },
+    {
+      "label": "Contact",
+      "target": "#contact"
+    }
+  ],
+  "sections": [
+    {
+      "id": "hero",
+      "title": "Hero",
+      "enabled": true,
+      "order": 1
+    },
+    {
+      "id": "about",
+      "title": "About",
+      "enabled": true,
+      "order": 2
+    },
+    {
+      "id": "services",
+      "title": "Services",
+      "enabled": true,
+      "order": 3
+    },
+    {
+      "id": "projects",
+      "title": "Projects",
+      "enabled": true,
+      "order": 4
+    },
+    {
+      "id": "skills",
+      "title": "Skills",
+      "enabled": true,
+      "order": 5
+    },
+    {
+      "id": "experience",
+      "title": "Experience",
+      "enabled": true,
+      "order": 6
+    },
+    {
+      "id": "achievements",
+      "title": "Achievements",
+      "enabled": true,
+      "order": 7
+    },
+    {
+      "id": "testimonials",
+      "title": "Testimonials",
+      "enabled": true,
+      "order": 8
+    },
+    {
+      "id": "certifications",
+      "title": "Certifications",
+      "enabled": true,
+      "order": 9
+    },
+    {
+      "id": "contact",
+      "title": "Contact",
+      "enabled": true,
+      "order": 10
+    },
+    {
+      "id": "social",
+      "title": "Social",
+      "enabled": true,
+      "order": 11
+    }
+  ],
+  "customSections": [],
+  "services": [
+    {
+      "title": "Unity Game Development",
+      "description": "Full cycle Unity game development for mobile, PC and WebGL including gameplay systems, UI, optimization and publishing."
+    },
+    {
+      "title": "AR / VR Application Development",
+      "description": "Building immersive AR and VR experiences using Oculus SDK, ARFoundation, OpenXR and WebXR."
+    },
+    {
+      "title": "Multiplayer Game Development",
+      "description": "Real-time multiplayer systems using Photon PUN 2, Unity Netcode and Relay."
+    },
+    {
+      "title": "Mobile Game Optimization",
+      "description": "Performance optimization using GPU instancing, asset bundles, addressables and memory profiling."
+    },
+    {
+      "title": "VR Training Simulations",
+      "description": "Enterprise VR simulations for industries including aviation and warehouse training."
+    },
+    {
+      "title": "Rapid Game Prototyping",
+      "description": "Quick development of prototypes to validate gameplay ideas and mechanics."
+    }
+  ],
+  "achievements": [
+    {
+      "title": "500K+ Game Downloads",
+      "description": "Mobile games reached more than 500,000 downloads across app stores."
+    },
+    {
+      "title": "High User Ratings",
+      "description": "Maintained 4.5+ ratings on multiple published mobile games."
+    },
+    {
+      "title": "Performance Optimization",
+      "description": "Reduced VR lag by 40% through GPU optimization and occlusion culling."
+    },
+    {
+      "title": "User Retention Increase",
+      "description": "Improved retention by 30% using multiplayer features and reward systems."
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Game Studio Client",
+      "text": "Mustakeem delivered a highly optimized Unity project and maintained excellent communication throughout development."
+    },
+    {
+      "name": "VR Product Manager",
+      "text": "The VR training simulator significantly improved our training workflow."
+    },
+    {
+      "name": "Indie Game Developer",
+      "text": "Reliable Unity developer with strong expertise in multiplayer and optimization."
+    },
+    {
+      "name": "gforgame",
+      "country": "Hong Kong",
+      "rating": 5,
+      "text": "Muhammad M delivered exceptional work with top-tier professionalism in Game Development. His quick responsiveness made collaborating a breeze. Highly recommend!"
+    },
+    {
+      "name": "akshata12310439",
+      "country": "Ireland",
+      "rating": 4.7,
+      "text": "Muhammad has been excellent, very supportive and patient in understanding the requirements. He delivered the project on time with all the necessary changes. Very professional at his work and skill. I would recommend working with him and will consider him for future projects."
+    },
+    {
+      "name": "maxipad09",
+      "country": "United States",
+      "rating": 5,
+      "text": "He is a very cooperative developer and one I look forward to continue to work with. He really cares about his clients."
+    },
+    {
+      "name": "frugalprof",
+      "country": "United States",
+      "rating": 5,
+      "text": "Muhammad continues to work on a VR project I wanted by adding functions, and so far it has been a great experience. He is always willing to discuss how to make the app more interesting and efficient."
+    },
+    {
+      "name": "faustobase",
+      "country": "Italy",
+      "rating": 5,
+      "text": "Muhammad M exceeded my expectations in game development with his bug-free, professional work. His attention to detail and quick responsiveness made the collaboration seamless. He went above and beyond in delivery time."
+    },
+    {
+      "name": "akinloluwab",
+      "country": "Nigeria",
+      "rating": 5,
+      "text": "It was great working with Muhammad. His professionalism and expertise were top-notch. I will always recommend him for VR/AR/MR projects."
+    },
+    {
+      "name": "zurich23",
+      "country": "United States",
+      "rating": 5,
+      "text": "Muhammad is helping me with a very specific project and I am very happy with my GDD document. Now we move forward with milestones and tasks to complete my metaverse. So far I am very happy and look forward to seeing a prototype."
+    },
+    {
+      "name": "denizbylaced",
+      "country": "Bulgaria",
+      "rating": 5,
+      "text": "Great work! Professional, very kind person, great understanding and very hard working. Will definitely continue working with him on further basis. Strongly recommend."
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Unity Certified Professional Programmer"
+    },
+    {
+      "title": "Unity Certified VR Developer"
+    },
+    {
+      "title": "Oculus Developer Certification"
+    },
+    {
+      "title": "Unity Certified Essentials"
+    },
+    {
+      "title": "Cisco Unity Support Specialist"
+    }
+  ],
+  "skillCategories": [
+    {
+      "id": "engine",
+      "title": "Game Engines"
+    },
+    {
+      "id": "programming",
+      "title": "Programming"
+    },
+    {
+      "id": "vr",
+      "title": "AR / VR Technologies"
+    },
+    {
+      "id": "multiplayer",
+      "title": "Multiplayer"
+    },
+    {
+      "id": "optimization",
+      "title": "Optimization"
+    },
+    {
+      "id": "tools",
+      "title": "Tools"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Unity",
+      "category": "engine"
+    },
+    {
+      "name": "Construct 3",
+      "category": "engine"
+    },
+    {
+      "name": "C#",
+      "category": "programming"
+    },
+    {
+      "name": "C++",
+      "category": "programming"
+    },
+    {
+      "name": "Oculus SDK",
+      "category": "vr"
+    },
+    {
+      "name": "AR Foundation",
+      "category": "vr"
+    },
+    {
+      "name": "OpenXR",
+      "category": "vr"
+    },
+    {
+      "name": "WebXR",
+      "category": "vr"
+    },
+    {
+      "name": "SteamVR",
+      "category": "vr"
+    },
+    {
+      "name": "ARCore",
+      "category": "vr"
+    },
+    {
+      "name": "Photon PUN 2",
+      "category": "multiplayer"
+    },
+    {
+      "name": "Unity Netcode",
+      "category": "multiplayer"
+    },
+    {
+      "name": "Unity Relay",
+      "category": "multiplayer"
+    },
+    {
+      "name": "GPU Instancing",
+      "category": "optimization"
+    },
+    {
+      "name": "Addressables",
+      "category": "optimization"
+    },
+    {
+      "name": "Asset Bundles",
+      "category": "optimization"
+    },
+    {
+      "name": "Memory Profiling",
+      "category": "optimization"
+    },
+    {
+      "name": "Git",
+      "category": "tools"
+    },
+    {
+      "name": "Jira",
+      "category": "tools"
+    },
+    {
+      "name": "Blender",
+      "category": "tools"
+    },
+    {
+      "name": "FMOD",
+      "category": "tools"
+    }
+  ],
+  "experience": [
+    {
+      "company": "IDRAK AI",
+      "role": "Senior Unity Developer",
+      "period": "Jun 2023 – Present",
+      "description": "Developing enterprise VR training simulations for aviation and warehouse industries. Implemented multiplayer collaboration systems and optimized VR performance achieving 90 FPS on Quest 2."
+    },
+    {
+      "company": "AR IT ARK France",
+      "role": "Junior Unity Developer",
+      "period": "Apr 2023 – Jun 2023",
+      "description": "Built WebXR gallery templates and implemented ARCore marker tracking with improved asset loading performance."
+    },
+    {
+      "company": "Freelance",
+      "role": "Unity Developer",
+      "period": "May 2022 – Dec 2022",
+      "description": "Developed and published multiple hyper-casual mobile games with Unity Ads monetization and multiplayer features."
+    }
+  ],
+  "contact": {
+    "email": "muhammadmustakeem046@gmail.com",
+    "location": "Islamabad, Pakistan",
+    "message": "Feel free to contact me if you need a Unity, AR/VR, or multiplayer developer."
+  },
+  "socialLinks": [
+    {
+      "platform": "LinkedIn",
+      "url": "https://linkedin.com"
+    },
+    {
+      "platform": "Portfolio",
+      "url": "https://mustakeem-unitydev.my.canva.site/"
+    }
+  ],
+  "projects": [
+    {
+      "title": "EcoQuest",
+      "slug": "",
+      "type": "Mobile Game",
+      "description": "A Unity game featuring procedural level generation and environmental gameplay mechanics.",
+      "technologies": [
+        "Unity",
+        "C#",
+        "Procedural Generation"
+      ],
+      "images": [
+        "assets/images/EcoQuest_1.png",
+        "assets/images/EcoQuest_2.png",
+        "assets/images/EcoQuest_3.png"
+      ],
+      "videos": [
+        "https://drive.google.com/file/d/1VBv-074846psJONdsameH4qaA-llV4L-/view?usp=sharing"
+      ],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": [],
+      "projectDetails": {},
+      "features": [],
+      "screenshots": []
+    },
+    {
+      "title": "VR Plane Marshalling Trainer",
+      "slug": "",
+      "type": "VR Training Simulator",
+      "description": "VR training simulator designed to teach aircraft marshalling signals and procedures using realistic hand gesture interactions.",
+      "technologies": [
+        "Unity",
+        "OpenXR",
+        "Oculus SDK",
+        "VR Interaction"
+      ],
+      "images": [],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": [],
+      "projectDetails": {},
+      "features": [],
+      "screenshots": []
+    },
+    {
+      "title": "Wardrobe Management VR",
+      "slug": "",
+      "type": "VR Application",
+      "description": "VR application allowing users to manage clothing items inside a virtual wardrobe using intuitive hand interactions.",
+      "technologies": [
+        "Unity",
+        "VR Interaction",
+        "OpenXR"
+      ],
+      "images": [],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": [],
+      "projectDetails": {},
+      "features": [],
+      "screenshots": []
+    },
+    {
+      "title": "Warehouse Management VR Simulator",
+      "slug": "",
+      "type": "Enterprise VR",
+      "description": "Enterprise VR training simulator designed to teach warehouse operations and logistics workflows.",
+      "technologies": [
+        "Unity",
+        "OpenXR",
+        "VR Interaction"
+      ],
+      "images": [],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": [],
+      "projectDetails": {},
+      "features": [],
+      "screenshots": []
+    },
+    {
+      "title": "Workers Posture Correction System",
+      "slug": "",
+      "type": "VR Training",
+      "description": "VR-based training system that analyzes worker posture and helps correct improper lifting and working positions.",
+      "technologies": [
+        "Unity",
+        "VR Tracking",
+        "OpenXR"
+      ],
+      "images": [],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": [],
+      "projectDetails": {},
+      "features": [],
+      "screenshots": []
+    },
+    {
+      "title": "Event Management Simulation",
+      "slug": "",
+      "type": "Simulation",
+      "description": "Interactive Unity simulation designed to manage virtual events, participants, and environment interactions.",
+      "technologies": [
+        "Unity",
+        "C#",
+        "UI Systems"
+      ],
+      "images": [],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": [],
+      "projectDetails": {},
+      "features": [],
+      "screenshots": []
+    },
+    {
+      "title": "Firing Popup System",
+      "slug": "",
+      "type": "Game Prototype",
+      "description": "Unity shooting mechanic prototype featuring firing feedback, popup targets, and scoring logic.",
+      "technologies": [
+        "Unity",
+        "C#",
+        "Physics"
+      ],
+      "images": [],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": [],
+      "projectDetails": {},
+      "features": [],
+      "screenshots": []
+    },
+    {
+      "title": "VR Interaction System",
+      "slug": "",
+      "type": "VR Framework",
+      "description": "Reusable VR interaction framework supporting grabbing, distance grab, object interaction, and physics-based manipulation.",
+      "technologies": [
+        "Unity",
+        "OpenXR",
+        "XR Interaction Toolkit"
+      ],
+      "images": [],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": [],
+      "projectDetails": {},
+      "features": [],
+      "screenshots": []
+    },
+    {
+      "title": "Plane Simulation",
+      "slug": "",
+      "type": "Simulation",
+      "description": "Unity-based aircraft simulation system including navigation, movement physics, and environment interaction.",
+      "technologies": [
+        "Unity",
+        "C#",
+        "Physics"
+      ],
+      "images": [],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": [],
+      "projectDetails": {},
+      "features": [],
+      "screenshots": []
+    },
+    {
+      "title": "VR Bus Driving Simulation",
+      "slug": "",
+      "type": "VR Simulation",
+      "description": "Immersive VR bus driving simulator designed to train drivers using realistic controls and environment interaction.",
+      "technologies": [
+        "Unity",
+        "VR Interaction",
+        "OpenXR"
+      ],
+      "images": [],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": [],
+      "projectDetails": {},
+      "features": [],
+      "screenshots": []
+    },
+    {
+      "title": "Merge 2048 3D",
+      "slug": "",
+      "type": "Mobile Game",
+      "description": "3D puzzle game with multiplayer mechanics and scalable gameplay systems.",
+      "technologies": [
+        "Unity",
+        "Photon"
+      ],
+      "images": [],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": [],
+      "projectDetails": {},
+      "features": [],
+      "screenshots": []
+    },
+    {
+      "title": "AiSort Puzzle",
+      "slug": "",
+      "type": "Mobile Game",
+      "description": "Puzzle sorting game released on the App Store with strong ratings.",
+      "technologies": [
+        "Unity"
+      ],
+      "images": [],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": [],
+      "projectDetails": {},
+      "features": [],
+      "screenshots": []
+    },
+    {
+      "title": "KnockDown VR",
+      "slug": "",
+      "type": "VR Simulation",
+      "description": "Physics-based VR training simulator.",
+      "technologies": [
+        "Unity",
+        "Oculus SDK"
+      ],
+      "images": [],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": [],
+      "projectDetails": {},
+      "features": [],
+      "screenshots": []
+    },
+    {
+      "title": "Hotel Room Visualization VR",
+      "slug": "",
+      "type": "VR Visualization",
+      "description": "Interactive VR walkthrough for architectural visualization.",
+      "technologies": [
+        "Unity",
+        "VR"
+      ],
+      "images": [],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": [],
+      "projectDetails": {},
+      "features": [],
+      "screenshots": []
+    },
+    {
+      "title": "Plane Marshaling Trainer",
+      "slug": "",
+      "type": "Enterprise VR",
+      "description": "VR simulator for aircraft ground marshalling training.",
+      "technologies": [
+        "Unity",
+        "OpenXR"
+      ],
+      "images": [],
+      "videos": [],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": [],
+      "projectDetails": {},
+      "features": [],
+      "screenshots": []
+    }
+  ]
+}
