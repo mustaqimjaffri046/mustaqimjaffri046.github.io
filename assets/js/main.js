@@ -57,6 +57,46 @@
     setProperty("og:image", seo.ogImage || "");
   }
 
+  function iconMarkup(type) {
+    const icons = {
+      user:
+        "<svg viewBox='0 0 24 24' aria-hidden='true'><path d='M20 21a8 8 0 0 0-16 0'></path><circle cx='12' cy='8' r='4'></circle></svg>",
+      trophy:
+        "<svg viewBox='0 0 24 24' aria-hidden='true'><path d='M8 4h8v3a4 4 0 0 1-8 0z'></path><path d='M6 7H4a3 3 0 0 0 3 3'></path><path d='M18 7h2a3 3 0 0 1-3 3'></path><path d='M12 11v4'></path><path d='M9 21h6'></path><path d='M10 15h4a2 2 0 0 1-2 2 2 2 0 0 1-2-2z'></path></svg>",
+      badge:
+        "<svg viewBox='0 0 24 24' aria-hidden='true'><circle cx='12' cy='9' r='5'></circle><path d='m9.5 14 1.1 6L12 18.6 13.4 20l1.1-6'></path><path d='m10.2 9.2 1.1 1.1 2.5-2.5'></path></svg>",
+      linkedin:
+        "<svg viewBox='0 0 24 24' aria-hidden='true'><rect x='3.5' y='3.5' width='17' height='17' rx='3'></rect><path d='M8 10v6'></path><circle cx='8' cy='7.6' r='0.9'></circle><path d='M12 16v-3.2a1.8 1.8 0 0 1 3.6 0V16'></path></svg>",
+      github:
+        "<svg viewBox='0 0 24 24' aria-hidden='true'><path d='M9 18c-3 1-3-1.5-4.3-1.8'></path><path d='M15 18v-2.3c0-.8.1-1.3-.4-1.8 1.7-.2 3.4-.8 3.4-3.5 0-.8-.3-1.4-.8-1.9.1-.2.4-1-.1-2.1 0 0-.6-.2-2 .8a7 7 0 0 0-3.8 0c-1.4-1-2-.8-2-.8-.5 1.1-.2 1.9-.1 2.1-.5.5-.8 1.1-.8 1.9 0 2.7 1.7 3.3 3.4 3.5-.5.5-.5 1-.5 1.8V18'></path><path d='M12 3a9 9 0 0 0-2.8 17.6'></path><path d='M12 3a9 9 0 0 1 2.8 17.6'></path></svg>",
+      youtube:
+        "<svg viewBox='0 0 24 24' aria-hidden='true'><rect x='3' y='6' width='18' height='12' rx='4'></rect><path d='m11 10 4 2-4 2z'></path></svg>",
+      instagram:
+        "<svg viewBox='0 0 24 24' aria-hidden='true'><rect x='4' y='4' width='16' height='16' rx='4'></rect><circle cx='12' cy='12' r='3.5'></circle><circle cx='17.2' cy='6.8' r='0.9'></circle></svg>",
+      x:
+        "<svg viewBox='0 0 24 24' aria-hidden='true'><path d='M4 4h4.2l4.1 5.5L16.5 4H20l-6 6.5L20.3 20h-4.2l-4.5-6-4.8 6H3l6.3-7.3z'></path></svg>",
+      facebook:
+        "<svg viewBox='0 0 24 24' aria-hidden='true'><rect x='4' y='4' width='16' height='16' rx='3'></rect><path d='M13.2 20v-6.1h2.1l.3-2.3h-2.4v-1.4c0-.7.2-1.2 1.2-1.2h1.3V6.9a18 18 0 0 0-1.9-.1c-1.9 0-3.2 1.1-3.2 3.3v1.5H8.8v2.3h1.8V20'></path></svg>",
+      tiktok:
+        "<svg viewBox='0 0 24 24' aria-hidden='true'><path d='M14.5 4c.4 1.9 1.5 3.2 3.5 3.6v2.8a7 7 0 0 1-3.5-1.1V15a4.5 4.5 0 1 1-4.5-4.5c.4 0 .8.1 1.2.2v2.8a2 2 0 1 0 1.8 2V4z'></path></svg>",
+      globe:
+        "<svg viewBox='0 0 24 24' aria-hidden='true'><circle cx='12' cy='12' r='9'></circle><path d='M3 12h18'></path><path d='M12 3a14 14 0 0 1 0 18'></path><path d='M12 3a14 14 0 0 0 0 18'></path></svg>"
+    };
+    return "<span class='ui-icon ui-icon-" + type + "'>" + (icons[type] || icons.globe) + "</span>";
+  }
+
+  function getSocialIconType(item) {
+    const text = (String((item && item.label) || "") + " " + String((item && item.url) || "")).toLowerCase();
+    if (text.includes("linkedin")) return "linkedin";
+    if (text.includes("github")) return "github";
+    if (text.includes("youtube") || text.includes("youtu.be")) return "youtube";
+    if (text.includes("instagram")) return "instagram";
+    if (text.includes("twitter") || text.includes("x.com")) return "x";
+    if (text.includes("facebook") || text.includes("fb.com")) return "facebook";
+    if (text.includes("tiktok")) return "tiktok";
+    return "globe";
+  }
+
   function renderNavigation(data) {
     const navList = document.querySelector("[data-nav-list]");
     if (!navList) {
@@ -420,6 +460,7 @@
       .map(function (item) {
         return (
           "<article class='achievement-card reveal'>" +
+          "<div class='card-icon-wrap'>" + iconMarkup("trophy") + "</div>" +
           "<h3>" + (item.metric || "") + "</h3>" +
           "<p>" + (item.description || "") + "</p>" +
           "</article>"
@@ -488,18 +529,9 @@
 
     node.innerHTML = finalTestimonials
       .map(function (item) {
-        const avatarSource = String(item.avatar || item.icon || item.initials || "").trim();
-        const fallbackAvatar = (item.author || "Client")
-          .split(" ")
-          .map(function (part) { return part.charAt(0); })
-          .join("")
-          .slice(0, 2)
-          .toUpperCase();
-        const avatar = avatarSource || fallbackAvatar || "CL";
-
         return (
           "<article class='testimonial-card reveal'>" +
-          "<div class='testimonial-avatar-wrap'><span class='testimonial-avatar'>" + avatar + "</span></div>" +
+          "<div class='testimonial-avatar-wrap'><span class='testimonial-avatar'>" + iconMarkup("user") + "</span></div>" +
           "<p>\"" + (item.quote || "") + "\"</p>" +
           "<h3>" + (item.author || "") + "</h3>" +
           "<small>" + (item.role || "") + "</small>" +
@@ -542,6 +574,7 @@
         if (item.url) {
           return (
             "<article class='cert-card reveal'>" +
+            "<div class='card-icon-wrap'>" + iconMarkup("badge") + "</div>" +
             "<h3><a class='cert-link' href='" + item.url + "' target='_blank' rel='noopener'>" + safeTitle + "</a></h3>" +
             "</article>"
           );
@@ -549,6 +582,7 @@
 
         return (
           "<article class='cert-card reveal'>" +
+          "<div class='card-icon-wrap'>" + iconMarkup("badge") + "</div>" +
           "<h3>" + safeTitle + "</h3>" +
           "</article>"
         );
@@ -563,9 +597,10 @@
     }
     socialNode.innerHTML = data.socialLinks
       .map(function (item) {
+        const iconType = getSocialIconType(item);
         return (
           "<a href='" + item.url + "' target='_blank' rel='noopener' aria-label='" + item.label + "'>" +
-          "<span>" + item.icon + "</span><small>" + item.label + "</small></a>"
+          iconMarkup(iconType) + "<small>" + item.label + "</small></a>"
         );
       })
       .join("");
