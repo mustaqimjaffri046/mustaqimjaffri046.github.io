@@ -5,7 +5,8 @@
     data: null,
     currentTag: "All",
     mode: "dark",
-    projectFilterBound: false
+    projectFilterBound: false,
+    aboutTitleTimer: null
   };
 
   function applyDesignTokens() {
@@ -212,6 +213,68 @@
     }
   }
 
+  function setupAboutRotatingTitle(data) {
+    const titleNode = document.querySelector("[data-about-rotating-title]");
+    if (!titleNode) {
+      return;
+    }
+
+    if (state.aboutTitleTimer) {
+      clearTimeout(state.aboutTitleTimer);
+      state.aboutTitleTimer = null;
+    }
+
+    const site = data.site || {};
+    const titles = Array.isArray(site.rotatingTitles) && site.rotatingTitles.length > 0
+      ? site.rotatingTitles
+      : ["Unity XR Developer", "Unity VR Multiplayer Developer", "Spatial Computing Developer"];
+
+    const cleanTitles = titles
+      .map(function (item) {
+        return String(item || "").trim();
+      })
+      .filter(function (item) {
+        return item.length > 0;
+      });
+
+    if (cleanTitles.length === 0) {
+      titleNode.textContent = "";
+      return;
+    }
+
+    let titleIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function tick() {
+      const currentTitle = cleanTitles[titleIndex];
+
+      if (!deleting) {
+        charIndex += 1;
+        titleNode.textContent = currentTitle.slice(0, charIndex);
+        if (charIndex >= currentTitle.length) {
+          deleting = true;
+          state.aboutTitleTimer = setTimeout(tick, 1300);
+          return;
+        }
+        state.aboutTitleTimer = setTimeout(tick, 70);
+        return;
+      }
+
+      charIndex -= 1;
+      titleNode.textContent = currentTitle.slice(0, Math.max(charIndex, 0));
+      if (charIndex <= 0) {
+        deleting = false;
+        titleIndex = (titleIndex + 1) % cleanTitles.length;
+        state.aboutTitleTimer = setTimeout(tick, 280);
+        return;
+      }
+      state.aboutTitleTimer = setTimeout(tick, 35);
+    }
+
+    tick();
+  }
+
   function renderServices(data) {
     const node = document.querySelector("[data-services-grid]");
     if (!node) {
@@ -307,7 +370,7 @@
   }
 
   function collectTags(projects) {
-    const tags = new Set(["All"]);
+    const tags = new Set();
     projects.forEach(function (project) {
       (project.tags || []).forEach(function (tag) {
         tags.add(tag);
@@ -778,6 +841,7 @@
     toggleSectionVisibility(data);
     renderHero(data);
     renderAbout(data);
+    setupAboutRotatingTitle(data);
     renderServices(data);
     renderProjectFilters(data);
     renderProjectCards(getFilteredProjects());

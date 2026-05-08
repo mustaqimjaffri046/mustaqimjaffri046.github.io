@@ -75,20 +75,6 @@
       })
       .join("");
 
-    const featuresNode = document.querySelector("[data-project-features]");
-    featuresNode.innerHTML = (project.features || [])
-      .map(function (feature) {
-        return "<li>" + feature + "</li>";
-      })
-      .join("");
-
-    const galleryNode = document.querySelector("[data-project-gallery]");
-    galleryNode.innerHTML = (project.screenshots || [])
-      .map(function (src) {
-        return "<img loading='lazy' decoding='async' src='" + src + "' alt='" + project.title + " screenshot'>";
-      })
-      .join("");
-
     renderExternalLinks(project);
 
     const media = [];

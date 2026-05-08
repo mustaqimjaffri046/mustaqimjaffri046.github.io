@@ -2,6 +2,23 @@
   "site": {
     "name": "Muhammad Mustakeem",
     "title": "Senior Unity Developer | AR/VR & 3D Game Specialist",
+    "rotatingTitles": [
+      "Unity XR Developer",
+      "VR/XR Interaction Engineer",
+      "Unity 3D & XR Specialist",
+      "XR Game Developer",
+      "Unity VR Multiplayer Developer",
+      "Immersive Experience Developer",
+      "Unity AR/VR Developer",
+      "XR Prototyping Specialist",
+      "Unity Simulation Developer",
+      "VR Training App Developer",
+      "Real-Time 3D & XR Developer",
+      "Unity Netcode Developer",
+      "Interactive XR Systems Developer",
+      "Spatial Computing Developer",
+      "Unity VR Gameplay Programmer"
+    ],
     "intro": "Unity developer specializing in AR/VR simulations, multiplayer systems, and high-performance 3D games.",
     "about": "I am a Unity developer with 4+ years of experience building mobile games, VR simulations, and multiplayer experiences. I specialize in Oculus Quest, ARFoundation, WebXR, and multiplayer systems using Photon and Netcode. My work includes enterprise VR training simulations and published mobile games with more than 500K downloads.",
     "heroCtaText": "View Projects",
@@ -14,7 +31,7 @@
       "target": "#home"
     },
     {
-      "label": "Projects",
+      "label": "Portfolio",
       "target": "#projects"
     },
     {
