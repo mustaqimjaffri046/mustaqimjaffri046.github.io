@@ -492,6 +492,31 @@
     const linkedin = document.querySelector("[data-contact-linkedin]");
     const portfolio = document.querySelector("[data-contact-portfolio]");
     const hire = document.querySelector("[data-contact-hire]");
+    function normalizeExternalUrl(url) {
+      const value = String(url || "").trim();
+      if (!value) {
+        return "";
+      }
+      if (value.startsWith("http://") || value.startsWith("https://") || value.startsWith("mailto:")) {
+        return value;
+      }
+      return "https://" + value;
+    }
+    const socialLinks = Array.isArray(data.socialLinks) ? data.socialLinks : [];
+    const linkedinFallback = socialLinks.find(function (item) {
+      const label = String((item && item.label) || (item && item.platform) || "").toLowerCase();
+      const url = String((item && item.url) || "").toLowerCase();
+      return label.includes("linkedin") || url.includes("linkedin.com");
+    });
+    const portfolioFallback = socialLinks.find(function (item) {
+      const label = String((item && item.label) || (item && item.platform) || "").toLowerCase();
+      return label.includes("portfolio");
+    }) || socialLinks.find(function (item) {
+      const url = String((item && item.url) || "").toLowerCase();
+      return url.includes("github.com") || url.includes("canva.site");
+    });
+    const linkedinUrl = normalizeExternalUrl((data.contact && data.contact.linkedin) || (linkedinFallback && linkedinFallback.url)) || "#";
+    const portfolioUrl = normalizeExternalUrl((data.contact && data.contact.portfolio) || (portfolioFallback && portfolioFallback.url)) || "#";
 
     if (email) {
       email.textContent = data.contact.email || "";
@@ -504,10 +529,10 @@
       message.textContent = data.contact.message || "";
     }
     if (linkedin) {
-      linkedin.href = data.contact.linkedin || "#";
+      linkedin.href = linkedinUrl;
     }
     if (portfolio) {
-      portfolio.href = data.contact.portfolio || "#";
+      portfolio.href = portfolioUrl;
     }
     if (hire) {
       hire.href = data.contact.hireUrl || ("mailto:" + (data.contact.email || ""));
