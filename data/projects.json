@@ -23,7 +23,14 @@
     "about": "I am a Unity developer with 4+ years of experience building mobile games, VR simulations, and multiplayer experiences. I specialize in Oculus Quest, ARFoundation, WebXR, and multiplayer systems using Photon and Netcode. My work includes enterprise VR training simulations and published mobile games with more than 500K downloads.",
     "heroCtaText": "View Projects",
     "heroCtaTarget": "#projects",
-    "copyright": "Muhammad Mustakeem"
+    "copyright": "Muhammad Mustakeem",
+    "profileImage": "assets/img/my-profile-img.jpg",
+    "availability": "Available for new projects",
+    "seo": {
+      "description": "Muhammad Mustakeem — Senior Unity Developer specializing in AR/VR simulations, multiplayer systems, and high-performance 3D mobile games. 4+ years experience, 500K+ downloads. Available for freelance.",
+      "keywords": "Unity developer, AR VR developer, Unity freelancer, VR training simulator, Oculus Quest developer, multiplayer Unity, ARFoundation developer, 3D game developer, hire Unity developer, Pakistan Unity developer",
+      "ogImage": "https://mustaqimjaffri046.github.io/assets/preview/preview.png"
+    }
   },
   "navigation": [
     {
@@ -375,25 +382,30 @@
     "email": "muhammadmustakeem046@gmail.com",
     "location": "Islamabad, Pakistan",
     "message": "Feel free to contact me if you need a Unity, AR/VR, or multiplayer developer.",
+    "availability": "Available for new projects",
+    "rates": "Available for hourly, fixed-price, and long-term contracts. Open to remote work worldwide.",
+    "hireUrl": "#contact",
     "linkedin": "https://www.linkedin.com/in/mustakeemgamedev",
     "portfolio": "https://github.com/mustaqimjaffri046"
   },
   "socialLinks": [
     {
       "platform": "LinkedIn",
-      "url": "www.linkedin.com/in/mustakeemgamedev"
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/mustakeemgamedev"
     },
     {
-      "platform": "Github",
+      "platform": "GitHub",
+      "label": "GitHub",
       "url": "https://github.com/mustaqimjaffri046"
     }
   ],
   "projects": [
     {
       "title": "EcoQuest",
-      "slug": "",
+      "slug": "ecoquest",
       "type": "Mobile Game",
-      "description": "A Unity game featuring procedural level generation and environmental gameplay mechanics.",
+      "description": "A published Unity mobile game built around procedural level generation and environmental gameplay. As sole developer I designed the procedural system that generates unique levels on each run, built the core gameplay loop and UI, and optimized the build for low-end Android devices to keep load times short and frame rates stable.",
       "technologies": [
         "Unity",
         "C#",
@@ -410,16 +422,21 @@
       "github": "",
       "demo": "",
       "playStore": "",
-      "tags": [],
-      "projectDetails": {},
+      "tags": ["Mobile", "Unity"],
+      "projectDetails": {
+        "Role": "Solo Unity Developer",
+        "Tech": "Unity, C#, Procedural Generation",
+        "Challenge": "Generate varied, balanced levels at runtime without hand-authoring each one",
+        "Outcome": "Shipped a replayable mobile game with procedurally generated levels optimized for low-end Android"
+      },
       "features": [],
       "screenshots": []
     },
     {
       "title": "VR Plane Marshalling Trainer",
-      "slug": "",
+      "slug": "vr-plane-marshalling-trainer",
       "type": "VR Training Simulator",
-      "description": "VR training simulator designed to teach aircraft marshalling signals and procedures using realistic hand gesture interactions.",
+      "description": "An enterprise VR trainer that teaches aircraft marshalling signals and ramp procedures using realistic hand-gesture interactions on Oculus Quest. I built the gesture-recognition and signal-validation logic, the guided training flow with real-time feedback, and tuned rendering to hold a stable 90 FPS on standalone Quest hardware.",
       "technologies": [
         "Unity",
         "OpenXR",
@@ -433,16 +450,21 @@
       "github": "",
       "demo": "",
       "playStore": "",
-      "tags": [],
-      "projectDetails": {},
+      "tags": ["VR", "Training"],
+      "projectDetails": {
+        "Role": "Senior Unity / XR Developer",
+        "Tech": "Unity, OpenXR, Oculus SDK, hand-gesture interaction",
+        "Challenge": "Accurately recognize and validate standardized marshalling signals in VR",
+        "Outcome": "Delivered a hands-on Quest trainer running at a stable 90 FPS with real-time signal feedback"
+      },
       "features": [],
       "screenshots": []
     },
     {
       "title": "Wardrobe Management VR",
-      "slug": "",
+      "slug": "wardrobe-management-vr",
       "type": "VR Application",
-      "description": "VR application allowing users to manage clothing items inside a virtual wardrobe using intuitive hand interactions.",
+      "description": "A VR application that lets users organize clothing items inside a virtual wardrobe through intuitive grab-and-place hand interactions. I implemented the physics-based grab system, the categorization and outfit-assembly UI in 3D space, and persistence so a user's arranged wardrobe is saved between sessions.",
       "technologies": [
         "Unity",
         "VR Interaction",
@@ -455,16 +477,21 @@
       "github": "",
       "demo": "",
       "playStore": "",
-      "tags": [],
-      "projectDetails": {},
+      "tags": ["VR"],
+      "projectDetails": {
+        "Role": "Unity / XR Developer",
+        "Tech": "Unity, OpenXR, XR Interaction Toolkit",
+        "Challenge": "Make grabbing, sorting and placing many items in 3D feel natural and reliable",
+        "Outcome": "Built an interactive virtual wardrobe with saved layouts and smooth hand interactions"
+      },
       "features": [],
       "screenshots": []
     },
     {
       "title": "Warehouse Management VR Simulator",
-      "slug": "",
+      "slug": "warehouse-management-vr-simulator",
       "type": "Enterprise VR",
-      "description": "Enterprise VR training simulator designed to teach warehouse operations and logistics workflows.",
+      "description": "An enterprise VR simulator that trains staff on warehouse operations and logistics workflows — picking, scanning, stacking and safe handling. I built the interactive task system with step-by-step scoring, the multiplayer-ready scene structure, and applied GPU instancing and occlusion culling to keep the dense warehouse environment performant in VR.",
       "technologies": [
         "Unity",
         "OpenXR",
@@ -477,16 +504,21 @@
       "github": "",
       "demo": "",
       "playStore": "",
-      "tags": [],
-      "projectDetails": {},
+      "tags": ["VR", "Training"],
+      "projectDetails": {
+        "Role": "Senior Unity / XR Developer",
+        "Tech": "Unity, OpenXR, GPU instancing, occlusion culling",
+        "Challenge": "Keep a large, asset-dense warehouse scene running smoothly on VR hardware",
+        "Outcome": "Shipped a scored, task-based warehouse trainer with optimized rendering for standalone VR"
+      },
       "features": [],
       "screenshots": []
     },
     {
       "title": "Workers Posture Correction System",
-      "slug": "",
+      "slug": "workers-posture-correction-system",
       "type": "VR Training",
-      "description": "VR-based training system that analyzes worker posture and helps correct improper lifting and working positions.",
+      "description": "A VR training system that tracks a worker's body posture and gives real-time guidance to correct improper lifting and working positions, reducing injury risk. I built the joint-tracking and posture-analysis logic, the live visual cues that flag unsafe positions, and a session report that summarizes posture quality over a training run.",
       "technologies": [
         "Unity",
         "VR Tracking",
@@ -499,14 +531,19 @@
       "github": "",
       "demo": "",
       "playStore": "",
-      "tags": [],
-      "projectDetails": {},
+      "tags": ["VR", "Training"],
+      "projectDetails": {
+        "Role": "Unity / XR Developer",
+        "Tech": "Unity, OpenXR, VR body tracking",
+        "Challenge": "Analyze posture from VR tracking data and give clear, real-time corrective feedback",
+        "Outcome": "Delivered a posture-coaching VR trainer with live cues and per-session reporting"
+      },
       "features": [],
       "screenshots": []
     },
     {
       "title": "Event Management Simulation",
-      "slug": "",
+      "slug": "event-management-simulation",
       "type": "Simulation",
       "description": "Interactive Unity simulation designed to manage virtual events, participants, and environment interactions.",
       "technologies": [
@@ -528,7 +565,7 @@
     },
     {
       "title": "VR KnockDown Popup",
-      "slug": "",
+      "slug": "vr-knockdown-popup",
       "type": "Game Prototype",
       "description": "Unity shooting mechanic prototype featuring firing feedback, popup targets, and scoring logic.",
       "technologies": [
@@ -550,7 +587,7 @@
     },
     {
       "title": "VR Interaction System",
-      "slug": "",
+      "slug": "vr-interaction-system",
       "type": "VR Framework",
       "description": "Reusable VR interaction framework supporting grabbing, distance grab, object interaction, and physics-based manipulation.",
       "technologies": [
@@ -572,7 +609,7 @@
     },
     {
       "title": "VR Plane Simulation",
-      "slug": "",
+      "slug": "vr-plane-simulation",
       "type": "Simulation",
       "description": "Unity-based aircraft simulation system including navigation, movement physics, and environment interaction.",
       "technologies": [
@@ -594,7 +631,7 @@
     },
     {
       "title": "VR Bus Driving Simulation",
-      "slug": "",
+      "slug": "vr-bus-driving-simulation",
       "type": "VR Simulation",
       "description": "Immersive VR bus driving simulator designed to train drivers using realistic controls and environment interaction.",
       "technologies": [
@@ -616,7 +653,7 @@
     },
     {
       "title": "Merge 2048 3D",
-      "slug": "",
+      "slug": "merge-2048-3d",
       "type": "Mobile Game",
       "description": "3D puzzle game with multiplayer mechanics and scalable gameplay systems.",
       "technologies": [
@@ -635,7 +672,7 @@
     },
     {
       "title": "AiSort Puzzle",
-      "slug": "",
+      "slug": "aisort-puzzle",
       "type": "Mobile Game",
       "description": "Puzzle sorting game released on the App Store with strong ratings.",
       "technologies": [
@@ -653,7 +690,7 @@
     },
     {
       "title": "KnockDown VR",
-      "slug": "",
+      "slug": "knockdown-vr",
       "type": "VR Simulation",
       "description": "Physics-based VR training simulator.",
       "technologies": [
@@ -674,7 +711,7 @@
     },
     {
       "title": "Hotel Room Visualization VR",
-      "slug": "",
+      "slug": "hotel-room-visualization-vr",
       "type": "VR Visualization",
       "description": "Interactive VR walkthrough for architectural visualization.",
       "technologies": [

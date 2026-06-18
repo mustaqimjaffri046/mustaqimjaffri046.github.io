@@ -33,16 +33,22 @@
   }
 
   function setMeta(name, content) {
+    if (!content) {
+      return;
+    }
     const element = document.querySelector('meta[name="' + name + '"]');
     if (element) {
-      element.setAttribute("content", content || "");
+      element.setAttribute("content", content);
     }
   }
 
   function setProperty(name, content) {
+    if (!content) {
+      return;
+    }
     const element = document.querySelector('meta[property="' + name + '"]');
     if (element) {
-      element.setAttribute("content", content || "");
+      element.setAttribute("content", content);
     }
   }
 
@@ -198,11 +204,22 @@
     }
     if (ctaHireNode) {
       ctaHireNode.textContent = "Hire Me";
-      ctaHireNode.setAttribute("href", (data.contact && data.contact.hireUrl) || "mailto:" + ((data.contact && data.contact.email) || ""));
+      ctaHireNode.setAttribute("href", (data.contact && data.contact.hireUrl) || "#contact");
     }
     if (ctaContactNode) {
       ctaContactNode.textContent = "Contact Me";
       ctaContactNode.setAttribute("href", "#contact");
+    }
+
+    const availabilityNode = document.querySelector("[data-hero-availability]");
+    if (availabilityNode) {
+      const availability = site.availability || (data.contact && data.contact.availability) || "";
+      if (availability) {
+        availabilityNode.textContent = availability;
+        availabilityNode.hidden = false;
+      } else {
+        availabilityNode.hidden = true;
+      }
     }
   }
 
@@ -535,7 +552,29 @@
       portfolio.href = portfolioUrl;
     }
     if (hire) {
-      hire.href = data.contact.hireUrl || ("mailto:" + (data.contact.email || ""));
+      hire.href = "mailto:" + (data.contact.email || "");
+    }
+
+    const availabilityNode = document.querySelector("[data-contact-availability]");
+    if (availabilityNode) {
+      const availability = data.contact.availability || "";
+      if (availability) {
+        availabilityNode.textContent = availability;
+        availabilityNode.hidden = false;
+      } else {
+        availabilityNode.hidden = true;
+      }
+    }
+
+    const ratesNode = document.querySelector("[data-contact-rates]");
+    if (ratesNode) {
+      const rates = data.contact.rates || "";
+      if (rates) {
+        ratesNode.textContent = rates;
+        ratesNode.hidden = false;
+      } else {
+        ratesNode.hidden = true;
+      }
     }
   }
 
@@ -549,7 +588,7 @@
         return (
           "<article class='achievement-card reveal'>" +
           "<div class='card-icon-wrap'>" + iconMarkup("trophy") + "</div>" +
-          "<h3>" + (item.metric || "") + "</h3>" +
+          "<h3>" + (item.metric || item.title || "") + "</h3>" +
           "<p>" + (item.description || "") + "</p>" +
           "</article>"
         );
@@ -592,18 +631,27 @@
       const authorRaw = (item && (item.author || item.name || item.client || item.person)) || "";
       const roleRaw = (item && (item.role || item.company || item.title || item.position)) || "";
       const avatarRaw = (item && (item.avatar || item.icon || item.initials)) || "";
+      const countryRaw = (item && (item.country || item.location)) || "";
+      const platformRaw = (item && (item.platform || item.source)) || "";
+      const ratingRaw = item && (item.rating !== undefined ? item.rating : item.stars);
 
       const quote = String(quoteRaw).trim();
       const author = String(authorRaw).trim();
       const role = String(roleRaw).trim();
       const avatar = String(avatarRaw).trim();
+      const country = String(countryRaw).trim();
+      const platform = String(platformRaw).trim();
+      const rating = (typeof ratingRaw === "number" && ratingRaw > 0) ? ratingRaw : 0;
 
       const placeholderValues = new Set([".", "..", "...", "-", "--", "---"]);
       return {
         quote: placeholderValues.has(quote) ? "" : quote,
         author: placeholderValues.has(author) ? "" : author,
         role: placeholderValues.has(role) ? "" : role,
-        avatar: placeholderValues.has(avatar) ? "" : avatar
+        avatar: placeholderValues.has(avatar) ? "" : avatar,
+        country: placeholderValues.has(country) ? "" : country,
+        platform: platform,
+        rating: rating
       };
     }
 
@@ -617,12 +665,40 @@
 
     node.innerHTML = finalTestimonials
       .map(function (item) {
+        const rating = item.rating || 0;
+        let ratingMarkup = "";
+        if (rating > 0) {
+          const full = Math.round(rating);
+          const stars = "★★★★★".slice(0, full) + "☆☆☆☆☆".slice(0, Math.max(0, 5 - full));
+          ratingMarkup =
+            "<p class='testimonial-rating' aria-label='Rated " + rating + " out of 5'>" +
+            "<span class='testimonial-stars' aria-hidden='true'>" + stars + "</span>" +
+            "<span class='testimonial-rating-num'>" + rating.toFixed(1) + "</span></p>";
+        }
+        const metaParts = [];
+        if (item.role) {
+          metaParts.push(item.role);
+        }
+        if (item.country) {
+          metaParts.push(item.country);
+        }
+        const metaMarkup = metaParts.length
+          ? "<small>" + metaParts.join(" · ") + "</small>"
+          : "";
+        const badgeLabel = item.platform
+          ? item.platform + " review"
+          : (rating > 0 ? "Verified client review" : "");
+        const badgeMarkup = badgeLabel
+          ? "<span class='testimonial-badge'>" + badgeLabel + "</span>"
+          : "";
         return (
           "<article class='testimonial-card reveal'>" +
           "<div class='testimonial-avatar-wrap'><span class='testimonial-avatar'>" + iconMarkup("user") + "</span></div>" +
-          "<p>\"" + (item.quote || "") + "\"</p>" +
+          ratingMarkup +
+          "<p class='testimonial-quote'>“" + (item.quote || "") + "”</p>" +
           "<h3>" + (item.author || "") + "</h3>" +
-          "<small>" + (item.role || "") + "</small>" +
+          metaMarkup +
+          badgeMarkup +
           "</article>"
         );
       })
@@ -683,12 +759,24 @@
     if (!socialNode) {
       return;
     }
+    function normalizeSocialUrl(url) {
+      const value = String(url || "").trim();
+      if (!value) {
+        return "#";
+      }
+      if (value.startsWith("http://") || value.startsWith("https://") || value.startsWith("mailto:")) {
+        return value;
+      }
+      return "https://" + value;
+    }
     socialNode.innerHTML = data.socialLinks
       .map(function (item) {
         const iconType = getSocialIconType(item);
+        const label = String((item && (item.label || item.platform)) || "").trim() || "Link";
+        const href = normalizeSocialUrl(item && item.url);
         return (
-          "<a href='" + item.url + "' target='_blank' rel='noopener' aria-label='" + item.label + "'>" +
-          iconMarkup(iconType) + "<small>" + item.label + "</small></a>"
+          "<a href='" + href + "' target='_blank' rel='noopener' aria-label='" + label + "'>" +
+          iconMarkup(iconType) + "<small>" + label + "</small></a>"
         );
       })
       .join("");
@@ -716,6 +804,38 @@
       localStorage.setItem("portfolioTheme", state.mode);
       document.documentElement.dataset.theme = state.mode;
       button.textContent = state.mode === "dark" ? "Light Mode" : "Dark Mode";
+    });
+  }
+
+  function setupNavToggle() {
+    const toggle = document.querySelector("[data-nav-toggle]");
+    const nav = document.querySelector("[data-nav-list]");
+    const header = document.querySelector(".site-header");
+    if (!toggle || !nav) {
+      return;
+    }
+
+    function closeNav() {
+      nav.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+
+    toggle.addEventListener("click", function (event) {
+      event.stopPropagation();
+      const open = nav.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+
+    nav.addEventListener("click", function (event) {
+      if (event.target.closest("a")) {
+        closeNav();
+      }
+    });
+
+    document.addEventListener("click", function (event) {
+      if (header && !header.contains(event.target)) {
+        closeNav();
+      }
     });
   }
 
@@ -885,6 +1005,7 @@
     try {
       applyDesignTokens();
       setupThemeToggle();
+      setupNavToggle();
       setupSmoothScrolling();
       setupFuturisticEffects();
       const data = await window.PortfolioStore.loadPortfolioData();

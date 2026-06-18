@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mustaqimjaffri046.github.io/sitemap.xml

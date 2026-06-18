@@ -3,11 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muhammad Mustakeem | Senior Unity Developer</title>
-  <meta name="description" content="Senior Unity Developer specializing in XR/VR simulations, multiplayer systems, and high-performance 3D game engineering.">
-  <meta name="keywords" content="Unity Developer, AR VR Developer, Multiplayer Systems, Photon, Quest 2 Optimization">
+  <title>Muhammad Mustakeem | Freelance Unity & AR/VR Developer for Hire</title>
+  <meta name="description" content="Muhammad Mustakeem — Senior Unity Developer specializing in AR/VR simulations, multiplayer systems, and high-performance 3D mobile games. 4+ years experience, 500K+ downloads. Available for freelance.">
+  <meta name="keywords" content="Unity developer, AR VR developer, Unity freelancer, VR training simulator, Oculus Quest developer, multiplayer Unity, ARFoundation developer, 3D game developer, hire Unity developer, Pakistan Unity developer">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Muhammad Mustakeem">
+  <meta name="theme-color" content="#050510">
+  <link rel="canonical" href="https://mustaqimjaffri046.github.io/">
+
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap" rel="stylesheet">
 
   <meta property="og:site_name" content="Muhammad Mustakeem Portfolio">
+  <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Muhammad Mustakeem | Senior Unity Developer">
   <meta property="og:description" content="XR/VR simulations, multiplayer systems, and optimized Unity 3D engineering for production-grade experiences.">
@@ -15,6 +27,8 @@
   <meta property="og:image" content="https://mustaqimjaffri046.github.io/assets/preview/preview.png">
   <meta property="og:image:secure_url" content="https://mustaqimjaffri046.github.io/assets/preview/preview.png">
   <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Muhammad Mustakeem - Senior Unity XR Developer Portfolio preview">
 
   <meta name="twitter:card" content="summary_large_image">
@@ -23,6 +37,29 @@
   <meta name="twitter:image" content="https://mustaqimjaffri046.github.io/assets/preview/preview.png">
   <meta name="twitter:image:alt" content="Muhammad Mustakeem - Senior Unity XR Developer Portfolio preview">
   <link rel="stylesheet" href="assets/css/portfolio.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Muhammad Mustakeem",
+    "jobTitle": "Senior Unity Developer",
+    "description": "AR/VR and 3D Game Specialist with 4+ years of experience building VR simulations, multiplayer systems, and high-performance Unity games.",
+    "url": "https://mustaqimjaffri046.github.io/",
+    "image": "https://mustaqimjaffri046.github.io/assets/preview/preview.png",
+    "email": "muhammadmustakeem046@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Islamabad",
+      "addressCountry": "PK"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/mustakeemgamedev",
+      "https://github.com/mustaqimjaffri046"
+    ],
+    "knowsAbout": ["Unity", "AR/VR Development", "Oculus SDK", "ARFoundation", "WebXR", "Multiplayer Games", "C#"]
+  }
+  </script>
 </head>
 <body data-depth="root">
   <div class="bg-fx-layer" data-bg-fx>
@@ -38,15 +75,23 @@
   <header class="site-header">
     <div class="container">
       <a class="brand" href="index.html">Portfolio</a>
-      <nav class="site-nav" data-nav-list></nav>
-      <button class="btn btn-ghost" data-theme-toggle type="button">Light Mode</button>
+      <nav class="site-nav" id="site-nav" data-nav-list></nav>
+      <div class="header-actions">
+        <button class="btn btn-ghost" data-theme-toggle type="button">Light Mode</button>
+        <button class="nav-toggle" data-nav-toggle type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="site-nav">
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+        </button>
+      </div>
     </div>
   </header>
 
   <main data-root>
     <section id="home" class="hero container" data-section-id="hero">
+      <p class="availability-badge" data-hero-availability hidden></p>
       <h1 data-hero-name></h1>
-      <h2 data-hero-title></h2>
+      <p class="hero-title" data-hero-title></p>
       <p data-hero-intro></p>
       <p class="hero-meta" data-hero-meta></p>
       <div class="hero-actions">
@@ -59,7 +104,12 @@
     <section id="about" class="container" data-section-id="about">
       <p class="about-rotating-title" data-about-rotating-title aria-live="polite"></p>
       <h2 class="section-heading">About</h2>
-      <p data-about-content></p>
+      <div class="about-layout">
+        <div class="about-photo-wrap">
+          <img class="about-photo" src="assets/img/my-profile-img.jpg" alt="Muhammad Mustakeem, Senior Unity AR/VR developer" width="240" height="240" loading="lazy" decoding="async">
+        </div>
+        <p class="about-text" data-about-content></p>
+      </div>
     </section>
 
     <section id="services" class="container" data-section-id="services">
@@ -101,9 +151,11 @@
     <section id="contact" class="container holo-panel" data-section-id="contact">
       <h2 class="section-heading">Contact</h2>
       <div class="contact-card">
+        <p class="availability-badge" data-contact-availability hidden></p>
         <p><strong>Email:</strong> <a data-contact-email href="#"></a></p>
         <p><strong>Location:</strong> <span data-contact-location></span></p>
         <p data-contact-message></p>
+        <p class="contact-rates" data-contact-rates hidden></p>
         <div class="project-actions">
           <a class="btn btn-secondary" data-contact-linkedin href="#" target="_blank" rel="noopener">LinkedIn</a>
           <a class="btn btn-secondary" data-contact-portfolio href="#" target="_blank" rel="noopener">Portfolio</a>
