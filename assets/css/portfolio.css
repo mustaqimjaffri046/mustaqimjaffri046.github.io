@@ -360,17 +360,15 @@ html[data-theme="light"] .skill-item {
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-template-columns: 1fr;
+  max-width: 1000px;
+  margin: 0 auto;
   gap: 1.5rem;
 }
 
-@media (max-width: 420px) {
-  .project-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 .project-card {
+  display: flex;
+  flex-direction: row;
   border: 1px solid rgba(0, 229, 255, 0.28);
   border-radius: var(--card-radius);
   overflow: hidden;
@@ -379,6 +377,18 @@ html[data-theme="light"] .skill-item {
   box-shadow: inset 0 0 24px rgba(0, 229, 255, 0.06), 0 0 20px rgba(123, 97, 255, 0.12);
   transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
   animation: cardFloat 10s ease-in-out infinite;
+}
+
+.project-slider-frame {
+  flex: 0 0 80%;
+  min-width: 0;
+}
+
+.project-card-body {
+  flex: 0 0 20%;
+  min-width: 0;
+  padding: 1rem;
+  overflow-y: auto;
 }
 
 .project-card:hover {
@@ -391,52 +401,56 @@ html[data-theme="light"] .project-card {
   background: var(--surface-light);
 }
 
-.project-card-body {
-  padding: 1rem;
-}
-
 .project-card h3 {
-  margin: 0.4rem 0 0.75rem;
+  margin: 0.3rem 0 0.5rem;
   font-family: var(--font-heading);
+  font-size: 0.95rem;
 }
 
 .project-card p {
   margin: 0;
   line-height: 1.55;
+  font-size: 0.82rem;
 }
 
 .tag-row {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.3rem;
   flex-wrap: wrap;
+  margin: 0;
 }
 
 .tag-row span {
-  font-size: 0.78rem;
-  padding: 0.26rem 0.58rem;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
   border-radius: 999px;
   background: rgba(127, 127, 127, 0.2);
 }
 
 .project-actions {
-  margin-top: 0.9rem;
+  margin-top: 0.6rem;
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
   flex-wrap: wrap;
+}
+
+.project-actions .btn {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.78rem;
 }
 
 .tech-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
-  margin-top: 0.7rem;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
 }
 
 .tech-row span {
-  font-size: 0.76rem;
+  font-size: 0.68rem;
   border: 1px solid rgba(130, 130, 130, 0.35);
   border-radius: 999px;
-  padding: 0.2rem 0.55rem;
+  padding: 0.15rem 0.45rem;
 }
 
 .timeline {
@@ -740,6 +754,17 @@ html[data-theme="light"] .cert-card {
   }
 }
 
+@media (max-width: 700px) {
+  .project-card {
+    flex-direction: column;
+  }
+
+  .project-slider-frame,
+  .project-card-body {
+    flex: 1 1 auto;
+  }
+}
+
 .social-grid {
   display: flex;
   flex-wrap: wrap;
@@ -801,7 +826,7 @@ html[data-theme="light"] .social-grid a {
 
 .slider-viewport {
   overflow: hidden;
-  aspect-ratio: 16 / 9;
+  height: 100%;
   background: #0a0a0a;
 }
 
@@ -945,7 +970,7 @@ html[data-theme="light"] .slider-btn {
 }
 
 .slider-empty {
-  aspect-ratio: 16 / 9;
+  height: 100%;
   display: grid;
   place-items: center;
   background: #101010;
