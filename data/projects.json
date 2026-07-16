@@ -402,22 +402,20 @@
   ],
   "projects": [
     {
-      "title": "EcoQuest",
-      "slug": "ecoquest",
-      "type": "Mobile Game",
+      "title": "HomeDecor",
+      "slug": "homedecor",
+      "type": "Oculus Quest",
       "description": "A published Unity mobile game built around procedural level generation and environmental gameplay. As sole developer I designed the procedural system that generates unique levels on each run, built the core gameplay loop and UI, and optimized the build for low-end Android devices to keep load times short and frame rates stable.",
       "technologies": [
         "Unity",
         "C#",
-        "Procedural Generation"
+        "Revit Models to Unity Scene"
       ],
       "images": [
-        "assets/images/EcoQuest_1.png",
-        "assets/images/EcoQuest_2.png",
-        "assets/images/EcoQuest_3.png"
+        
       ],
       "videos": [
-        "https://drive.google.com/file/d/1eHcHvoZTI4xy4gHqWSw7dCxhXrRkPsn_/view?usp=sharing"
+        "https://drive.google.com/file/d/1PIHpqt2UIBQsEM1jlnv9a_nAIL_iYZtd/view?usp=sharing"
       ],
       "github": "",
       "demo": "",
@@ -426,8 +424,37 @@
       "projectDetails": {
         "Role": "Solo Unity Developer",
         "Tech": "Unity, C#, Procedural Generation",
-        "Challenge": "Generate varied, balanced levels at runtime without hand-authoring each one",
-        "Outcome": "Shipped a replayable mobile game with procedurally generated levels optimized for low-end Android"
+        "Challenge": "Convert Revit models to Unity usable",
+        "Outcome": "Shipped a replayable 3d models with procedurally generated levels optimized for low-end oculus 2"
+      },
+      "features": [],
+      "screenshots": []
+    },
+    {
+      "title": "LabWalkthrough",
+      "slug": "walkthrough",
+      "type": "Oculus Quest",
+      "description": "A published Unity mobile game built around procedural level generation and environmental gameplay. As sole developer I designed the procedural system that generates unique levels on each run, built the core gameplay loop and UI, and optimized the build for low-end Android devices to keep load times short and frame rates stable.",
+      "technologies": [
+        "Unity",
+        "C#",
+        "Office builing in VR"
+      ],
+      "images": [
+        
+      ],
+      "videos": [
+        "https://drive.google.com/file/d/1QnSgdTFJyLSvUi5lwABrtrMJEVf890jR/view?usp=sharing"
+      ],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": ["Mobile", "Unity"],
+      "projectDetails": {
+        "Role": "Solo Unity Developer",
+        "Tech": "Unity, C#, Procedural Generation",
+        "Challenge": "Convert Build display/interactable models to Unity usable",
+        "Outcome": "Shipped a replayable 3d models with procedurally generated levels optimized for low-end oculus 2"
       },
       "features": [],
       "screenshots": []
@@ -648,6 +675,37 @@
       "playStore": "",
       "tags": [],
       "projectDetails": {},
+      "features": [],
+      "screenshots": []
+    },
+    {
+      "title": "EcoQuest",
+      "slug": "ecoquest",
+      "type": "Mobile Game",
+      "description": "A published Unity mobile game built around procedural level generation and environmental gameplay. As sole developer I designed the procedural system that generates unique levels on each run, built the core gameplay loop and UI, and optimized the build for low-end Android devices to keep load times short and frame rates stable.",
+      "technologies": [
+        "Unity",
+        "C#",
+        "Procedural Generation"
+      ],
+      "images": [
+        "assets/images/EcoQuest_1.png",
+        "assets/images/EcoQuest_2.png",
+        "assets/images/EcoQuest_3.png"
+      ],
+      "videos": [
+        "https://drive.google.com/file/d/1eHcHvoZTI4xy4gHqWSw7dCxhXrRkPsn_/view?usp=sharing"
+      ],
+      "github": "",
+      "demo": "",
+      "playStore": "",
+      "tags": ["Mobile", "Unity"],
+      "projectDetails": {
+        "Role": "Solo Unity Developer",
+        "Tech": "Unity, C#, Procedural Generation",
+        "Challenge": "Generate varied, balanced levels at runtime without hand-authoring each one",
+        "Outcome": "Shipped a replayable mobile game with procedurally generated levels optimized for low-end Android"
+      },
       "features": [],
       "screenshots": []
     },
