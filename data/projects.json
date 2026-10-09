@@ -430,35 +430,6 @@
       "features": [],
       "screenshots": []
     },
-     {
-      "title": "VR Automobile",
-      "slug": "VR Automobile",
-      "type": "Oculus Quest",
-      "description": "A published Unity mobile game built around procedural level generation and environmental gameplay. As sole developer I designed the procedural system that generates unique levels on each run, built the core gameplay loop and UI, and optimized the build for low-end Android devices to keep load times short and frame rates stable.",
-      "technologies": [
-        "Unity",
-        "C#",
-        "Revit Models to Unity Scene"
-      ],
-      "images": [
-        
-      ],
-      "videos": [
-        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7496158365941866496?compact=1" height="399" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
-      ],
-      "github": "",
-      "demo": "",
-      "playStore": "",
-      "tags": ["Mobile", "Unity"],
-      "projectDetails": {
-        "Role": "Solo Unity Developer",
-        "Tech": "Unity, C#, Procedural Generation",
-        "Challenge": "Convert Revit models to Unity usable",
-        "Outcome": "Shipped a replayable 3d models with procedurally generated levels optimized for low-end oculus 2"
-      },
-      "features": [],
-      "screenshots": []
-    },
     {
       "title": "LabWalkthrough",
       "slug": "walkthrough",
