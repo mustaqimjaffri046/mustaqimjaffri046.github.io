@@ -37,7 +37,13 @@
       tags: normalizeArray(project.tags),
       projectDetails: project.projectDetails || {},
       features: normalizeArray(project.features),
-      screenshots: normalizeArray(project.screenshots)
+      screenshots: normalizeArray(project.screenshots),
+      // Selected Work section: a featured project renders as a large auto-playing card.
+      featured: project.featured === true,
+      featuredOrder: Number(project.featuredOrder) || 0,
+      clip: project.clip || "",
+      poster: project.poster || "",
+      highlight: project.highlight || ""
     };
   }
 
@@ -57,7 +63,8 @@
       experience: normalizeArray(source.experience),
       contact: source.contact || {},
       socialLinks: normalizeArray(source.socialLinks),
-      projects: normalizeArray(source.projects).map(normalizeProject)
+      projects: normalizeArray(source.projects).map(normalizeProject),
+      linkedinVideos: normalizeArray(source.linkedinVideos)
     };
   }
 

@@ -358,6 +358,72 @@ html[data-theme="light"] .skill-item {
   color: #fff;
 }
 
+.project-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.project-controls .chip-row {
+  margin-bottom: 0;
+}
+
+.video-toggle-btn {
+  margin-left: auto;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.videos-page {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.videos-carousel {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.videos-viewport {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--card-radius);
+  background: #0a0a0a;
+}
+
+.videos-slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.videos-slide iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: var(--card-radius);
+}
+
+.videos-empty {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  color: #b8b8b8;
+  font-size: 0.95rem;
+}
+
+.videos-title {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
 .project-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1251,5 +1317,235 @@ html[data-theme="light"] .slider-btn {
 
   .site-nav a:hover {
     background: rgba(0, 229, 255, 0.1);
+  }
+}
+
+/* ============================================================
+   Selected Work — three large auto-playing cards, straight
+   after the hero. This is the first thing a recruiter sees.
+   ============================================================ */
+
+.section-lede {
+  margin: -0.35rem 0 1.75rem;
+  max-width: 58ch;
+  font-size: 0.95rem;
+  opacity: 0.78;
+}
+
+.featured-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.featured-card {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 0;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  background: rgba(17, 20, 46, 0.55);
+  backdrop-filter: blur(11px);
+  box-shadow: inset 0 0 28px rgba(0, 229, 255, 0.07), 0 0 26px rgba(123, 97, 255, 0.14);
+  transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+}
+
+.featured-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 229, 255, 0.55);
+  box-shadow: inset 0 0 28px rgba(0, 229, 255, 0.1), 0 0 34px rgba(0, 229, 255, 0.24);
+}
+
+html[data-theme="light"] .featured-card {
+  background: var(--surface-light);
+  border-color: rgba(4, 108, 127, 0.28);
+  box-shadow: 0 2px 18px rgba(15, 23, 42, 0.1);
+}
+
+.featured-media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  min-height: 260px;
+  background: #05060f;
+  overflow: hidden;
+}
+
+.featured-video,
+.featured-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.featured-media-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  height: 100%;
+  padding: 1rem;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(0, 229, 255, 0.12), transparent 62%),
+    repeating-linear-gradient(45deg, rgba(123, 97, 255, 0.06) 0 10px, transparent 10px 20px);
+}
+
+.featured-media-empty p {
+  margin: 0;
+  font-size: 0.86rem;
+  opacity: 0.72;
+}
+
+.featured-media-empty-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 229, 255, 0.5);
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.featured-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.6rem;
+}
+
+.featured-kicker {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+html[data-theme="light"] .featured-kicker {
+  color: #046c7f;
+}
+
+.featured-body h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+
+.featured-highlight {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--accent-xr), #fff 30%);
+}
+
+html[data-theme="light"] .featured-highlight {
+  color: #0f766e;
+}
+
+.featured-desc {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  opacity: 0.82;
+}
+
+.featured-body .project-actions {
+  margin-top: auto;
+  padding-top: 0.85rem;
+}
+
+@media (max-width: 820px) {
+  .featured-card {
+    grid-template-columns: 1fr;
+  }
+  .featured-media {
+    min-height: 0;
+  }
+  .featured-body {
+    padding: 1.15rem;
+  }
+}
+
+/* ---- Résumé button: the one thing a recruiter always looks for ---- */
+
+.btn-resume {
+  background: transparent;
+  border: 1px solid var(--accent-xr);
+  color: color-mix(in srgb, var(--accent-xr), #fff 24%);
+  font-weight: 600;
+  gap: 0.4rem;
+}
+
+.btn-resume:hover {
+  background: rgba(0, 255, 163, 0.12);
+  box-shadow: 0 0 18px rgba(0, 255, 163, 0.28);
+}
+
+html[data-theme="light"] .btn-resume {
+  border-color: #0f766e;
+  color: #0f766e;
+}
+
+.btn-resume-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.btn-sm {
+  padding: 0.38rem 0.8rem;
+  font-size: 0.82rem;
+}
+
+/* ---- Services, collapsed from six tall cards to a compact list ---- */
+
+.services-compact {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4rem 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.service-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.42rem 0;
+  border-bottom: 1px solid rgba(0, 229, 255, 0.12);
+  font-size: 0.9rem;
+}
+
+.service-line-title {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+html[data-theme="light"] .service-line-title {
+  color: #046c7f;
+}
+
+.service-line-desc {
+  opacity: 0.72;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 720px) {
+  .services-compact {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featured-card {
+    transition: none;
+  }
+  .featured-card:hover {
+    transform: none;
   }
 }

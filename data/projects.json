@@ -30,7 +30,8 @@
       "description": "Muhammad Mustakeem — Senior Unity Developer specializing in AR/VR simulations, multiplayer systems, and high-performance 3D mobile games. 4+ years experience, 500K+ downloads. Available for freelance.",
       "keywords": "Unity developer, AR VR developer, Unity freelancer, VR training simulator, Oculus Quest developer, multiplayer Unity, ARFoundation developer, 3D game developer, hire Unity developer, Pakistan Unity developer",
       "ogImage": "https://mustaqimjaffri046.github.io/assets/preview/preview.png"
-    }
+    },
+    "resumeUrl": "assets/resume/Muhammad-Mustakeem-Resume.pdf"
   },
   "navigation": [
     {
@@ -38,16 +39,20 @@
       "target": "#home"
     },
     {
-      "label": "Portfolio",
-      "target": "#projects"
+      "label": "Work",
+      "target": "#featured"
     },
     {
-      "label": "Skills",
-      "target": "#skills"
+      "label": "Projects",
+      "target": "#projects"
     },
     {
       "label": "Experience",
       "target": "#experience"
+    },
+    {
+      "label": "Skills",
+      "target": "#skills"
     },
     {
       "label": "Contact",
@@ -62,20 +67,20 @@
       "order": 1
     },
     {
-      "id": "about",
-      "title": "About",
+      "id": "featured",
+      "title": "Selected Work",
       "enabled": true,
       "order": 2
     },
     {
-      "id": "services",
-      "title": "Services",
+      "id": "projects",
+      "title": "All Projects",
       "enabled": true,
       "order": 3
     },
     {
-      "id": "projects",
-      "title": "Projects",
+      "id": "experience",
+      "title": "Experience",
       "enabled": true,
       "order": 4
     },
@@ -86,8 +91,8 @@
       "order": 5
     },
     {
-      "id": "experience",
-      "title": "Experience",
+      "id": "about",
+      "title": "About",
       "enabled": true,
       "order": 6
     },
@@ -98,8 +103,8 @@
       "order": 7
     },
     {
-      "id": "testimonials",
-      "title": "Testimonials",
+      "id": "services",
+      "title": "Services",
       "enabled": true,
       "order": 8
     },
@@ -116,10 +121,16 @@
       "order": 10
     },
     {
+      "id": "testimonials",
+      "title": "Testimonials",
+      "enabled": true,
+      "order": 11
+    },
+    {
       "id": "social",
       "title": "Social",
       "enabled": true,
-      "order": 11
+      "order": 12
     }
   ],
   "customSections": [],
@@ -190,7 +201,8 @@
       "name": "akshata12310439",
       "country": "Ireland",
       "rating": 4.7,
-      "text": "Muhammad has been excellent, very supportive and patient in understanding the requirements. He delivered the project on time with all the necessary changes. Very professional at his work and skill. I would recommend working with him and will consider him for future projects."
+      "text": "Muhammad has been excellent, very supportive and patient in understanding the requirements. He delivered the project on time with all the necessary changes. Very professional at his work and skill. I would recommend working with him and will consider him for future projects.",
+      "featured": true
     },
     {
       "name": "maxipad09",
@@ -208,13 +220,15 @@
       "name": "faustobase",
       "country": "Italy",
       "rating": 5,
-      "text": "Muhammad M exceeded my expectations in game development with his bug-free, professional work. His attention to detail and quick responsiveness made the collaboration seamless. He went above and beyond in delivery time."
+      "text": "Muhammad M exceeded my expectations in game development with his bug-free, professional work. His attention to detail and quick responsiveness made the collaboration seamless. He went above and beyond in delivery time.",
+      "featured": true
     },
     {
       "name": "akinloluwab",
       "country": "Nigeria",
       "rating": 5,
-      "text": "It was great working with Muhammad. His professionalism and expertise were top-notch. I will always recommend him for VR/AR/MR projects."
+      "text": "It was great working with Muhammad. His professionalism and expertise were top-notch. I will always recommend him for VR/AR/MR projects.",
+      "featured": true
     },
     {
       "name": "zurich23",
@@ -411,16 +425,17 @@
         "C#",
         "Revit Models to Unity Scene"
       ],
-      "images": [
-        
-      ],
+      "images": [],
       "videos": [
         "https://drive.google.com/file/d/1PIHpqt2UIBQsEM1jlnv9a_nAIL_iYZtd/view?usp=sharing"
       ],
       "github": "",
       "demo": "",
       "playStore": "",
-      "tags": ["Mobile", "Unity"],
+      "tags": [
+        "Mobile",
+        "Unity"
+      ],
       "projectDetails": {
         "Role": "Solo Unity Developer",
         "Tech": "Unity, C#, Procedural Generation",
@@ -428,7 +443,12 @@
         "Outcome": "Shipped a replayable 3d models with procedurally generated levels optimized for low-end oculus 2"
       },
       "features": [],
-      "screenshots": []
+      "screenshots": [],
+      "featured": true,
+      "featuredOrder": 1,
+      "clip": "",
+      "poster": "",
+      "highlight": ""
     },
     {
       "title": "LabWalkthrough",
@@ -440,16 +460,17 @@
         "C#",
         "Office builing in VR"
       ],
-      "images": [
-        
-      ],
+      "images": [],
       "videos": [
         "https://drive.google.com/file/d/1QnSgdTFJyLSvUi5lwABrtrMJEVf890jR/view?usp=sharing"
       ],
       "github": "",
       "demo": "",
       "playStore": "",
-      "tags": ["Mobile", "Unity"],
+      "tags": [
+        "Mobile",
+        "Unity"
+      ],
       "projectDetails": {
         "Role": "Solo Unity Developer",
         "Tech": "Unity, C#, Procedural Generation",
@@ -469,16 +490,17 @@
         "C#",
         "Revit Models to Unity Scene"
       ],
-      "images": [
-        
-      ],
+      "images": [],
       "videos": [
         "https://drive.google.com/file/d/195LqqKsUT6UKMgwJZtGpOwu2LLtElto2/view?usp=sharing"
       ],
       "github": "",
       "demo": "",
       "playStore": "",
-      "tags": ["Mobile", "Unity"],
+      "tags": [
+        "Mobile",
+        "Unity"
+      ],
       "projectDetails": {
         "Role": "Solo Unity Developer",
         "Tech": "Unity, C#, Procedural Generation",
@@ -486,7 +508,12 @@
         "Outcome": "Shipped a replayable 3d models with procedurally generated levels optimized for low-end oculus 2"
       },
       "features": [],
-      "screenshots": []
+      "screenshots": [],
+      "featured": true,
+      "featuredOrder": 3,
+      "clip": "",
+      "poster": "",
+      "highlight": ""
     },
     {
       "title": "Pyramids",
@@ -498,16 +525,17 @@
         "C#",
         "Explore the pyramids Models to Unity Scene"
       ],
-      "images": [
-        
-      ],
+      "images": [],
       "videos": [
         "https://drive.google.com/file/d/1kPu81vV1FJU0C0xhmN1ceoklO0PEjiPv/view?usp=sharing"
       ],
       "github": "",
       "demo": "",
       "playStore": "",
-      "tags": ["Mobile", "Unity"],
+      "tags": [
+        "Mobile",
+        "Unity"
+      ],
       "projectDetails": {
         "Role": "Solo Unity Developer",
         "Tech": "Unity, C#, Procedural Generation",
@@ -535,7 +563,10 @@
       "github": "",
       "demo": "",
       "playStore": "",
-      "tags": ["VR", "Training"],
+      "tags": [
+        "VR",
+        "Training"
+      ],
       "projectDetails": {
         "Role": "Senior Unity / XR Developer",
         "Tech": "Unity, OpenXR, Oculus SDK, hand-gesture interaction",
@@ -562,7 +593,9 @@
       "github": "",
       "demo": "",
       "playStore": "",
-      "tags": ["VR"],
+      "tags": [
+        "VR"
+      ],
       "projectDetails": {
         "Role": "Unity / XR Developer",
         "Tech": "Unity, OpenXR, XR Interaction Toolkit",
@@ -589,7 +622,10 @@
       "github": "",
       "demo": "",
       "playStore": "",
-      "tags": ["VR", "Training"],
+      "tags": [
+        "VR",
+        "Training"
+      ],
       "projectDetails": {
         "Role": "Senior Unity / XR Developer",
         "Tech": "Unity, OpenXR, GPU instancing, occlusion culling",
@@ -597,7 +633,12 @@
         "Outcome": "Shipped a scored, task-based warehouse trainer with optimized rendering for standalone VR"
       },
       "features": [],
-      "screenshots": []
+      "screenshots": [],
+      "featured": true,
+      "featuredOrder": 2,
+      "clip": "",
+      "poster": "",
+      "highlight": "Trains staff on picking, scanning and safe handling; GPU instancing and occlusion culling keep the dense warehouse scene at VR frame rates."
     },
     {
       "title": "Workers Posture Correction System",
@@ -616,7 +657,10 @@
       "github": "",
       "demo": "",
       "playStore": "",
-      "tags": ["VR", "Training"],
+      "tags": [
+        "VR",
+        "Training"
+      ],
       "projectDetails": {
         "Role": "Unity / XR Developer",
         "Tech": "Unity, OpenXR, VR body tracking",
@@ -757,7 +801,10 @@
       "github": "",
       "demo": "",
       "playStore": "",
-      "tags": ["Mobile", "Unity"],
+      "tags": [
+        "Mobile",
+        "Unity"
+      ],
       "projectDetails": {
         "Role": "Solo Unity Developer",
         "Tech": "Unity, C#, Procedural Generation",

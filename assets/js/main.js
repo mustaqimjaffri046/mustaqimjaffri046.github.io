@@ -146,6 +146,7 @@
 
     const builtIn = new Set([
       "hero",
+      "featured",
       "about",
       "services",
       "projects",
@@ -199,8 +200,8 @@
       metaNode.textContent = (site.location || "") + (site.experienceYears ? " • " + site.experienceYears + " Experience" : "");
     }
     if (ctaPortfolioNode) {
-      ctaPortfolioNode.textContent = "View Portfolio";
-      ctaPortfolioNode.setAttribute("href", "#projects");
+      ctaPortfolioNode.textContent = "View Work";
+      ctaPortfolioNode.setAttribute("href", "#featured");
     }
     if (ctaHireNode) {
       ctaHireNode.textContent = "Hire Me";
@@ -209,6 +210,23 @@
     if (ctaContactNode) {
       ctaContactNode.textContent = "Contact Me";
       ctaContactNode.setAttribute("href", "#contact");
+    }
+
+    const brandNode = document.querySelector("[data-brand]");
+    if (brandNode && site.name) {
+      brandNode.textContent = site.name;
+    }
+
+    const resumeNode = document.querySelector("[data-hero-resume]");
+    if (resumeNode) {
+      const resumeUrl = site.resumeUrl || "";
+      if (resumeUrl) {
+        resumeNode.setAttribute("href", resumeUrl);
+        resumeNode.setAttribute("download", "");
+        resumeNode.hidden = false;
+      } else {
+        resumeNode.hidden = true;
+      }
     }
 
     const availabilityNode = document.querySelector("[data-hero-availability]");
@@ -300,14 +318,174 @@
     node.innerHTML = (data.services || [])
       .map(function (service) {
         return (
-          "<article class='service-card reveal'>" +
-          "<div class='service-icon'>" + (service.icon || "◆") + "</div>" +
-          "<h3>" + service.title + "</h3>" +
-          "<p>" + service.description + "</p>" +
-          "</article>"
+          "<li class='service-line'>" +
+          "<span class='service-line-title'>" + service.title + "</span>" +
+          "<span class='service-line-desc'>" + shortenService(service.description) + "</span>" +
+          "</li>"
         );
       })
       .join("");
+  }
+
+  // Services used to be six tall cards (~1450px). Recruiters scroll past it to reach
+  // the work, so it is now a compact list — first clause of each description only.
+  function shortenService(text) {
+    const value = String(text || "").trim();
+    if (!value) {
+      return "";
+    }
+    const cut = value.split(/,| including | using | such as /i)[0].trim();
+    const short = cut.length > 4 ? cut : value;
+    return short.replace(/\.$/, "");
+  }
+
+  function escapeHtml(value) {
+    return String(value == null ? "" : value).replace(/[&<>"']/g, function (ch) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch];
+    });
+  }
+
+  function getFeaturedProjects(data) {
+    const flagged = (data.projects || []).filter(function (project) {
+      return project.featured === true;
+    });
+    flagged.sort(function (a, b) {
+      return (a.featuredOrder || 99) - (b.featuredOrder || 99);
+    });
+    return flagged.slice(0, 3);
+  }
+
+  // Large auto-playing cards. A local muted clip is the goal: it paints in-place with
+  // no click and no third-party frame. Falls back to a poster image, then to a link out
+  // to the hosted demo, so the section is never empty while media is still being added.
+  function renderFeaturedMedia(project) {
+    const clip = String(project.clip || "").trim();
+    const poster = String(project.poster || "").trim();
+    const demo = (project.videos || [])[0] || "";
+
+    if (clip) {
+      return (
+        "<video class='featured-video' muted loop playsinline preload='none'" +
+        (poster ? " poster='" + escapeHtml(poster) + "'" : "") +
+        " aria-label='" + escapeHtml(project.title) + " gameplay clip'>" +
+        "<source src='" + escapeHtml(clip) + "' type='video/mp4'>" +
+        "</video>"
+      );
+    }
+
+    if (poster) {
+      return (
+        "<img class='featured-poster' src='" + escapeHtml(poster) + "' alt='" +
+        escapeHtml(project.title) + " screenshot' loading='lazy' decoding='async'>"
+      );
+    }
+
+    return (
+      "<div class='featured-media-empty'>" +
+      "<span class='featured-media-empty-icon' aria-hidden='true'>▶</span>" +
+      "<p>Demo clip coming soon</p>" +
+      (demo
+        ? "<a class='btn btn-ghost btn-sm' href='" + escapeHtml(demo) +
+          "' target='_blank' rel='noopener'>Watch on Drive</a>"
+        : "") +
+      "</div>"
+    );
+  }
+
+  function renderFeaturedProjects(data) {
+    const grid = document.querySelector("[data-featured-grid]");
+    const section = document.querySelector("[data-section-id='featured']");
+    if (!grid) {
+      return;
+    }
+
+    const featured = getFeaturedProjects(data);
+    if (featured.length === 0) {
+      if (section) {
+        section.hidden = true;
+      }
+      return;
+    }
+
+    grid.innerHTML = featured
+      .map(function (project) {
+        const demo = (project.videos || [])[0] || "";
+        return (
+          "<article class='featured-card reveal'>" +
+          "<div class='featured-media'>" + renderFeaturedMedia(project) + "</div>" +
+          "<div class='featured-body'>" +
+          "<p class='featured-kicker'>" + escapeHtml(project.type || "Project") + "</p>" +
+          "<h3>" + escapeHtml(project.title) + "</h3>" +
+          (project.highlight
+            ? "<p class='featured-highlight'>" + escapeHtml(project.highlight) + "</p>"
+            : "") +
+          "<p class='featured-desc'>" + escapeHtml(project.description) + "</p>" +
+          "<p class='tech-row'>" +
+          (project.technologies || []).slice(0, 4).map(function (tech) {
+            return "<span>" + escapeHtml(tech) + "</span>";
+          }).join("") +
+          "</p>" +
+          "<div class='project-actions'>" +
+          "<a class='btn btn-secondary' href='" +
+          window.PortfolioStore.getProjectPageHref(project.slug) + "'>Case Study</a>" +
+          (demo
+            ? "<a class='btn btn-ghost' href='" + escapeHtml(demo) +
+              "' target='_blank' rel='noopener'>Full Demo</a>"
+            : "") +
+          "</div></div></article>"
+        );
+      })
+      .join("");
+
+    setupFeaturedVideoPlayback(grid);
+  }
+
+  // Only decode and play a clip while it is actually on screen, so three videos do not
+  // burn CPU for the whole visit. Reduced-motion users get the poster frame and controls.
+  function setupFeaturedVideoPlayback(grid) {
+    const videos = grid.querySelectorAll(".featured-video");
+    if (videos.length === 0) {
+      return;
+    }
+
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) {
+      videos.forEach(function (video) {
+        video.setAttribute("controls", "");
+        video.preload = "metadata";
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          const video = entry.target;
+          if (entry.isIntersecting) {
+            video.muted = true;
+            if (video.preload !== "auto") {
+              video.preload = "auto";
+              video.load();
+            }
+            const attempt = video.play();
+            if (attempt && typeof attempt.catch === "function") {
+              // Autoplay can still be refused (battery saver, iOS Low Power Mode).
+              attempt.catch(function () {
+                video.setAttribute("controls", "");
+              });
+            }
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.35 }
+    );
+
+    videos.forEach(function (video) {
+      video.muted = true;
+      observer.observe(video);
+    });
   }
 
   function renderSkills(data) {
@@ -651,7 +829,8 @@
         avatar: placeholderValues.has(avatar) ? "" : avatar,
         country: placeholderValues.has(country) ? "" : country,
         platform: platform,
-        rating: rating
+        rating: rating,
+        featured: !!(item && item.featured === true)
       };
     }
 
@@ -661,7 +840,14 @@
         return item.quote.length > 3;
       });
 
-    const finalTestimonials = sanitized.length > 0 ? sanitized : fallbackTestimonials;
+    // Show only the hand-picked ones when any are flagged. The rest stay in the JSON so
+    // nothing is lost, but a recruiter reads three strong quotes instead of eleven.
+    const picked = sanitized.filter(function (item) {
+      return item.featured;
+    });
+    const shortlist = picked.length > 0 ? picked : sanitized;
+
+    const finalTestimonials = shortlist.length > 0 ? shortlist : fallbackTestimonials;
 
     node.innerHTML = finalTestimonials
       .map(function (item) {
@@ -988,6 +1174,7 @@
     renderAbout(data);
     setupAboutRotatingTitle(data);
     renderServices(data);
+    renderFeaturedProjects(data);
     renderProjectFilters(data);
     renderProjectCards(getFilteredProjects());
     renderSkills(data);

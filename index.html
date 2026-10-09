@@ -24,9 +24,9 @@
   <meta property="og:title" content="Muhammad Mustakeem | Senior Unity Developer">
   <meta property="og:description" content="XR/VR simulations, multiplayer systems, and optimized Unity 3D engineering for production-grade experiences.">
   <meta property="og:url" content="https://mustaqimjaffri046.github.io/">
-  <meta property="og:image" content="https://mustaqimjaffri046.github.io/assets/preview/preview.png">
-  <meta property="og:image:secure_url" content="https://mustaqimjaffri046.github.io/assets/preview/preview.png">
-  <meta property="og:image:type" content="image/png">
+  <meta property="og:image" content="https://mustaqimjaffri046.github.io/assets/preview/preview.jpg">
+  <meta property="og:image:secure_url" content="https://mustaqimjaffri046.github.io/assets/preview/preview.jpg">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Muhammad Mustakeem - Senior Unity XR Developer Portfolio preview">
@@ -34,7 +34,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Muhammad Mustakeem | Senior Unity Developer">
   <meta name="twitter:description" content="Senior Unity XR Developer building VR simulations, multiplayer systems, and high-performance 3D products.">
-  <meta name="twitter:image" content="https://mustaqimjaffri046.github.io/assets/preview/preview.png">
+  <meta name="twitter:image" content="https://mustaqimjaffri046.github.io/assets/preview/preview.jpg">
   <meta name="twitter:image:alt" content="Muhammad Mustakeem - Senior Unity XR Developer Portfolio preview">
   <link rel="stylesheet" href="assets/css/portfolio.css">
 
@@ -46,7 +46,7 @@
     "jobTitle": "Senior Unity Developer",
     "description": "AR/VR and 3D Game Specialist with 4+ years of experience building VR simulations, multiplayer systems, and high-performance Unity games.",
     "url": "https://mustaqimjaffri046.github.io/",
-    "image": "https://mustaqimjaffri046.github.io/assets/preview/preview.png",
+    "image": "https://mustaqimjaffri046.github.io/assets/preview/preview.jpg",
     "email": "muhammadmustakeem046@gmail.com",
     "address": {
       "@type": "PostalAddress",
@@ -74,7 +74,7 @@
 
   <header class="site-header">
     <div class="container">
-      <a class="brand" href="index.html">Portfolio</a>
+      <a class="brand" href="index.html" data-brand>Muhammad Mustakeem</a>
       <nav class="site-nav" id="site-nav" data-nav-list></nav>
       <div class="header-actions">
         <button class="btn btn-ghost" data-theme-toggle type="button">Light Mode</button>
@@ -95,10 +95,18 @@
       <p data-hero-intro></p>
       <p class="hero-meta" data-hero-meta></p>
       <div class="hero-actions">
-        <a class="btn btn-primary" data-hero-cta-portfolio href="#projects">View Portfolio</a>
+        <a class="btn btn-primary" data-hero-cta-portfolio href="#featured">View Work</a>
+        <a class="btn btn-resume" data-hero-resume href="#" hidden>
+          <span class="btn-resume-icon" aria-hidden="true">↓</span> Download Résumé (PDF)
+        </a>
         <a class="btn btn-secondary" data-hero-cta-hire href="#contact">Hire Me</a>
-        <a class="btn btn-ghost" data-hero-cta-contact href="#contact">Contact Me</a>
       </div>
+    </section>
+
+    <section id="featured" class="container" data-section-id="featured">
+      <h2 class="section-heading">Selected Work</h2>
+      <p class="section-lede">The three projects that best represent what I build.</p>
+      <div class="featured-grid" data-featured-grid></div>
     </section>
 
     <section id="about" class="container" data-section-id="about">
@@ -106,7 +114,10 @@
       <h2 class="section-heading">About</h2>
       <div class="about-layout">
         <div class="about-photo-wrap">
-          <img class="about-photo" src="assets/images/MyImg.png" alt="Muhammad Mustakeem, Senior Unity AR/VR developer" width="240" height="240" loading="lazy" decoding="async">
+          <picture>
+            <source srcset="assets/images/MyImg.webp" type="image/webp">
+            <img class="about-photo" src="assets/images/MyImg.jpg" alt="Muhammad Mustakeem, Senior Unity AR/VR developer" width="220" height="220" loading="lazy" decoding="async">
+          </picture>
         </div>
         <p class="about-text" data-about-content></p>
       </div>
@@ -114,12 +125,15 @@
 
     <section id="services" class="container" data-section-id="services">
       <h2 class="section-heading">Services</h2>
-      <div class="services-grid" data-services-grid></div>
+      <ul class="services-compact" data-services-grid></ul>
     </section>
 
     <section id="projects" class="container holo-panel" data-section-id="projects">
-      <h2 class="section-heading section-heading-center">Portfolio</h2>
-      <div class="chip-row" data-project-filters></div>
+      <h2 class="section-heading section-heading-center">All Projects</h2>
+      <div class="project-controls">
+        <div class="chip-row" data-project-filters></div>
+        <a class="btn btn-ghost video-toggle-btn" href="videos.html">Show Videos</a>
+      </div>
       <div class="project-grid" data-project-grid></div>
     </section>
 

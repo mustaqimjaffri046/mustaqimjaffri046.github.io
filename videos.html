@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Videos | Muhammad Mustakeem</title>
+  <meta name="description" content="Watch project demos and walkthroughs by Muhammad Mustakeem — Unity & AR/VR Developer.">
+  <link rel="stylesheet" href="assets/css/portfolio.css">
+</head>
+<body data-depth="root">
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html">Portfolio</a>
+      <nav class="site-nav">
+        <a href="index.html#projects">Back to Projects</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container videos-page">
+    <h1 class="section-heading section-heading-center">Project Videos</h1>
+    <div class="videos-carousel" data-videos-carousel>
+      <button class="slider-btn slider-btn-prev" data-videos-prev aria-label="Previous video">&#8592;</button>
+      <div class="videos-viewport" data-videos-viewport>
+        <div class="videos-empty">No videos available.</div>
+      </div>
+      <button class="slider-btn slider-btn-next" data-videos-next aria-label="Next video">&#8594;</button>
+    </div>
+    <div class="slider-dots" data-videos-dots></div>
+    <p class="videos-title" data-videos-title></p>
+  </main>
+
+  <script>
+  (function () {
+    "use strict";
+
+    var currentIndex = 0;
+    var videos = [];
+
+    function render() {
+      var viewport = document.querySelector("[data-videos-viewport]");
+      var dotsContainer = document.querySelector("[data-videos-dots]");
+      var titleEl = document.querySelector("[data-videos-title]");
+
+      if (videos.length === 0) {
+        viewport.innerHTML = "<div class='videos-empty'>No videos available.</div>";
+        return;
+      }
+
+      viewport.innerHTML = videos
+        .map(function (v, i) {
+          return (
+            "<div class='videos-slide' data-vid-index='" + i + "'" + (i === 0 ? " style='display:block'" : "") + ">" +
+            "<iframe src='" + v.embedUrl + "' frameborder='0' allowfullscreen loading='lazy' title='" + (v.title || "Project video") + "'></iframe>" +
+            "</div>"
+          );
+        })
+        .join("");
+
+      dotsContainer.innerHTML = videos
+        .map(function (_v, i) {
+          var cls = i === 0 ? "slider-dot active" : "slider-dot";
+          return "<button class='" + cls + "' data-vid-dot='" + i + "' aria-label='Video " + (i + 1) + "'></button>";
+        })
+        .join("");
+
+      titleEl.textContent = videos[0].title || "";
+    }
+
+    function goTo(index) {
+      if (videos.length === 0) return;
+      if (index < 0) index = videos.length - 1;
+      if (index >= videos.length) index = 0;
+      currentIndex = index;
+
+      var slides = document.querySelectorAll("[data-vid-index]");
+      slides.forEach(function (s, i) { s.style.display = i === currentIndex ? "block" : "none"; });
+
+      var dots = document.querySelectorAll("[data-vid-dot]");
+      dots.forEach(function (d, i) { d.classList.toggle("active", i === currentIndex); });
+
+      document.querySelector("[data-videos-title]").textContent = videos[currentIndex].title || "";
+    }
+
+    document.querySelector("[data-videos-prev]").addEventListener("click", function () {
+      goTo(currentIndex - 1);
+    });
+
+    document.querySelector("[data-videos-next]").addEventListener("click", function () {
+      goTo(currentIndex + 1);
+    });
+
+    document.querySelector("[data-videos-dots]").addEventListener("click", function (e) {
+      var dot = e.target.closest("[data-vid-dot]");
+      if (!dot) return;
+      goTo(Number(dot.dataset.vidDot));
+    });
+
+    fetch("data/projects.json")
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        videos = data.linkedinVideos || [];
+        render();
+      })
+      .catch(function () {
+        document.querySelector("[data-videos-viewport]").innerHTML = "<div class='videos-empty'>Failed to load videos.</div>";
+      });
+  })();
+  </script>
+</body>
+</html>
