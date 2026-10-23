@@ -52,46 +52,48 @@ wrangler pages deploy dist --project-name mustakeem --branch main
 `--branch main` matters: the current git branch is `portfolio-redesign`, and any other
 branch name makes a preview (noindex) deployment instead of production.
 
-## Contact form endpoint (needed before `generate_lead` can ever fire)
+## Analytics and the contact form (both working)
 
-`contact.formEndpoint` in `data/projects.json` is empty, so the form falls back to email
-and GA4 will only ever see `lead_brief_prepared` / `lead_email_app_opened`. To change that:
+- **Contact form → Formspree** (2026-10-23). `contact.formEndpoint` in
+  `data/projects.json` is `https://formspree.io/f/xaeewrrr`. Verified end to end from the
+  live site: Formspree accepted the brief, the notification mail arrived, and
+  `generate_lead` fired with `service`, `budget` and `method=form`.
+  Free tier is 50 submissions/month — when it fills, sends fail and visitors see the
+  error path. The client side (`setupBriefForm` in `assets/js/main.js`) posts JSON with
+  `Accept: application/json`, `_subject` for the mail subject, `_gotcha` stripped as a
+  honeypot, and tracks `generate_lead` only on a 2xx. Success, a 400 and the
+  no-endpoint path were all exercised against a stub that mimics Formspree.
+- **Cloudflare Web Analytics** (2026-10-23): enabled in the Pages dashboard, which
+  injects the beacon at the edge — **a redeploy is required** before it appears (see
+  Gotchas). Verified live: one `beacon.min.js` tag, `cloudflareinsights.com/cdn-cgi/rum`
+  called, no console errors. `cloudflareBeaconToken` in `config.js` stays **empty**; set
+  it only if the dashboard toggle is off, or every visit is counted twice.
 
-1. Create a Formspree account and a form, confirm the address Formspree emails you, and
-   copy the endpoint (`https://formspree.io/f/XXXXXXXX`).
-2. Put it in `data/projects.json` → `contact.formEndpoint`, rebuild, redeploy.
-3. Send one real submission from the live site and confirm the email arrives. Formspree
-   holds the first submission until the form's address is confirmed.
-4. In Formspree, turn **off** its own reCAPTCHA for this form: the site posts JSON over
-   AJAX and never renders a challenge, so a challenge would show up here as a failed send.
+## Deferred: GA4
 
-The client side is already written and tested for this (`setupBriefForm` in
-`assets/js/main.js`): a JSON POST with `Accept: application/json`, `_subject` for the
-notification subject, `_gotcha` stripped client-side as a honeypot, and `generate_lead`
-tracked only on a 2xx response. All three paths were exercised against a stub that mimics
-Formspree (`scratchpad/stub_formspree.py`, not in the repo): success, a 400, and no
-endpoint at all.
+Not set up, by the owner's choice — Cloudflare Web Analytics plus Formspree answers the
+questions that matter at this traffic level. The code is ready whenever it is wanted:
+put the `G-…` ID in `config.js` → `analytics.ga4MeasurementId` (the gate is
+`/^G-[A-Z0-9]+$/`, so it must be uppercase or it silently never loads), rebuild, redeploy.
+In GA4: mark `generate_lead` as a key event and register event-scoped custom dimensions
+for `service`, `budget`, `method` and `label` — they are not retroactive, so anything
+collected before they exist reads `(not set)` forever. Event list: `SEO-LAUNCH.md` §5.
 
 ## NOT done yet — next steps, in order
-1. **Cloudflare Web Analytics**: dashboard → Workers & Pages → `mustakeem` → Metrics →
-   Enable Web Analytics, then redeploy (Cloudflare injects the beacon). Leave
-   `cloudflareBeaconToken` empty in that case, or it double-counts.
-2. **GA4**: owner creates a GA4 property + web stream for `https://mustakeem.pages.dev`,
-   puts the `G-…` ID in `config.js` → `analytics.ga4MeasurementId`, rebuild, redeploy.
-   In GA4: mark `generate_lead` as a key event; add custom dimensions for event params
-   `service`, `budget`, `method`, `label`. Event list is in `SEO-LAUNCH.md` §5.
-   Only `generate_lead` means a sent inquiry — it needs a form endpoint
-   (`contact.formEndpoint` in `data/projects.json`, e.g. Formspree). Without one, the form
-   falls back to email (tracked as `lead_brief_prepared` / `lead_email_app_opened`).
-3. **Search Console**: URL-prefix property `https://mustakeem.pages.dev/`, HTML-tag method;
+1. **Search Console**: URL-prefix property `https://mustakeem.pages.dev/`, HTML-tag method;
    paste the tag where the comment is in `index.html` `<head>`, rebuild, redeploy, verify,
    submit `https://mustakeem.pages.dev/sitemap.xml`, inspect `/` and the 3 service pages.
-4. **Weekly review** (owner): Search Console Performance (queries/pages/countries) +
-   GA4 (sessions vs `generate_lead` per landing page). Improve pages with impressions or
-   visits but no inquiries: title/intro match to queries, clearer CTA, stronger proof.
-5. Owner still has to confirm the claims listed in `SEO-LAUNCH.md` §4.
+2. **Weekly review** (owner): Search Console Performance (queries/pages/countries) +
+   Cloudflare Web Analytics (visits per landing page) against the Formspree inbox.
+   Improve pages with impressions or visits but no inquiries: title/intro match to
+   queries, clearer CTA, stronger proof.
+3. Owner still has to confirm the claims listed in `SEO-LAUNCH.md` §4.
 
 ## Gotchas
+- Enabling Cloudflare Web Analytics in the Pages dashboard does **not** affect the
+  deployment already being served: the beacon only appears after the next
+  `wrangler pages deploy`. Redeploying identical content is enough (it uploads 0 files
+  and still creates a deployment). Checked before and after, on four pages.
 - Wrangler 4.119.0 defaults `pages dev` to today's compatibility date, which its own
   bundled workerd doesn't support yet ("newest date supported by this server binary is
   2026-08-08"), and the dev server exits 1. `.claude/launch.json` pins
