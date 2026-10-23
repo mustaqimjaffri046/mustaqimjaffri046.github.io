@@ -3,43 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Case Study</title>
-  <meta name="description" content="Project detail page">
+  <title>Project | Muhammad Mustakeem — Unity VR Developer</title>
+  <meta name="description" content="A Unity VR project by Muhammad Mustakeem, with demo video, role and tech stack.">
+  <!-- Every project.html?slug=... URL serves this same template and fills it with JavaScript.
+       Kept out of search until strong projects get their own static case-study pages. -->
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#050510">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Project Case Study">
-  <meta property="og:description" content="Project detail page">
-  <meta property="og:image" content="">
+  <meta property="og:title" content="Project | Muhammad Mustakeem — Unity VR Developer">
+  <meta property="og:description" content="A Unity VR project by Muhammad Mustakeem, with demo video, role and tech stack.">
+  <meta property="og:image" content="https://mustaqimjaffri046.github.io/assets/preview/og-unity-vr-developer.jpg">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/portfolio.css">
 </head>
 <body data-depth="root">
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container">
-      <a class="brand" href="index.html">Portfolio</a>
-      <nav class="site-nav">
-        <a href="index.html#projects">Back to Projects</a>
+      <a class="brand" href="./">Muhammad Mustakeem</a>
+      <nav class="site-nav site-nav-inline" aria-label="Main">
+        <a href="portfolio.html#projects">← All projects</a>
+        <a class="btn btn-primary btn-sm" href="./#contact" data-project-hire>Hire Me</a>
       </nav>
     </div>
   </header>
 
-  <main class="container project-layout" data-project-root>
+  <main id="main" class="container project-layout" data-project-root>
     <section>
+      <p class="section-kicker" data-project-type></p>
       <h1 class="section-heading" data-project-title></h1>
       <p data-project-description></p>
-      <div data-project-slider></div>
+      <div class="project-video" data-project-slider></div>
       <div class="project-actions" data-project-links></div>
     </section>
 
-    <section class="detail-panel">
-      <h2>Tech Stack</h2>
-      <ul data-project-tech></ul>
-    </section>
-
-    <section class="detail-panel">
-      <h2>Project Details</h2>
+    <section class="detail-panel" data-project-details-panel>
+      <h2>Project details</h2>
       <ul data-project-details></ul>
     </section>
 
+    <section class="detail-panel">
+      <h2>Tech stack</h2>
+      <ul data-project-tech></ul>
+    </section>
+
+    <section class="cta-band">
+      <div>
+        <h2 class="section-heading">Need something similar?</h2>
+        <p>Tell me about your project and I'll reply with questions, a technical approach and a quote.</p>
+      </div>
+      <div class="project-actions">
+        <a class="btn btn-primary btn-lg" href="./#contact" data-project-hire>Discuss a similar project</a>
+        <a class="btn btn-secondary" href="portfolio.html#projects">More projects</a>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <small>© Muhammad Mustakeem</small>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="./">Hire me</a>
+        <a href="services/vr-training-simulation.html">VR Training Simulations</a>
+        <a href="services/meta-quest-development.html">Meta Quest Development</a>
+        <a href="services/unity-vr-optimization.html">Unity VR Optimization</a>
+      </nav>
+    </div>
+  </footer>
 
   <script src="assets/js/config.js"></script>
   <script src="assets/js/data-store.js"></script>

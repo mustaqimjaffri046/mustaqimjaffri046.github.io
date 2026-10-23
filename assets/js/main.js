@@ -53,6 +53,10 @@
   }
 
   function setSEO(data) {
+    // Home and portfolio carry their own hand-written title and description for search.
+    if (document.body.dataset.page) {
+      return;
+    }
     const site = data.site || {};
     const seo = site.seo || {};
     const title = site.name ? site.name + " | " + site.title : "Developer Portfolio";
@@ -106,7 +110,8 @@
 
   function renderNavigation(data) {
     const navList = document.querySelector("[data-nav-list]");
-    if (!navList) {
+    // Pages with navigation written in their HTML keep it (crawlable, page-specific).
+    if (!navList || navList.children.length > 0) {
       return;
     }
     navList.innerHTML = data.navigation
@@ -156,7 +161,11 @@
       "testimonials",
       "certifications",
       "contact",
-      "social"
+      "social",
+      "process",
+      "why",
+      "engagement",
+      "faq"
     ]);
     (data.sections || []).forEach(function (sectionMeta) {
       if (builtIn.has(sectionMeta.id)) {
@@ -339,6 +348,259 @@
     return short.replace(/\.$/, "");
   }
 
+  // ---- Analytics: inert until an ID is set in config.js (analytics.plausibleDomain or ga4MeasurementId) ----
+
+  function setupAnalytics() {
+    const settings = (window.PORTFOLIO_CONFIG || {}).analytics || {};
+    const plausibleDomain = String(settings.plausibleDomain || "").trim();
+    const ga4Id = String(settings.ga4MeasurementId || "").trim();
+
+    if (plausibleDomain) {
+      const script = document.createElement("script");
+      script.defer = true;
+      script.dataset.domain = plausibleDomain;
+      script.src = "https://plausible.io/js/script.js";
+      document.head.appendChild(script);
+      window.plausible = window.plausible || function () {
+        (window.plausible.q = window.plausible.q || []).push(arguments);
+      };
+    }
+
+    // GA4 sets cookies: EU visitors (Germany) need a consent banner before this loads.
+    if (ga4Id) {
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(ga4Id);
+      document.head.appendChild(script);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () {
+        window.dataLayer.push(arguments);
+      };
+      window.gtag("js", new Date());
+      window.gtag("config", ga4Id);
+    }
+
+    document.addEventListener("click", function (event) {
+      const link = event.target.closest("a, button");
+      if (!link) {
+        return;
+      }
+      const href = link.getAttribute("href") || "";
+      const name = link.dataset.track ||
+        (href.startsWith("mailto:") ? "email_click" : "") ||
+        (href.includes("linkedin.com") ? "linkedin_click" : "") ||
+        (link.hasAttribute("data-play-video") ? "video_play" : "");
+      if (name) {
+        track(name, { label: (link.dataset.videoTitle || link.textContent || "").trim().slice(0, 60) });
+      }
+    });
+  }
+
+  function track(name, props) {
+    try {
+      if (typeof window.plausible === "function") {
+        window.plausible(name, { props: props || {} });
+      }
+      if (typeof window.gtag === "function") {
+        window.gtag("event", name, props || {});
+      }
+    } catch (_error) {
+      // Analytics must never break the page.
+    }
+  }
+
+  // ---- Project brief form ----
+
+  // With contact.formEndpoint set (e.g. a Formspree URL) the brief is posted directly.
+  // Without one it is composed into an email the visitor opens or copies — mailto alone
+  // silently does nothing on computers without a mail app, so it is never the only path.
+  function setupBriefForm(data) {
+    const form = document.querySelector("[data-brief-form]");
+    if (!form) {
+      return;
+    }
+    const contact = data.contact || {};
+    const email = String(contact.email || "").trim();
+    const serviceSelect = form.querySelector("[data-brief-services]");
+    const status = form.querySelector("[data-brief-status]");
+    const ready = form.querySelector("[data-brief-ready]");
+
+    function pickService(value) {
+      if (!serviceSelect || !value) {
+        return;
+      }
+      const match = Array.from(serviceSelect.options).find(function (option) {
+        return option.value === value || option.text === value;
+      });
+      if (match) {
+        serviceSelect.value = match.value;
+      }
+    }
+
+    // Service pages link here as index.html?service=<name>#contact.
+    pickService(new URLSearchParams(window.location.search).get("service"));
+
+    document.addEventListener("click", function (event) {
+      const pick = event.target.closest("[data-pick-service]");
+      if (pick) {
+        pickService(pick.dataset.pickService);
+      }
+    });
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      if (ready) {
+        ready.hidden = true;
+      }
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        status.textContent = "Please fill in your name, a valid email, the service and project details.";
+        return;
+      }
+      const fields = Object.fromEntries(new FormData(form).entries());
+      const endpoint = String(contact.formEndpoint || "").trim();
+      const subject = "Project inquiry: " + (fields.service || "Unity VR project") + " — " + fields.name;
+
+      // Honeypot: people never see this field, simple bots fill it. Pretend success, send nothing.
+      if (fields._gotcha) {
+        form.reset();
+        status.textContent = "Thanks — your brief was sent. I'll reply by email.";
+        return;
+      }
+      delete fields._gotcha;
+
+      if (endpoint) {
+        status.textContent = "Sending…";
+        try {
+          const response = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            // _subject sets the notification email's subject on Formspree-style services.
+            body: JSON.stringify(Object.assign({ _subject: subject }, fields))
+          });
+          if (!response.ok) {
+            throw new Error("HTTP " + response.status);
+          }
+          form.reset();
+          status.textContent = "Thanks — your brief was sent. I'll reply by email.";
+          track("generate_lead", { service: fields.service || "", budget: fields.budget || "", method: "form" });
+          return;
+        } catch (_error) {
+          status.textContent = "Sorry, the form couldn't send. Please email me directly at " + email + ".";
+          track("lead_error", { method: "form" });
+          return;
+        }
+      }
+
+      const body = [
+        "Name: " + fields.name,
+        "Email: " + fields.email,
+        "Service: " + (fields.service || "-"),
+        "Budget: " + (fields.budget || "-"),
+        "Timeline: " + (fields.timeline || "-"),
+        "",
+        fields.message
+      ].join("\n");
+      const mailto = "mailto:" + email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+
+      status.textContent = "";
+      if (ready) {
+        ready.querySelector("[data-brief-mailto]").setAttribute("href", mailto);
+        const copy = ready.querySelector("[data-brief-copy]");
+        copy.onclick = async function () {
+          const text = "To: " + email + "\nSubject: " + subject + "\n\n" + body;
+          let copied = false;
+          try {
+            await navigator.clipboard.writeText(text);
+            copied = true;
+          } catch (_error) {
+            // Clipboard API can be blocked (permissions, embedded browsers): fall back to a selection copy.
+            const area = document.createElement("textarea");
+            area.value = text;
+            area.setAttribute("readonly", "");
+            area.style.position = "fixed";
+            area.style.opacity = "0";
+            document.body.appendChild(area);
+            area.select();
+            try {
+              copied = document.execCommand("copy");
+            } catch (_fallbackError) {
+              copied = false;
+            }
+            area.remove();
+          }
+          copy.textContent = copied ? "Copied — paste into an email to " + email : "Copy failed — email " + email;
+          if (copied) {
+            track("lead_brief_copied", { service: fields.service || "" });
+          }
+        };
+        ready.hidden = false;
+      }
+      // Not a lead yet: nothing has been sent. Only a successful form POST counts as generate_lead;
+      // opening the email app is tracked separately (lead_email_app_opened) as intent.
+      track("lead_brief_prepared", { service: fields.service || "", budget: fields.budget || "" });
+    });
+  }
+
+  function getDriveId(url) {
+    const value = String(url || "");
+    const match = value.match(/drive\.google\.com\/file\/d\/([^/?#]+)/i) || value.match(/[?&]id=([^&#]+)/i);
+    return match ? match[1] : "";
+  }
+
+  // Demo videos open in an on-page player instead of sending the client off to Drive.
+  function setupVideoModal() {
+    let dialog = null;
+
+    function open(url, title) {
+      const driveId = getDriveId(url);
+      if (!driveId || typeof HTMLDialogElement === "undefined") {
+        window.open(url, "_blank", "noopener");
+        return;
+      }
+      if (!dialog) {
+        dialog = document.createElement("dialog");
+        dialog.className = "video-modal";
+        dialog.innerHTML =
+          "<div class='video-modal-frame'><iframe allow='autoplay; fullscreen' allowfullscreen></iframe></div>" +
+          "<div class='video-modal-bar'><span data-video-title></span>" +
+          "<div class='project-actions'><a class='btn btn-primary btn-sm' href='#contact' data-video-hire>Build something like this</a>" +
+          "<button class='btn btn-ghost btn-sm' type='button' data-video-close>Close</button></div></div>";
+        document.body.appendChild(dialog);
+        // Clearing the iframe stops playback. Done directly for clicks; the close event
+        // covers the Escape key (its dispatch is asynchronous and can be delayed).
+        const stop = function () {
+          dialog.querySelector("iframe").src = "about:blank";
+        };
+        dialog.addEventListener("click", function (event) {
+          if (event.target === dialog || event.target.closest("[data-video-close]") || event.target.closest("[data-video-hire]")) {
+            stop();
+            dialog.close();
+          }
+        });
+        dialog.addEventListener("close", stop);
+        if (document.body.dataset.page !== "hire") {
+          dialog.querySelector("[data-video-hire]").setAttribute(
+            "href",
+            (window.PortfolioStore.getPagePath("index") || "./") + "#contact"
+          );
+        }
+      }
+      dialog.querySelector("iframe").src = "https://drive.google.com/file/d/" + driveId + "/preview";
+      dialog.querySelector("[data-video-title]").textContent = title || "";
+      dialog.showModal();
+    }
+
+    document.addEventListener("click", function (event) {
+      const trigger = event.target.closest("[data-play-video]");
+      if (!trigger) {
+        return;
+      }
+      event.preventDefault();
+      open(trigger.dataset.playVideo, trigger.dataset.videoTitle);
+    });
+  }
+
   function escapeHtml(value) {
     return String(value == null ? "" : value).replace(/[&<>"']/g, function (ch) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch];
@@ -356,12 +618,15 @@
   }
 
   // Large auto-playing cards. A local muted clip is the goal: it paints in-place with
-  // no click and no third-party frame. Falls back to a poster image, then to a link out
-  // to the hosted demo, so the section is never empty while media is still being added.
+  // no click and no third-party frame. Falls back to a poster image (set explicitly, the
+  // first screenshot, or the Drive video's own thumbnail) that opens the demo on-page.
   function renderFeaturedMedia(project) {
     const clip = String(project.clip || "").trim();
-    const poster = String(project.poster || "").trim();
     const demo = (project.videos || [])[0] || "";
+    const driveId = getDriveId(demo);
+    const poster = String(project.poster || "").trim() ||
+      String((project.images || [])[0] || "").trim() ||
+      (driveId ? "https://drive.google.com/thumbnail?id=" + driveId + "&sz=w1280" : "");
 
     if (clip) {
       return (
@@ -374,9 +639,18 @@
     }
 
     if (poster) {
-      return (
+      const image =
         "<img class='featured-poster' src='" + escapeHtml(poster) + "' alt='" +
-        escapeHtml(project.title) + " screenshot' loading='lazy' decoding='async'>"
+        escapeHtml(project.title) + " screenshot' loading='lazy' decoding='async' referrerpolicy='no-referrer'" +
+        " onerror=\"this.closest('.featured-media').classList.add('is-missing')\">";
+      if (!demo) {
+        return image;
+      }
+      return (
+        "<button type='button' class='featured-play' data-play-video='" + escapeHtml(demo) +
+        "' data-video-title='" + escapeHtml(project.title) + "'>" + image +
+        "<span class='featured-play-badge'><span aria-hidden='true'>▶</span> Watch demo</span>" +
+        "</button>"
       );
     }
 
@@ -427,10 +701,10 @@
           "</p>" +
           "<div class='project-actions'>" +
           "<a class='btn btn-secondary' href='" +
-          window.PortfolioStore.getProjectPageHref(project.slug) + "'>Case Study</a>" +
+          window.PortfolioStore.getProjectPageHref(project.slug) + "'>Project details</a>" +
           (demo
-            ? "<a class='btn btn-ghost' href='" + escapeHtml(demo) +
-              "' target='_blank' rel='noopener'>Full Demo</a>"
+            ? "<a class='btn btn-ghost' href='" + escapeHtml(demo) + "' data-play-video='" + escapeHtml(demo) +
+              "' data-video-title='" + escapeHtml(project.title) + "'>Watch Demo</a>"
             : "") +
           "</div></div></article>"
         );
@@ -527,6 +801,21 @@
       return item && item.title;
     });
 
+    // Categories may list their skills inline (items) or each skill may name its
+    // category id — the JSON uses the latter.
+    function skillsInGroup(group) {
+      if (Array.isArray(group.items) && group.items.length > 0) {
+        return group.items;
+      }
+      return (data.skills || [])
+        .filter(function (skill) {
+          return skill.category === group.id;
+        })
+        .map(function (skill) {
+          return skill.name;
+        });
+    }
+
     if (categories.length > 0) {
       skillsGrid.innerHTML = categories
         .map(function (group) {
@@ -534,7 +823,7 @@
             "<article class='skill-category reveal'>" +
             "<h3>" + group.title + "</h3>" +
             "<ul>" +
-            (group.items || []).map(function (item) {
+            skillsInGroup(group).map(function (item) {
               return (
                 "<li>" +
                 "<span class='skill-icon' aria-hidden='true'>" + getSkillIcon(item) + "</span>" +
@@ -574,43 +863,34 @@
     return Array.from(tags);
   }
 
+  function getListedProjects() {
+    return state.data.projects.filter(function (project) {
+      return project.listed;
+    });
+  }
+
   function getFilteredProjects() {
     if (state.currentTag === "All") {
-      return state.data.projects;
+      return getListedProjects();
     }
-    return state.data.projects.filter(function (project) {
+    return getListedProjects().filter(function (project) {
       return (project.tags || []).includes(state.currentTag);
     });
   }
 
-  function renderProjectCardMedia(project, sliderTargetId) {
-    const media = [];
-    (project.images || []).slice(0, 4).forEach(function (src) {
-      media.push({ type: "image", src: src, alt: project.title });
-    });
-    (project.videos || []).slice(0, 2).forEach(function (src) {
-      media.push({ type: "video", src: src, alt: project.title + " video" });
-    });
-
-    setTimeout(function () {
-      const target = document.getElementById(sliderTargetId);
-      if (target) {
-        window.createMediaSlider(target, media);
-      }
-    }, 0);
-  }
-
+  // A thumbnail that opens the on-page player: one Drive iframe per card made the
+  // portfolio load ~16 embedded players up front.
   function renderProjectCards(projects) {
     const projectsGrid = document.querySelector("[data-project-grid]");
     if (!projectsGrid) {
       return;
     }
     projectsGrid.innerHTML = projects
-      .map(function (project, index) {
-        const sliderId = "project-slider-" + index + "-" + project.slug;
+      .map(function (project) {
+        const hasDetails = Object.keys(project.projectDetails || {}).length > 0;
         return (
           "<article class='project-card reveal'>" +
-          "<div id='" + sliderId + "' class='project-slider-frame'></div>" +
+          "<div class='project-slider-frame featured-media'>" + renderFeaturedMedia(project) + "</div>" +
           "<div class='project-card-body'>" +
           "<p class='tag-row'>" +
           ["Type: " + (project.type || "Game"), ...(project.tags || [])].map(function (tag) {
@@ -621,16 +901,15 @@
           "<p>" + project.description + "</p>" +
           "<p class='tech-row'>" + (project.technologies || []).slice(0, 4).map(function (tech) { return "<span>" + tech + "</span>"; }).join("") + "</p>" +
           "<div class='project-actions'>" +
-          "<a class='btn btn-secondary' href='" + window.PortfolioStore.getProjectPageHref(project.slug) + "'>Details</a>" +
+          (hasDetails
+            ? "<a class='btn btn-secondary' href='" + window.PortfolioStore.getProjectPageHref(project.slug) + "'>Details</a>"
+            : "") +
           (project.demo ? "<a class='btn btn-ghost' href='" + project.demo + "' target='_blank' rel='noopener'>Live Demo</a>" : "") +
+          (project.playStore ? "<a class='btn btn-ghost' href='" + project.playStore + "' target='_blank' rel='noopener'>Store page</a>" : "") +
           "</div></div></article>"
         );
       })
       .join("");
-
-    projects.forEach(function (project, index) {
-      renderProjectCardMedia(project, "project-slider-" + index + "-" + project.slug);
-    });
   }
 
   function renderProjectFilters(data) {
@@ -638,7 +917,7 @@
     if (!filterWrap) {
       return;
     }
-    const tags = collectTags(data.projects);
+    const tags = ["All"].concat(collectTags(getListedProjects()));
     filterWrap.innerHTML = tags
       .map(function (tag) {
         const active = tag === state.currentTag ? " active" : "";
@@ -742,6 +1021,27 @@
       } else {
         availabilityNode.hidden = true;
       }
+    }
+
+    const whatsappNode = document.querySelector("[data-contact-whatsapp]");
+    const whatsapp = String(data.contact.whatsapp || "").replace(/[^\d]/g, "");
+    if (whatsappNode && whatsapp) {
+      whatsappNode.href = "https://wa.me/" + whatsapp;
+      whatsappNode.hidden = false;
+    }
+
+    const bookingNode = document.querySelector("[data-contact-booking]");
+    if (bookingNode && data.contact.bookingUrl) {
+      bookingNode.href = normalizeExternalUrl(data.contact.bookingUrl);
+      bookingNode.hidden = false;
+    }
+
+    const reviewsNode = document.querySelector("[data-reviews-link]");
+    if (reviewsNode && data.contact.reviewsUrl) {
+      reviewsNode.innerHTML =
+        "<a class='btn btn-secondary' href='" + escapeHtml(normalizeExternalUrl(data.contact.reviewsUrl)) +
+        "' target='_blank' rel='noopener'>Read all reviews →</a>";
+      reviewsNode.hidden = false;
     }
 
     const ratesNode = document.querySelector("[data-contact-rates]");
@@ -873,7 +1173,7 @@
           : "";
         const badgeLabel = item.platform
           ? item.platform + " review"
-          : (rating > 0 ? "Verified client review" : "");
+          : (rating > 0 ? "Client review" : "");
         const badgeMarkup = badgeLabel
           ? "<span class='testimonial-badge'>" + badgeLabel + "</span>"
           : "";
@@ -982,14 +1282,25 @@
     }
     const config = window.PORTFOLIO_CONFIG || {};
     const defaultTheme = config.defaultTheme || "dark";
-    state.mode = localStorage.getItem("portfolioTheme") || defaultTheme;
-    document.documentElement.dataset.theme = state.mode;
-    button.textContent = state.mode === "dark" ? "Light Mode" : "Dark Mode";
+    function paint() {
+      document.documentElement.dataset.theme = state.mode;
+      button.textContent = state.mode === "dark" ? "☀" : "☾";
+      button.setAttribute("aria-label", state.mode === "dark" ? "Switch to light mode" : "Switch to dark mode");
+    }
+    try {
+      state.mode = localStorage.getItem("portfolioTheme") || defaultTheme;
+    } catch (_error) {
+      state.mode = defaultTheme;
+    }
+    paint();
     button.addEventListener("click", function () {
       state.mode = state.mode === "dark" ? "light" : "dark";
-      localStorage.setItem("portfolioTheme", state.mode);
-      document.documentElement.dataset.theme = state.mode;
-      button.textContent = state.mode === "dark" ? "Light Mode" : "Dark Mode";
+      try {
+        localStorage.setItem("portfolioTheme", state.mode);
+      } catch (_error) {
+        // Theme still switches for this visit.
+      }
+      paint();
     });
   }
 
@@ -1037,6 +1348,12 @@
       }
       event.preventDefault();
       target.scrollIntoView({ behavior: "smooth", block: "start" });
+      // preventDefault also cancels the browser moving keyboard focus to the target
+      // (it is what makes "Skip to content" work), so do that part ourselves.
+      if (!target.hasAttribute("tabindex")) {
+        target.setAttribute("tabindex", "-1");
+      }
+      target.focus({ preventScroll: true });
     });
   }
 
@@ -1072,7 +1389,11 @@
     }
 
     const particles = [];
-    const particleCount = prefersReduced ? 0 : 56;
+    // Phones get a lighter field; reduced-motion visitors get none (and no animation loop).
+    const coarse = window.matchMedia("(pointer: coarse)").matches;
+    const small = window.matchMedia("(max-width: 768px)").matches;
+    const particleCount = prefersReduced ? 0 : (coarse || small ? 18 : 56);
+    const trackPointer = Boolean(pointer) && !coarse && !prefersReduced;
     const mouse = { x: window.innerWidth * 0.5, y: window.innerHeight * 0.5 };
     const pointerPos = { x: mouse.x, y: mouse.y };
 
@@ -1117,7 +1438,7 @@
         ctx.fill();
       }
 
-      if (pointer) {
+      if (trackPointer) {
         pointerPos.x += (mouse.x - pointerPos.x) * 0.15;
         pointerPos.y += (mouse.y - pointerPos.y) * 0.15;
         pointer.style.transform = "translate(" + pointerPos.x + "px, " + pointerPos.y + "px)";
@@ -1137,11 +1458,20 @@
 
     resizeCanvas();
     seedParticles();
+    if (particleCount === 0 && !trackPointer) {
+      return;
+    }
     animateParticles();
 
+    // Mobile browsers fire resize when the address bar shows or hides; only a width
+    // change needs a new particle field.
+    let lastWidth = window.innerWidth;
     window.addEventListener("resize", function () {
       resizeCanvas();
-      seedParticles();
+      if (window.innerWidth !== lastWidth) {
+        lastWidth = window.innerWidth;
+        seedParticles();
+      }
     });
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
   }
@@ -1174,6 +1504,7 @@
     renderAbout(data);
     setupAboutRotatingTitle(data);
     renderServices(data);
+    setupBriefForm(data);
     renderFeaturedProjects(data);
     renderProjectFilters(data);
     renderProjectCards(getFilteredProjects());
@@ -1186,6 +1517,27 @@
     renderSocial(data);
     renderFooter(data);
     startRevealAnimation();
+    scrollToRequestedSection();
+  }
+
+  // Links such as index.html#contact arrive before data-driven sections have rendered, so
+  // the browser's own jump lands too high (or at the top). Re-apply it once layout settles.
+  // Instant, not smooth: the stylesheet's scroll-behavior would otherwise animate a
+  // multi-thousand-pixel jump that can stall. Re-applied after load, when images and
+  // fonts have settled the layout.
+  function scrollToRequestedSection() {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    const target = id && document.getElementById(id);
+    if (!target) {
+      return;
+    }
+    function jump() {
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY, behavior: "instant" });
+    }
+    jump();
+    if (document.readyState !== "complete") {
+      window.addEventListener("load", jump, { once: true });
+    }
   }
 
   async function init() {
@@ -1194,12 +1546,15 @@
       setupThemeToggle();
       setupNavToggle();
       setupSmoothScrolling();
+      setupVideoModal();
+      setupAnalytics();
       setupFuturisticEffects();
       const data = await window.PortfolioStore.loadPortfolioData();
       renderAll(data);
     } catch (error) {
       const root = document.querySelector("[data-root]");
-      if (root) {
+      // Static pages keep their HTML content if the data file fails to load.
+      if (root && !document.body.dataset.page) {
         root.innerHTML = "<p class='error'>Unable to load content. Check data/projects.json.</p>";
       }
       console.error(error);

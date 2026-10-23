@@ -1,5 +1,11 @@
 window.PORTFOLIO_CONFIG = {
   storageKey: "portfolioDataOverride",
+  // Fill in ONE of these to turn on analytics; both empty = no tracking script loads.
+  // Plausible is cookieless (no consent banner needed for EU visitors); GA4 uses cookies.
+  analytics: {
+    plausibleDomain: "",
+    ga4MeasurementId: ""
+  },
   defaultTheme: "dark",
   dataPathByDepth: {
     root: "data/projects.json",
@@ -7,12 +13,14 @@ window.PORTFOLIO_CONFIG = {
   },
   pagePathsByDepth: {
     root: {
-      index: "index.html",
+      index: "./",
+      portfolio: "portfolio.html",
       project: "project.html",
       edit: "edit.html"
     },
     nested: {
-      index: "../index.html",
+      index: "../",
+      portfolio: "../portfolio.html",
       project: "../project.html",
       edit: "../edit.html"
     }

@@ -18,14 +18,33 @@ assets/
     edit.js
   images/
   videos/
-projects/
-  titan-drift-vr.html
-  astra-colony-sim.html
-index.html
-project.html
+services/
+  vr-training-simulation.html
+  meta-quest-development.html
+  unity-vr-optimization.html
+tools/
+  prerender.py
+index.html        hiring page (static HTML)
+portfolio.html    shareable portfolio (prerendered from JSON)
+project.html      project detail page (rendered from JSON)
+videos.html
 edit.html
 data/projects.json
 ```
+
+## Where content lives
+
+- `index.html` and `services/*.html` are plain HTML: edit the text there directly.
+- `portfolio.html` is filled from `data/projects.json`. After changing the JSON (by hand or
+  by exporting from `edit.html`), run `python tools/prerender.py` so the HTML that search
+  engines read matches the data.
+- `"listed": false` on a project hides it from the portfolio but keeps its page URL working.
+- `SEO-LAUNCH.md` has the keyword-to-page map, case-study checklist and launch plan. It,
+  this README and `tools/` are kept off the published site by `_config.yml`.
+- `404.html` is served by GitHub Pages for missing URLs; it uses root-absolute paths.
+- Contact, analytics and Search Console placeholders: `contact.formEndpoint`, `whatsapp`,
+  `bookingUrl`, `reviewsUrl` in `data/projects.json`; `analytics` in `assets/js/config.js`;
+  the verification comment in the `<head>` of `index.html`.
 
 ## How to add a project
 
@@ -44,10 +63,8 @@ data/projects.json
    - `projectDetails`
    - `features`
    - `screenshots`
-3. Home page cards are auto-generated from this JSON.
-4. Project details are available at:
-   - `project.html?slug=your-slug`
-   - `projects/your-slug.html` (optional dedicated page pattern)
+3. Portfolio cards are generated from this JSON; run `python tools/prerender.py` afterwards.
+4. Project details are available at `project.html?slug=your-slug`.
 
 ## How to edit sections
 

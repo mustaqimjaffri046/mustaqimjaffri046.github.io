@@ -43,7 +43,9 @@
       featuredOrder: Number(project.featuredOrder) || 0,
       clip: project.clip || "",
       poster: project.poster || "",
-      highlight: project.highlight || ""
+      highlight: project.highlight || "",
+      // listed: false keeps a project in the data (and its URL working) but out of the portfolio.
+      listed: project.listed !== false
     };
   }
 
@@ -137,7 +139,8 @@
     for (let index = 0; index < paths.length; index += 1) {
       const path = paths[index];
       try {
-        const response = await fetch(path, { cache: "no-store" });
+        // no-cache revalidates (a cheap 304 when unchanged) instead of re-downloading every visit.
+        const response = await fetch(path, { cache: "no-cache" });
         if (!response.ok) {
           continue;
         }

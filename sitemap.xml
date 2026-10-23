@@ -1,64 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Project pages (project.html?slug=...) are rendered by JavaScript from one template and are
+     left out until each strong project has its own static case-study page. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mustaqimjaffri046.github.io/</loc>
-    <lastmod>2026-06-17</lastmod>
-    <priority>1.0</priority>
+    <lastmod>2026-10-23</lastmod>
   </url>
   <url>
-    <loc>https://mustaqimjaffri046.github.io/project.html?slug=ecoquest</loc>
-    <priority>0.8</priority>
+    <loc>https://mustaqimjaffri046.github.io/services/vr-training-simulation.html</loc>
+    <lastmod>2026-10-23</lastmod>
   </url>
   <url>
-    <loc>https://mustaqimjaffri046.github.io/project.html?slug=vr-plane-marshalling-trainer</loc>
-    <priority>0.8</priority>
+    <loc>https://mustaqimjaffri046.github.io/services/meta-quest-development.html</loc>
+    <lastmod>2026-10-23</lastmod>
   </url>
   <url>
-    <loc>https://mustaqimjaffri046.github.io/project.html?slug=wardrobe-management-vr</loc>
-    <priority>0.7</priority>
+    <loc>https://mustaqimjaffri046.github.io/services/unity-vr-optimization.html</loc>
+    <lastmod>2026-10-23</lastmod>
   </url>
   <url>
-    <loc>https://mustaqimjaffri046.github.io/project.html?slug=warehouse-management-vr-simulator</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mustaqimjaffri046.github.io/project.html?slug=workers-posture-correction-system</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mustaqimjaffri046.github.io/project.html?slug=event-management-simulation</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://mustaqimjaffri046.github.io/project.html?slug=vr-knockdown-popup</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://mustaqimjaffri046.github.io/project.html?slug=vr-interaction-system</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mustaqimjaffri046.github.io/project.html?slug=vr-plane-simulation</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://mustaqimjaffri046.github.io/project.html?slug=vr-bus-driving-simulation</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://mustaqimjaffri046.github.io/project.html?slug=merge-2048-3d</loc>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://mustaqimjaffri046.github.io/project.html?slug=aisort-puzzle</loc>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://mustaqimjaffri046.github.io/project.html?slug=knockdown-vr</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://mustaqimjaffri046.github.io/project.html?slug=hotel-room-visualization-vr</loc>
-    <priority>0.6</priority>
+    <loc>https://mustaqimjaffri046.github.io/portfolio.html</loc>
+    <lastmod>2026-10-23</lastmod>
   </url>
 </urlset>

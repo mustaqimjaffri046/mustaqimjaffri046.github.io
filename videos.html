@@ -5,14 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Project Videos | Muhammad Mustakeem</title>
   <meta name="description" content="Watch project demos and walkthroughs by Muhammad Mustakeem — Unity & AR/VR Developer.">
+  <!-- A gallery of embedded videos with little text: useful to visitors, thin for search. -->
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="stylesheet" href="assets/css/portfolio.css">
 </head>
 <body data-depth="root">
   <header class="site-header">
     <div class="container">
-      <a class="brand" href="index.html">Portfolio</a>
-      <nav class="site-nav">
-        <a href="index.html#projects">Back to Projects</a>
+      <a class="brand" href="./">Muhammad Mustakeem</a>
+      <nav class="site-nav site-nav-inline" aria-label="Main">
+        <a href="portfolio.html#projects">Back to Portfolio</a>
+        <a class="btn btn-primary btn-sm" href="./#contact">Hire Me</a>
       </nav>
     </div>
   </header>
@@ -47,11 +51,12 @@
         return;
       }
 
+      // Only the visible slide gets a src: hidden iframes still load, and 15 Drive players at once is heavy.
       viewport.innerHTML = videos
         .map(function (v, i) {
           return (
             "<div class='videos-slide' data-vid-index='" + i + "'" + (i === 0 ? " style='display:block'" : "") + ">" +
-            "<iframe src='" + v.embedUrl + "' frameborder='0' allowfullscreen loading='lazy' title='" + (v.title || "Project video") + "'></iframe>" +
+            "<iframe" + (i === 0 ? " src='" + v.embedUrl + "'" : "") + " data-src='" + v.embedUrl + "' frameborder='0' allowfullscreen title='" + (v.title || "Project video") + "'></iframe>" +
             "</div>"
           );
         })
@@ -74,7 +79,17 @@
       currentIndex = index;
 
       var slides = document.querySelectorAll("[data-vid-index]");
-      slides.forEach(function (s, i) { s.style.display = i === currentIndex ? "block" : "none"; });
+      slides.forEach(function (s, i) {
+        var frame = s.querySelector("iframe");
+        var active = i === currentIndex;
+        s.style.display = active ? "block" : "none";
+        // Load the shown video; unload the others so a playing video stops when you move on.
+        if (active && frame.getAttribute("src") !== frame.dataset.src) {
+          frame.setAttribute("src", frame.dataset.src);
+        } else if (!active && frame.hasAttribute("src")) {
+          frame.removeAttribute("src");
+        }
+      });
 
       var dots = document.querySelectorAll("[data-vid-dot]");
       dots.forEach(function (d, i) { d.classList.toggle("active", i === currentIndex); });
@@ -100,6 +115,16 @@
       .then(function (r) { return r.json(); })
       .then(function (data) {
         videos = data.linkedinVideos || [];
+        // Without a curated list, show each listed project's first demo video.
+        if (videos.length === 0) {
+          videos = (data.projects || [])
+            .filter(function (p) { return p.listed !== false && p.videos && p.videos[0]; })
+            .map(function (p) {
+              var id = (p.videos[0].match(/\/d\/([^/?#]+)/) || [])[1];
+              return id ? { title: p.title, embedUrl: "https://drive.google.com/file/d/" + id + "/preview" } : null;
+            })
+            .filter(Boolean);
+        }
         render();
       })
       .catch(function () {

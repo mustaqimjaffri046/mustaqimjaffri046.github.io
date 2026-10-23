@@ -1,0 +1,7 @@
+# GitHub Pages builds this repository with Jekyll. The pages here have no front matter, so
+# they are published exactly as written; this file only keeps working files off the site.
+exclude:
+  - README.md
+  - SEO-LAUNCH.md
+  - tools/
+  - .gitignore

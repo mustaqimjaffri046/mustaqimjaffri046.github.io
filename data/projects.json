@@ -1,7 +1,7 @@
 {
   "site": {
     "name": "Muhammad Mustakeem",
-    "title": "Senior Unity Developer | AR/VR & 3D Game Specialist",
+    "title": "Unity VR / XR Developer | VR Training Simulations & Meta Quest Apps",
     "rotatingTitles": [
       "Unity XR Developer",
       "VR/XR Interaction Engineer",
@@ -19,44 +19,44 @@
       "Spatial Computing Developer",
       "Unity VR Gameplay Programmer"
     ],
-    "intro": "Unity developer specializing in AR/VR simulations, multiplayer systems, and high-performance 3D games.",
-    "about": "I am a Unity developer with 4+ years of experience building mobile games, VR simulations, and multiplayer experiences. I specialize in Oculus Quest, ARFoundation, WebXR, and multiplayer systems using Photon and Netcode. My work includes enterprise VR training simulations and published mobile games with more than 500K downloads.",
+    "intro": "Unity VR developer building VR training simulations and Meta Quest applications.",
+    "about": "I'm a Unity developer with 4+ years of experience, currently a Senior Unity Developer at IDRAK AI building enterprise VR training simulations for aviation and warehouse operations. I work with Meta Quest, OpenXR, the Oculus SDK and the XR Interaction Toolkit, plus multiplayer with Photon PUN 2 and Unity Netcode. Before moving into XR, I built and published hyper-casual mobile games with Unity Ads.",
     "heroCtaText": "View Projects",
     "heroCtaTarget": "#projects",
     "copyright": "Muhammad Mustakeem",
-    "profileImage": "assets/img/my-profile-img.jpg",
+    "profileImage": "assets/images/MyImg.jpg",
     "availability": "Available for new projects",
     "seo": {
-      "description": "Muhammad Mustakeem — Senior Unity Developer specializing in AR/VR simulations, multiplayer systems, and high-performance 3D mobile games. 4+ years experience, 500K+ downloads. Available for freelance.",
-      "keywords": "Unity developer, AR VR developer, Unity freelancer, VR training simulator, Oculus Quest developer, multiplayer Unity, ARFoundation developer, 3D game developer, hire Unity developer, Pakistan Unity developer",
-      "ogImage": "https://mustaqimjaffri046.github.io/assets/preview/preview.png"
+      "description": "Unity VR developer for hire: VR training simulations, Meta Quest apps and Unity VR optimization.",
+      "keywords": "Unity VR developer, VR training simulation developer, Meta Quest developer, Unity VR optimization",
+      "ogImage": "https://mustaqimjaffri046.github.io/assets/preview/og-unity-vr-developer.jpg"
     },
-    "resumeUrl": "assets/resume/Muhammad-Mustakeem-Resume.pdf"
+    "resumeUrl": ""
   },
   "navigation": [
     {
-      "label": "Home",
-      "target": "#home"
+      "label": "Services",
+      "target": "#services"
     },
     {
       "label": "Work",
       "target": "#featured"
     },
     {
-      "label": "Projects",
-      "target": "#projects"
+      "label": "Process",
+      "target": "#process"
     },
     {
-      "label": "Experience",
-      "target": "#experience"
+      "label": "Reviews",
+      "target": "#testimonials"
     },
     {
-      "label": "Skills",
-      "target": "#skills"
+      "label": "FAQ",
+      "target": "#faq"
     },
     {
-      "label": "Contact",
-      "target": "#contact"
+      "label": "Portfolio",
+      "target": "portfolio.html"
     }
   ],
   "sections": [
@@ -67,97 +67,121 @@
       "order": 1
     },
     {
+      "id": "services",
+      "title": "Services",
+      "enabled": true,
+      "order": 2
+    },
+    {
       "id": "featured",
       "title": "Selected Work",
       "enabled": true,
-      "order": 2
+      "order": 3
     },
     {
       "id": "projects",
       "title": "All Projects",
       "enabled": true,
-      "order": 3
+      "order": 4
     },
     {
       "id": "experience",
       "title": "Experience",
       "enabled": true,
-      "order": 4
+      "order": 5
     },
     {
       "id": "skills",
       "title": "Skills",
       "enabled": true,
-      "order": 5
+      "order": 6
     },
     {
       "id": "about",
       "title": "About",
       "enabled": true,
-      "order": 6
+      "order": 7
     },
     {
       "id": "achievements",
       "title": "Achievements",
-      "enabled": true,
-      "order": 7
-    },
-    {
-      "id": "services",
-      "title": "Services",
-      "enabled": true,
+      "enabled": false,
       "order": 8
     },
     {
       "id": "certifications",
       "title": "Certifications",
-      "enabled": true,
+      "enabled": false,
       "order": 9
     },
     {
-      "id": "contact",
-      "title": "Contact",
+      "id": "process",
+      "title": "How It Works",
       "enabled": true,
       "order": 10
+    },
+    {
+      "id": "why",
+      "title": "Why Me",
+      "enabled": true,
+      "order": 11
     },
     {
       "id": "testimonials",
       "title": "Testimonials",
       "enabled": true,
-      "order": 11
+      "order": 12
+    },
+    {
+      "id": "engagement",
+      "title": "Ways to Hire",
+      "enabled": true,
+      "order": 13
+    },
+    {
+      "id": "faq",
+      "title": "FAQ",
+      "enabled": true,
+      "order": 14
+    },
+    {
+      "id": "contact",
+      "title": "Contact",
+      "enabled": true,
+      "order": 15
     },
     {
       "id": "social",
       "title": "Social",
       "enabled": true,
-      "order": 12
+      "order": 16
     }
   ],
   "customSections": [],
   "services": [
     {
-      "title": "Unity Game Development",
-      "description": "Full cycle Unity game development for mobile, PC and WebGL including gameplay systems, UI, optimization and publishing."
-    },
-    {
-      "title": "AR / VR Application Development",
-      "description": "Building immersive AR and VR experiences using Oculus SDK, ARFoundation, OpenXR and WebXR."
-    },
-    {
-      "title": "Multiplayer Game Development",
-      "description": "Real-time multiplayer systems using Photon PUN 2, Unity Netcode and Relay."
-    },
-    {
-      "title": "Mobile Game Optimization",
-      "description": "Performance optimization using GPU instancing, asset bundles, addressables and memory profiling."
-    },
-    {
       "title": "VR Training Simulations",
-      "description": "Enterprise VR simulations for industries including aviation and warehouse training."
+      "description": "Task-based VR trainers with guided steps, real-time feedback, scoring and session reports."
     },
     {
-      "title": "Rapid Game Prototyping",
-      "description": "Quick development of prototypes to validate gameplay ideas and mechanics."
+      "title": "Meta Quest App Development",
+      "description": "Standalone Quest apps built with OpenXR, the Oculus SDK and the XR Interaction Toolkit."
+    },
+    {
+      "title": "Unity VR Optimization",
+      "description": "Profiling and fixing frame drops, memory and load times in Unity VR projects."
+    },
+    {
+      "title": "Multiplayer & Co-op VR",
+      "description": "Shared VR sessions with Photon PUN 2, Unity Netcode and Relay."
+    },
+    {
+      "title": "3D Visualization & VR Walkthroughs",
+      "description": "Revit and CAD models turned into explorable VR scenes."
+    },
+    {
+      "title": "Mobile Games",
+      "description": "Unity mobile games with Unity Ads monetization."
     }
   ],
   "achievements": [
@@ -179,18 +203,6 @@
     }
   ],
   "testimonials": [
-    {
-      "name": "Game Studio Client",
-      "text": "Mustakeem delivered a highly optimized Unity project and maintained excellent communication throughout development."
-    },
-    {
-      "name": "VR Product Manager",
-      "text": "The VR training simulator significantly improved our training workflow."
-    },
-    {
-      "name": "Indie Game Developer",
-      "text": "Reliable Unity developer with strong expertise in multiplayer and optimization."
-    },
     {
       "name": "gforgame",
       "country": "Hong Kong",
@@ -400,7 +412,11 @@
     "rates": "Available for hourly, fixed-price, and long-term contracts. Open to remote work worldwide.",
     "hireUrl": "#contact",
     "linkedin": "https://www.linkedin.com/in/mustakeemgamedev",
-    "portfolio": "https://github.com/mustaqimjaffri046"
+    "portfolio": "https://github.com/mustaqimjaffri046",
+    "formEndpoint": "",
+    "whatsapp": "",
+    "bookingUrl": "",
+    "reviewsUrl": ""
   },
   "socialLinks": [
     {
@@ -418,8 +434,8 @@
     {
       "title": "HomeDecor",
       "slug": "homedecor",
-      "type": "Oculus Quest",
-      "description": "A published Unity mobile game built around procedural level generation and environmental gameplay. As sole developer I designed the procedural system that generates unique levels on each run, built the core gameplay loop and UI, and optimized the build for low-end Android devices to keep load times short and frame rates stable.",
+      "type": "VR Visualization",
+      "description": "A Meta Quest VR walkthrough of a home interior, built from a Revit architectural model.",
       "technologies": [
         "Unity",
         "C#",
@@ -433,19 +449,17 @@
       "demo": "",
       "playStore": "",
       "tags": [
-        "Mobile",
-        "Unity"
+        "VR",
+        "Architecture"
       ],
       "projectDetails": {
-        "Role": "Solo Unity Developer",
-        "Tech": "Unity, C#, Procedural Generation",
-        "Challenge": "Convert Revit models to Unity usable",
-        "Outcome": "Shipped a replayable 3d models with procedurally generated levels optimized for low-end oculus 2"
+        "Role": "Unity / XR Developer",
+        "Tech": "Unity, C#, Oculus SDK, Revit model import",
+        "Challenge": "Turn heavy Revit architecture models into scenes that run smoothly on Quest",
+        "Outcome": "An explorable home interior on Oculus Quest 2"
       },
       "features": [],
       "screenshots": [],
-      "featured": true,
-      "featuredOrder": 1,
       "clip": "",
       "poster": "",
       "highlight": ""
@@ -453,12 +467,13 @@
     {
       "title": "LabWalkthrough",
       "slug": "walkthrough",
-      "type": "Oculus Quest",
-      "description": "A published Unity mobile game built around procedural level generation and environmental gameplay. As sole developer I designed the procedural system that generates unique levels on each run, built the core gameplay loop and UI, and optimized the build for low-end Android devices to keep load times short and frame rates stable.",
+      "type": "VR Visualization",
+      "description": "A Meta Quest VR walkthrough of an office and lab building with interactive display models.",
       "technologies": [
         "Unity",
         "C#",
-        "Office builing in VR"
+        "Oculus SDK",
+        "VR Interaction"
       ],
       "images": [],
       "videos": [
@@ -468,14 +483,14 @@
       "demo": "",
       "playStore": "",
       "tags": [
-        "Mobile",
-        "Unity"
+        "VR",
+        "Architecture"
       ],
       "projectDetails": {
-        "Role": "Solo Unity Developer",
-        "Tech": "Unity, C#, Procedural Generation",
-        "Challenge": "Convert Build display/interactable models to Unity usable",
-        "Outcome": "Shipped a replayable 3d models with procedurally generated levels optimized for low-end oculus 2"
+        "Role": "Unity / XR Developer",
+        "Tech": "Unity, C#, Oculus SDK",
+        "Challenge": "Make a full building with interactive displays run smoothly in standalone VR",
+        "Outcome": "A walkable lab and office tour on Oculus Quest 2"
       },
       "features": [],
       "screenshots": []
@@ -483,8 +498,8 @@
     {
       "title": "RoomDecor",
       "slug": "roomdecor",
-      "type": "Oculus Quest",
-      "description": "A published Unity mobile game built around procedural level generation and environmental gameplay. As sole developer I designed the procedural system that generates unique levels on each run, built the core gameplay loop and UI, and optimized the build for low-end Android devices to keep load times short and frame rates stable.",
+      "type": "VR Visualization",
+      "description": "A Meta Quest VR room interior built from a Revit architectural model.",
       "technologies": [
         "Unity",
         "C#",
@@ -498,19 +513,17 @@
       "demo": "",
       "playStore": "",
       "tags": [
-        "Mobile",
-        "Unity"
+        "VR",
+        "Architecture"
       ],
       "projectDetails": {
-        "Role": "Solo Unity Developer",
-        "Tech": "Unity, C#, Procedural Generation",
-        "Challenge": "Convert Revit models to Unity usable",
-        "Outcome": "Shipped a replayable 3d models with procedurally generated levels optimized for low-end oculus 2"
+        "Role": "Unity / XR Developer",
+        "Tech": "Unity, C#, Oculus SDK, Revit model import",
+        "Challenge": "Turn heavy Revit architecture models into scenes that run smoothly on Quest",
+        "Outcome": "A room interior viewable at real scale on Oculus Quest 2"
       },
       "features": [],
       "screenshots": [],
-      "featured": true,
-      "featuredOrder": 3,
       "clip": "",
       "poster": "",
       "highlight": ""
@@ -518,12 +531,13 @@
     {
       "title": "Pyramids",
       "slug": "pyramids",
-      "type": "Oculus Quest",
-      "description": "A published Unity mobile game built around procedural level generation and environmental gameplay. As sole developer I designed the procedural system that generates unique levels on each run, built the core gameplay loop and UI, and optimized the build for low-end Android devices to keep load times short and frame rates stable.",
+      "type": "VR Experience",
+      "description": "An immersive Meta Quest VR environment set inside an ancient pyramid.",
       "technologies": [
         "Unity",
         "C#",
-        "Explore the pyramids Models to Unity Scene"
+        "Oculus SDK",
+        "Environment Design"
       ],
       "images": [],
       "videos": [
@@ -533,14 +547,14 @@
       "demo": "",
       "playStore": "",
       "tags": [
-        "Mobile",
-        "Unity"
+        "VR",
+        "Level Design"
       ],
       "projectDetails": {
-        "Role": "Solo Unity Developer",
-        "Tech": "Unity, C#, Procedural Generation",
-        "Challenge": "Convert Revit models to Unity usable",
-        "Outcome": "Shipped a replayable 3d models with procedurally generated levels optimized for low-end oculus 2"
+        "Role": "Unity / XR Developer",
+        "Tech": "Unity, C#, Oculus SDK",
+        "Challenge": "Keep a dense, detailed historical environment smooth on Quest",
+        "Outcome": "An explorable pyramid interior on Oculus Quest 2"
       },
       "features": [],
       "screenshots": []
@@ -574,7 +588,10 @@
         "Outcome": "Delivered a hands-on Quest trainer running at a stable 90 FPS with real-time signal feedback"
       },
       "features": [],
-      "screenshots": []
+      "screenshots": [],
+      "featured": true,
+      "featuredOrder": 2,
+      "highlight": "Teaches aircraft marshalling signals on Quest with hand-gesture recognition and real-time feedback."
     },
     {
       "title": "Wardrobe Management VR",
@@ -634,11 +651,11 @@
       },
       "features": [],
       "screenshots": [],
-      "featured": true,
-      "featuredOrder": 2,
       "clip": "",
       "poster": "",
-      "highlight": "Trains staff on picking, scanning and safe handling; GPU instancing and occlusion culling keep the dense warehouse scene at VR frame rates."
+      "highlight": "Trains staff on picking, scanning and safe handling; GPU instancing and occlusion culling keep the dense warehouse scene at VR frame rates.",
+      "featured": true,
+      "featuredOrder": 1
     },
     {
       "title": "Workers Posture Correction System",
@@ -668,7 +685,10 @@
         "Outcome": "Delivered a posture-coaching VR trainer with live cues and per-session reporting"
       },
       "features": [],
-      "screenshots": []
+      "screenshots": [],
+      "featured": true,
+      "featuredOrder": 3,
+      "highlight": "Tracks a worker's posture in VR and flags unsafe lifting and working positions in real time."
     },
     {
       "title": "Event Management Simulation",
@@ -775,7 +795,11 @@
       "github": "",
       "demo": "",
       "playStore": "",
-      "tags": [],
+      "tags": [
+        "VR",
+        "Training",
+        "Simulation"
+      ],
       "projectDetails": {},
       "features": [],
       "screenshots": []
@@ -791,9 +815,9 @@
         "Procedural Generation"
       ],
       "images": [
-        "assets/images/EcoQuest_1.png",
-        "assets/images/EcoQuest_2.png",
-        "assets/images/EcoQuest_3.png"
+        "assets/images/EcoQuest_1.webp",
+        "assets/images/EcoQuest_2.webp",
+        "assets/images/EcoQuest_3.webp"
       ],
       "videos": [
         "https://drive.google.com/file/d/1eHcHvoZTI4xy4gHqWSw7dCxhXrRkPsn_/view?usp=sharing"
@@ -803,7 +827,7 @@
       "playStore": "",
       "tags": [
         "Mobile",
-        "Unity"
+        "Level Design"
       ],
       "projectDetails": {
         "Role": "Solo Unity Developer",
@@ -812,7 +836,8 @@
         "Outcome": "Shipped a replayable mobile game with procedurally generated levels optimized for low-end Android"
       },
       "features": [],
-      "screenshots": []
+      "screenshots": [],
+      "highlight": "Solo-built mobile game with procedurally generated levels, optimized for low-end Android."
     },
     {
       "title": "Merge 2048 3D",
@@ -831,7 +856,8 @@
       "tags": [],
       "projectDetails": {},
       "features": [],
-      "screenshots": []
+      "screenshots": [],
+      "listed": false
     },
     {
       "title": "AiSort Puzzle",
@@ -849,7 +875,8 @@
       "tags": [],
       "projectDetails": {},
       "features": [],
-      "screenshots": []
+      "screenshots": [],
+      "listed": false
     },
     {
       "title": "KnockDown VR",
@@ -870,7 +897,8 @@
       "tags": [],
       "projectDetails": {},
       "features": [],
-      "screenshots": []
+      "screenshots": [],
+      "listed": false
     },
     {
       "title": "Hotel Room Visualization VR",

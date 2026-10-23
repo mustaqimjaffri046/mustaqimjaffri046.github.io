@@ -15,7 +15,7 @@
   }
 
   function setProjectSEO(project) {
-    document.title = project.title + " | Project Case Study";
+    document.title = project.title + " | Unity project by Muhammad Mustakeem";
     const description = project.description || "";
     const image = (project.images && project.images[0]) || "";
 
@@ -32,9 +32,23 @@
       ogDesc.setAttribute("content", description);
     }
     const ogImage = document.querySelector('meta[property="og:image"]');
-    if (ogImage) {
+    if (ogImage && image) {
       ogImage.setAttribute("content", image);
     }
+  }
+
+  // Send "Hire" links to the form with the closest matching service already chosen.
+  function setHireLinks(project) {
+    const text = ((project.type || "") + " " + (project.tags || []).join(" ")).toLowerCase();
+    const service = text.includes("training") || text.includes("simulat")
+      ? "VR Training Simulations"
+      : text.includes("vr") || text.includes("architecture")
+        ? "Meta Quest App Development"
+        : "";
+    const href = "./" + (service ? "?service=" + encodeURIComponent(service) : "") + "#contact";
+    document.querySelectorAll("[data-project-hire]").forEach(function (link) {
+      link.setAttribute("href", href);
+    });
   }
 
   function renderExternalLinks(project) {
@@ -57,7 +71,9 @@
 
   function renderProject(project) {
     setProjectSEO(project);
+    setHireLinks(project);
 
+    document.querySelector("[data-project-type]").textContent = project.type || "";
     document.querySelector("[data-project-title]").textContent = project.title;
     document.querySelector("[data-project-description]").textContent = project.description;
 
@@ -67,6 +83,11 @@
         return "<li>" + tech + "</li>";
       })
       .join("");
+
+    const detailsPanel = document.querySelector("[data-project-details-panel]");
+    if (detailsPanel) {
+      detailsPanel.hidden = Object.keys(project.projectDetails || {}).length === 0;
+    }
 
     const detailsNode = document.querySelector("[data-project-details]");
     detailsNode.innerHTML = Object.keys(project.projectDetails || {})
