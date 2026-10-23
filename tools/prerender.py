@@ -14,6 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "projects.json"
 PAGE = ROOT / "portfolio.html"
+HOME = ROOT / "index.html"
 
 
 def esc(value):
@@ -116,7 +117,9 @@ def skills(data):
     return "\n".join(out)
 
 
-def testimonials(data):
+def testimonials(data, author_style="heading"):
+    """Review cards. `author_style` keeps each page's existing markup: portfolio.html
+    uses a heading, index.html a bold line inside the card."""
     picked = [t for t in data["testimonials"] if t.get("featured")] or data["testimonials"]
     out = []
     for t in picked:
@@ -126,22 +129,40 @@ def testimonials(data):
         # unattributed label while `platform` is empty. Same rule as main.js.
         platform = str(t.get("platform") or t.get("source") or "").strip()
         badge = f"{platform} review" if platform else "Client review"
+        country = f"<small>{esc(t['country'])}</small>" if t.get("country") else ""
+        if author_style == "paragraph":
+            author = f"<p class='testimonial-author'><strong>{esc(t['name'])}</strong>{country}</p>"
+        else:
+            author = f"<h3>{esc(t['name'])}</h3>{country}"
         out.append(
             "<article class='testimonial-card'>"
             + (f"<p class='testimonial-rating' aria-label='Rated {rating} out of 5'>"
                f"<span class='testimonial-stars' aria-hidden='true'>{stars}</span>"
                f"<span class='testimonial-rating-num'>{rating:.1f}</span></p>" if rating else "")
             + f"<p class='testimonial-quote'>“{esc(t['text'])}”</p>"
-            f"<h3>{esc(t['name'])}</h3>"
-            + (f"<small>{esc(t['country'])}</small>" if t.get("country") else "")
+            + author
             + f"<span class='testimonial-badge'>{esc(badge)}</span></article>"
         )
     return "\n".join(out)
 
 
+def write_blocks(path, blocks):
+    page = path.read_text(encoding="utf-8")
+    for name, content in blocks.items():
+        pattern = re.compile(rf"(<!-- prerender:{name} -->\n).*?(<!-- /prerender:{name} -->)", re.S)
+        if not pattern.search(page):
+            raise SystemExit(f"marker prerender:{name} not found in {path.name}")
+        page = pattern.sub(lambda m: m.group(1) + content + "\n" + m.group(2), page)
+    # Rewrite in place: on some Windows drives, opening a file that a browser or editor has
+    # open with "w" (truncate-on-open) fails with "Invalid argument".
+    with open(path, "r+", encoding="utf-8", newline="") as f:
+        f.seek(0)
+        f.write(page)
+        f.truncate()
+
+
 def main():
     data = json.loads(DATA.read_text(encoding="utf-8"))
-    page = PAGE.read_text(encoding="utf-8")
     blocks = {
         "featured": featured(data),
         "projects": projects(data),
@@ -150,18 +171,11 @@ def main():
         "about": esc(data["site"].get("about")),
         "testimonials": testimonials(data),
     }
-    for name, content in blocks.items():
-        pattern = re.compile(rf"(<!-- prerender:{name} -->\n).*?(<!-- /prerender:{name} -->)", re.S)
-        if not pattern.search(page):
-            raise SystemExit(f"marker prerender:{name} not found in {PAGE.name}")
-        page = pattern.sub(lambda m: m.group(1) + content + "\n" + m.group(2), page)
-    # Rewrite in place: on some Windows drives, opening a file that a browser or editor has
-    # open with "w" (truncate-on-open) fails with "Invalid argument".
-    with open(PAGE, "r+", encoding="utf-8", newline="") as f:
-        f.seek(0)
-        f.write(page)
-        f.truncate()
-    print("prerendered", ", ".join(blocks))
+    write_blocks(PAGE, blocks)
+    # The home page shows the same reviews. They used to be hand-written here, so editing
+    # the JSON changed portfolio.html and silently left index.html saying something else.
+    write_blocks(HOME, {"testimonials": testimonials(data, author_style="paragraph")})
+    print("prerendered", ", ".join(blocks), "(+ testimonials in index.html)")
 
 
 if __name__ == "__main__":
