@@ -3,9 +3,13 @@
   "configurations": [
     {
       "name": "portfolio",
-      "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8099"],
-      "port": 8099
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "wrangler", "pages", "dev", "dist",
+        "--port", "8788",
+        "--compatibility-date=2026-08-08"
+      ],
+      "port": 8788
     }
   ]
 }
