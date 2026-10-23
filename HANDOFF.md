@@ -63,6 +63,14 @@ branch name makes a preview (noindex) deployment instead of production.
   `Accept: application/json`, `_subject` for the mail subject, `_gotcha` stripped as a
   honeypot, and tracks `generate_lead` only on a 2xx. Success, a 400 and the
   no-endpoint path were all exercised against a stub that mimics Formspree.
+- **Google Search Console** (2026-10-23): URL-prefix property
+  `https://mustakeem.pages.dev/`, verified by the **HTML file** method.
+  `googlec64db0e6d4d94ef3.html` sits in the repo root and is listed in
+  `tools/build.py` → `FILES`. **Never delete it** — removing it drops verification.
+  Worth knowing: Pages 308-redirects `/…​.html` to the extensionless URL, so Google
+  fetches the file through a redirect and still accepted it. If it is ever re-verified
+  and that redirect becomes a problem, the HTML-tag method avoids it (placeholder
+  comment is in `index.html`'s `<head>`).
 - **Cloudflare Web Analytics** (2026-10-23): enabled in the Pages dashboard, which
   injects the beacon at the edge — **a redeploy is required** before it appears (see
   Gotchas). Verified live: one `beacon.min.js` tag, `cloudflareinsights.com/cdn-cgi/rum`
@@ -80,9 +88,10 @@ for `service`, `budget`, `method` and `label` — they are not retroactive, so a
 collected before they exist reads `(not set)` forever. Event list: `SEO-LAUNCH.md` §5.
 
 ## NOT done yet — next steps, in order
-1. **Search Console**: URL-prefix property `https://mustakeem.pages.dev/`, HTML-tag method;
-   paste the tag where the comment is in `index.html` `<head>`, rebuild, redeploy, verify,
-   submit `https://mustakeem.pages.dev/sitemap.xml`, inspect `/` and the 3 service pages.
+1. **Search Console** (property verified, see above): submit
+   `https://mustakeem.pages.dev/sitemap.xml` under Sitemaps, then inspect `/` and the
+   3 service pages. The `index.html` `<head>` still carries the unused placeholder
+   comment for the HTML-tag method, in case a second verification is ever wanted.
 2. **Weekly review** (owner): Search Console Performance (queries/pages/countries) +
    Cloudflare Web Analytics (visits per landing page) against the Formspree inbox.
    Improve pages with impressions or visits but no inquiries: title/intro match to

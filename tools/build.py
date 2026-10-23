@@ -17,6 +17,9 @@ DIST = ROOT / "dist"
 FILES = [
     "index.html", "portfolio.html", "project.html", "videos.html", "404.html",
     "sitemap.xml", "robots.txt", "_headers", "data/projects.json",
+    # Google Search Console ownership proof: it must stay reachable or the site
+    # silently loses verification.
+    "googlec64db0e6d4d94ef3.html",
 ]
 DIRS = ["services", "assets"]
 # The local editor (edit.html) writes to the browser only; it isn't part of the public site.
