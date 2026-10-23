@@ -1,43 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="project-slug" content="astra-colony-sim">
-  <meta name="description" content="Project detail page">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="Project Case Study">
-  <meta property="og:description" content="Project detail page">
-  <meta property="og:image" content="">
-  <title>Astra Colony Sim</title>
-  <link rel="stylesheet" href="../assets/css/portfolio.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moved — Muhammad Mustakeem, Unity VR Developer</title>
+<link rel="canonical" href="https://mustakeem.pages.dev/">
+<meta http-equiv="refresh" content="0; url=https://mustakeem.pages.dev/">
+<style>
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center;
+         background: #050510; color: #eaf7ff; text-align: center; padding: 24px;
+         font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+  a { color: #00E5FF; }
+</style>
 </head>
-<body data-depth="nested">
-  <header class="site-header">
-    <div class="container">
-      <a class="brand" href="../index.html">Portfolio</a>
-      <nav class="site-nav">
-        <a href="../index.html#projects">Back to Projects</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="container project-layout" data-project-root>
-    <section>
-      <h1 class="section-heading" data-project-title></h1>
-      <p data-project-description></p>
-      <div data-project-slider></div>
-      <div class="project-actions" data-project-links></div>
-    </section>
-    <section class="detail-panel"><h2>Tech Stack</h2><ul data-project-tech></ul></section>
-    <section class="detail-panel"><h2>Project Details</h2><ul data-project-details></ul></section>
-    <section class="detail-panel"><h2>Features</h2><ul data-project-features></ul></section>
-    <section class="detail-panel"><h2>Screenshots</h2><div class="screenshots-grid" data-project-gallery></div></section>
+<body>
+  <main>
+    <h1>This site has moved</h1>
+    <p>Muhammad Mustakeem — Unity VR developer — is now at
+      <a id="go" href="https://mustakeem.pages.dev/">mustakeem.pages.dev</a>.</p>
   </main>
-
-  <script src="../assets/js/config.js"></script>
-  <script src="../assets/js/data-store.js"></script>
-  <script src="../assets/js/slider.js"></script>
-  <script src="../assets/js/project-page.js"></script>
+<script>
+(function () {
+  var target = "https://mustakeem.pages.dev/" + location.search + location.hash;
+  document.getElementById("go").href = target;
+  location.replace(target);
+})();
+</script>
 </body>
 </html>
