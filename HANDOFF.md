@@ -52,6 +52,26 @@ wrangler pages deploy dist --project-name mustakeem --branch main
 `--branch main` matters: the current git branch is `portfolio-redesign`, and any other
 branch name makes a preview (noindex) deployment instead of production.
 
+## Contact form endpoint (needed before `generate_lead` can ever fire)
+
+`contact.formEndpoint` in `data/projects.json` is empty, so the form falls back to email
+and GA4 will only ever see `lead_brief_prepared` / `lead_email_app_opened`. To change that:
+
+1. Create a Formspree account and a form, confirm the address Formspree emails you, and
+   copy the endpoint (`https://formspree.io/f/XXXXXXXX`).
+2. Put it in `data/projects.json` → `contact.formEndpoint`, rebuild, redeploy.
+3. Send one real submission from the live site and confirm the email arrives. Formspree
+   holds the first submission until the form's address is confirmed.
+4. In Formspree, turn **off** its own reCAPTCHA for this form: the site posts JSON over
+   AJAX and never renders a challenge, so a challenge would show up here as a failed send.
+
+The client side is already written and tested for this (`setupBriefForm` in
+`assets/js/main.js`): a JSON POST with `Accept: application/json`, `_subject` for the
+notification subject, `_gotcha` stripped client-side as a honeypot, and `generate_lead`
+tracked only on a 2xx response. All three paths were exercised against a stub that mimics
+Formspree (`scratchpad/stub_formspree.py`, not in the repo): success, a 400, and no
+endpoint at all.
+
 ## NOT done yet — next steps, in order
 1. **Cloudflare Web Analytics**: dashboard → Workers & Pages → `mustakeem` → Metrics →
    Enable Web Analytics, then redeploy (Cloudflare injects the beacon). Leave

@@ -415,42 +415,24 @@
       }
       delete fields._gotcha;
 
-      if (endpoint) {
-        status.textContent = "Sending…";
-        try {
-          const response = await fetch(endpoint, {
-            method: "POST",
-            headers: { "Content-Type": "application/json", Accept: "application/json" },
-            // _subject sets the notification email's subject on Formspree-style services.
-            body: JSON.stringify(Object.assign({ _subject: subject }, fields))
-          });
-          if (!response.ok) {
-            throw new Error("HTTP " + response.status);
-          }
-          form.reset();
-          status.textContent = "Thanks — your brief was sent. I'll reply by email.";
-          track("generate_lead", { service: fields.service || "", budget: fields.budget || "", method: "form" });
-          return;
-        } catch (_error) {
-          status.textContent = "Sorry, the form couldn't send. Please email me directly at " + email + ".";
-          track("lead_error", { method: "form" });
+      // The brief as an email the visitor can send themselves. Used when there is no
+      // endpoint, and again when a POST fails — otherwise a failed send silently throws
+      // away everything they just typed.
+      function offerEmailFallback() {
+        const body = [
+          "Name: " + fields.name,
+          "Email: " + fields.email,
+          "Service: " + (fields.service || "-"),
+          "Budget: " + (fields.budget || "-"),
+          "Timeline: " + (fields.timeline || "-"),
+          "",
+          fields.message
+        ].join("\n");
+        const mailto = "mailto:" + email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+
+        if (!ready) {
           return;
         }
-      }
-
-      const body = [
-        "Name: " + fields.name,
-        "Email: " + fields.email,
-        "Service: " + (fields.service || "-"),
-        "Budget: " + (fields.budget || "-"),
-        "Timeline: " + (fields.timeline || "-"),
-        "",
-        fields.message
-      ].join("\n");
-      const mailto = "mailto:" + email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-
-      status.textContent = "";
-      if (ready) {
         ready.querySelector("[data-brief-mailto]").setAttribute("href", mailto);
         const copy = ready.querySelector("[data-brief-copy]");
         copy.onclick = async function () {
@@ -482,6 +464,33 @@
         };
         ready.hidden = false;
       }
+
+      if (endpoint) {
+        status.textContent = "Sending…";
+        try {
+          const response = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            // _subject sets the notification email's subject on Formspree-style services.
+            body: JSON.stringify(Object.assign({ _subject: subject }, fields))
+          });
+          if (!response.ok) {
+            throw new Error("HTTP " + response.status);
+          }
+          form.reset();
+          status.textContent = "Thanks — your brief was sent. I'll reply by email.";
+          track("generate_lead", { service: fields.service || "", budget: fields.budget || "", method: "form" });
+          return;
+        } catch (_error) {
+          status.textContent = "Sorry, the form couldn't send — your brief is ready below, please email it to me at " + email + ".";
+          offerEmailFallback();
+          track("lead_error", { method: "form" });
+          return;
+        }
+      }
+
+      status.textContent = "";
+      offerEmailFallback();
       // Not a lead yet: nothing has been sent. Only a successful form POST counts as generate_lead;
       // opening the email app is tracked separately (lead_email_app_opened) as intent.
       track("lead_brief_prepared", { service: fields.service || "", budget: fields.budget || "" });
