@@ -207,52 +207,60 @@
       "name": "gforgame",
       "country": "Hong Kong",
       "rating": 5,
-      "text": "Muhammad M delivered exceptional work with top-tier professionalism in Game Development. His quick responsiveness made collaborating a breeze. Highly recommend!"
+      "text": "Muhammad M delivered exceptional work with top-tier professionalism in Game Development. His quick responsiveness made collaborating a breeze. Highly recommend!",
+      "platform": "Fiverr"
     },
     {
       "name": "akshata12310439",
       "country": "Ireland",
       "rating": 4.7,
       "text": "Muhammad has been excellent, very supportive and patient in understanding the requirements. He delivered the project on time with all the necessary changes. Very professional at his work and skill. I would recommend working with him and will consider him for future projects.",
-      "featured": true
+      "featured": true,
+      "platform": "Fiverr"
     },
     {
       "name": "maxipad09",
       "country": "United States",
       "rating": 5,
-      "text": "He is a very cooperative developer and one I look forward to continue to work with. He really cares about his clients."
+      "text": "He is a very cooperative developer and one I look forward to continue to work with. He really cares about his clients.",
+      "platform": "Fiverr"
     },
     {
       "name": "frugalprof",
       "country": "United States",
       "rating": 5,
-      "text": "Muhammad continues to work on a VR project I wanted by adding functions, and so far it has been a great experience. He is always willing to discuss how to make the app more interesting and efficient."
+      "text": "Muhammad continues to work on a VR project I wanted by adding functions, and so far it has been a great experience. He is always willing to discuss how to make the app more interesting and efficient.",
+      "platform": "Fiverr"
     },
     {
       "name": "faustobase",
       "country": "Italy",
       "rating": 5,
       "text": "Muhammad M exceeded my expectations in game development with his bug-free, professional work. His attention to detail and quick responsiveness made the collaboration seamless. He went above and beyond in delivery time.",
-      "featured": true
+      "featured": true,
+      "platform": "Fiverr"
     },
     {
       "name": "akinloluwab",
       "country": "Nigeria",
       "rating": 5,
       "text": "It was great working with Muhammad. His professionalism and expertise were top-notch. I will always recommend him for VR/AR/MR projects.",
-      "featured": true
+      "featured": true,
+      "platform": "Fiverr"
     },
     {
       "name": "zurich23",
       "country": "United States",
       "rating": 5,
-      "text": "Muhammad is helping me with a very specific project and I am very happy with my GDD document. Now we move forward with milestones and tasks to complete my metaverse. So far I am very happy and look forward to seeing a prototype."
+      "text": "Muhammad is helping me with a very specific project and I am very happy with my GDD document. Now we move forward with milestones and tasks to complete my metaverse. So far I am very happy and look forward to seeing a prototype.",
+      "platform": "Fiverr"
     },
     {
       "name": "denizbylaced",
       "country": "Bulgaria",
       "rating": 5,
-      "text": "Great work! Professional, very kind person, great understanding and very hard working. Will definitely continue working with him on further basis. Strongly recommend."
+      "text": "Great work! Professional, very kind person, great understanding and very hard working. Will definitely continue working with him on further basis. Strongly recommend.",
+      "platform": "Fiverr"
     }
   ],
   "certifications": [

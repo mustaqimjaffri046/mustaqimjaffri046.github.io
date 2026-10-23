@@ -122,6 +122,10 @@ def testimonials(data):
     for t in picked:
         rating = t.get("rating") or 0
         stars = "★" * round(rating) + "☆" * (5 - round(rating))
+        # Name the platform a review came from, so it can be checked. Falls back to the
+        # unattributed label while `platform` is empty. Same rule as main.js.
+        platform = str(t.get("platform") or t.get("source") or "").strip()
+        badge = f"{platform} review" if platform else "Client review"
         out.append(
             "<article class='testimonial-card'>"
             + (f"<p class='testimonial-rating' aria-label='Rated {rating} out of 5'>"
@@ -130,7 +134,7 @@ def testimonials(data):
             + f"<p class='testimonial-quote'>“{esc(t['text'])}”</p>"
             f"<h3>{esc(t['name'])}</h3>"
             + (f"<small>{esc(t['country'])}</small>" if t.get("country") else "")
-            + "<span class='testimonial-badge'>Client review</span></article>"
+            + f"<span class='testimonial-badge'>{esc(badge)}</span></article>"
         )
     return "\n".join(out)
 
