@@ -1,27 +1,30 @@
 window.PORTFOLIO_CONFIG = {
   storageKey: "portfolioDataOverride",
-  // Fill in ONE of these to turn on analytics; both empty = no tracking script loads.
-  // Plausible is cookieless (no consent banner needed for EU visitors); GA4 uses cookies.
+  // Analytics is off until real IDs are filled in (see assets/js/analytics.js).
+  // cloudflareBeaconToken: leave empty if Web Analytics is enabled in the Pages dashboard.
+  // ga4MeasurementId: your GA4 web stream ID, "G-XXXXXXXXXX".
   analytics: {
-    plausibleDomain: "",
-    ga4MeasurementId: ""
+    cloudflareBeaconToken: "",
+    ga4MeasurementId: "",
+    plausibleDomain: ""
   },
   defaultTheme: "dark",
   dataPathByDepth: {
     root: "data/projects.json",
     nested: "../data/projects.json"
   },
+  // Cloudflare Pages serves pages without the .html extension (it redirects /x.html to /x).
   pagePathsByDepth: {
     root: {
       index: "./",
-      portfolio: "portfolio.html",
-      project: "project.html",
+      portfolio: "portfolio",
+      project: "project",
       edit: "edit.html"
     },
     nested: {
       index: "../",
-      portfolio: "../portfolio.html",
-      project: "../project.html",
+      portfolio: "../portfolio",
+      project: "../project",
       edit: "../edit.html"
     }
   },

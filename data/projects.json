@@ -29,7 +29,7 @@
     "seo": {
       "description": "Unity VR developer for hire: VR training simulations, Meta Quest apps and Unity VR optimization.",
       "keywords": "Unity VR developer, VR training simulation developer, Meta Quest developer, Unity VR optimization",
-      "ogImage": "https://mustaqimjaffri046.github.io/assets/preview/og-unity-vr-developer.jpg"
+      "ogImage": "https://mustakeem.pages.dev/assets/preview/og-unity-vr-developer.jpg"
     },
     "resumeUrl": ""
   },
@@ -56,7 +56,7 @@
     },
     {
       "label": "Portfolio",
-      "target": "portfolio.html"
+      "target": "portfolio"
     }
   ],
   "sections": [

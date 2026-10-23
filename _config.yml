@@ -5,3 +5,6 @@ exclude:
   - SEO-LAUNCH.md
   - tools/
   - .gitignore
+  - HANDOFF.md
+  - _headers
+  - dist/

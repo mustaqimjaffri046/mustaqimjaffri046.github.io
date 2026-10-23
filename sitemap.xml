@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Project pages (project.html?slug=...) are rendered by JavaScript from one template and are
+<!-- Project pages (project?slug=...) are rendered by JavaScript from one template and are
      left out until each strong project has its own static case-study page. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://mustaqimjaffri046.github.io/</loc>
+    <loc>https://mustakeem.pages.dev/</loc>
     <lastmod>2026-10-23</lastmod>
   </url>
   <url>
-    <loc>https://mustaqimjaffri046.github.io/services/vr-training-simulation.html</loc>
+    <loc>https://mustakeem.pages.dev/services/vr-training-simulation</loc>
     <lastmod>2026-10-23</lastmod>
   </url>
   <url>
-    <loc>https://mustaqimjaffri046.github.io/services/meta-quest-development.html</loc>
+    <loc>https://mustakeem.pages.dev/services/meta-quest-development</loc>
     <lastmod>2026-10-23</lastmod>
   </url>
   <url>
-    <loc>https://mustaqimjaffri046.github.io/services/unity-vr-optimization.html</loc>
+    <loc>https://mustakeem.pages.dev/services/unity-vr-optimization</loc>
     <lastmod>2026-10-23</lastmod>
   </url>
   <url>
-    <loc>https://mustaqimjaffri046.github.io/portfolio.html</loc>
+    <loc>https://mustakeem.pages.dev/portfolio</loc>
     <lastmod>2026-10-23</lastmod>
   </url>
 </urlset>

@@ -87,7 +87,7 @@ Write these only when you can add first-hand detail; one strong article beats te
 |---|---|---|
 | Create a form endpoint (e.g. Formspree, free tier) | formspree.io | Put the URL in `contact.formEndpoint` in `data/projects.json` |
 | Choose analytics: Plausible (cookieless) or GA4 (needs consent for EU visitors) | plausible.io / analytics.google.com | Put the domain or `G-…` ID in `analytics` in `assets/js/config.js` |
-| Verify Search Console (URL-prefix property `https://mustaqimjaffri046.github.io/`) | search.google.com/search-console | Paste the `google-site-verification` meta tag where the comment is in `index.html` |
+| Verify Search Console (URL-prefix property `https://mustakeem.pages.dev/`) | search.google.com/search-console | Paste the `google-site-verification` meta tag where the comment is in `index.html` |
 | Optional: WhatsApp number, booking link, review profile | — | `whatsapp`, `bookingUrl`, `reviewsUrl` in `data/projects.json` |
 | Résumé PDF | — | `assets/resume/…pdf` and `site.resumeUrl` |
 | Permission to publish client / employer projects | Your clients / IDRAK AI | Hide any project you can't show (`"listed": false`) |
@@ -102,7 +102,7 @@ events you care about as Goals; in GA4, mark `generate_lead` as a key event.
 
 **Can be done locally (done unless noted)**
 - [x] One H1, unique title and description on every indexable page
-- [x] Canonical URLs on the production domain (`https://mustaqimjaffri046.github.io/…`)
+- [x] Canonical URLs on the production domain (`https://mustakeem.pages.dev/…`)
 - [x] Sitemap lists only the 5 indexable pages; robots.txt points to it
 - [x] `noindex` on `project.html`, `videos.html`, `edit.html`, `404.html`
 - [x] No broken internal links or missing assets
@@ -114,7 +114,7 @@ events you care about as Goals; in GA4, mark `generate_lead` as a key event.
 **Needs the live site or accounts**
 - [ ] Push to `main`; wait for the GitHub Pages build; open the site over HTTPS
 - [ ] Check removed URLs return the custom 404 (e.g. `/portfolio-details.html`, `/projects/titan-drift-vr.html`)
-- [ ] Verify Search Console; submit `https://mustaqimjaffri046.github.io/sitemap.xml`
+- [ ] Verify Search Console; submit `https://mustakeem.pages.dev/sitemap.xml`
 - [ ] URL Inspection → "Test live URL" for `/` and the 3 service pages; request indexing
 - [ ] Send a real test brief through the form; confirm the email arrives and the reply-to is correct
 - [ ] Analytics real-time view shows a visit and a `generate_lead` from the test brief

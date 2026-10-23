@@ -65,7 +65,7 @@ def featured(data):
             + f"<p class='featured-desc'>{esc(p['description'])}</p>"
             + tech_row(p)
             + "<div class='project-actions'>"
-            f"<a class='btn btn-secondary' href='project.html?slug={esc(p['slug'])}'>Project details</a>"
+            f"<a class='btn btn-secondary' href='project?slug={esc(p['slug'])}'>Project details</a>"
             + (f"<a class='btn btn-ghost' href='{esc(demo)}' data-play-video='{esc(demo)}' "
                f"data-video-title='{esc(p['title'])}'>Watch demo</a>" if demo else "")
             + "</div></div></article>"
@@ -80,7 +80,7 @@ def projects(data):
             continue
         tags = ["Type: " + (p.get("type") or "Game")] + p.get("tags", [])
         details = (
-            f"<a class='btn btn-secondary' href='project.html?slug={esc(p['slug'])}'>Details</a>"
+            f"<a class='btn btn-secondary' href='project?slug={esc(p['slug'])}'>Details</a>"
             if p.get("projectDetails") else ""
         )
         out.append(
@@ -151,7 +151,12 @@ def main():
         if not pattern.search(page):
             raise SystemExit(f"marker prerender:{name} not found in {PAGE.name}")
         page = pattern.sub(lambda m: m.group(1) + content + "\n" + m.group(2), page)
-    PAGE.write_text(page, encoding="utf-8", newline="")
+    # Rewrite in place: on some Windows drives, opening a file that a browser or editor has
+    # open with "w" (truncate-on-open) fails with "Invalid argument".
+    with open(PAGE, "r+", encoding="utf-8", newline="") as f:
+        f.seek(0)
+        f.write(page)
+        f.truncate()
     print("prerendered", ", ".join(blocks))
 
 

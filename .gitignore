@@ -1,2 +1,5 @@
 .vs/
 .DS_Store
+# Cloudflare Pages build output and Wrangler local state
+dist/
+.wrangler/

@@ -1,0 +1,21 @@
+# Cloudflare Pages response headers (https://developers.cloudflare.com/pages/configuration/headers/).
+# Preview deployments (*.mustakeem.pages.dev) already get X-Robots-Tag: noindex from Pages.
+
+/*
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Template / utility pages: also noindex at the header level, matching their meta tags.
+/project
+  X-Robots-Tag: noindex, follow
+/videos
+  X-Robots-Tag: noindex, follow
+
+# Images rarely change. Assets are not fingerprinted, so keep these moderate: a replaced
+# image under the same name can stay cached for up to this long.
+/assets/img/*
+  Cache-Control: public, max-age=2592000
+/assets/images/*
+  Cache-Control: public, max-age=604800
+/assets/preview/*
+  Cache-Control: public, max-age=86400

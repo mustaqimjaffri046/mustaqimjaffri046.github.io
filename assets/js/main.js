@@ -348,64 +348,10 @@
     return short.replace(/\.$/, "");
   }
 
-  // ---- Analytics: inert until an ID is set in config.js (analytics.plausibleDomain or ga4MeasurementId) ----
-
-  function setupAnalytics() {
-    const settings = (window.PORTFOLIO_CONFIG || {}).analytics || {};
-    const plausibleDomain = String(settings.plausibleDomain || "").trim();
-    const ga4Id = String(settings.ga4MeasurementId || "").trim();
-
-    if (plausibleDomain) {
-      const script = document.createElement("script");
-      script.defer = true;
-      script.dataset.domain = plausibleDomain;
-      script.src = "https://plausible.io/js/script.js";
-      document.head.appendChild(script);
-      window.plausible = window.plausible || function () {
-        (window.plausible.q = window.plausible.q || []).push(arguments);
-      };
-    }
-
-    // GA4 sets cookies: EU visitors (Germany) need a consent banner before this loads.
-    if (ga4Id) {
-      const script = document.createElement("script");
-      script.async = true;
-      script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(ga4Id);
-      document.head.appendChild(script);
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function () {
-        window.dataLayer.push(arguments);
-      };
-      window.gtag("js", new Date());
-      window.gtag("config", ga4Id);
-    }
-
-    document.addEventListener("click", function (event) {
-      const link = event.target.closest("a, button");
-      if (!link) {
-        return;
-      }
-      const href = link.getAttribute("href") || "";
-      const name = link.dataset.track ||
-        (href.startsWith("mailto:") ? "email_click" : "") ||
-        (href.includes("linkedin.com") ? "linkedin_click" : "") ||
-        (link.hasAttribute("data-play-video") ? "video_play" : "");
-      if (name) {
-        track(name, { label: (link.dataset.videoTitle || link.textContent || "").trim().slice(0, 60) });
-      }
-    });
-  }
-
+  // Events go through analytics.js (loaded on every page); a no-op if it isn't present.
   function track(name, props) {
-    try {
-      if (typeof window.plausible === "function") {
-        window.plausible(name, { props: props || {} });
-      }
-      if (typeof window.gtag === "function") {
-        window.gtag("event", name, props || {});
-      }
-    } catch (_error) {
-      // Analytics must never break the page.
+    if (window.SiteAnalytics) {
+      window.SiteAnalytics.track(name, props);
     }
   }
 
@@ -1547,7 +1493,6 @@
       setupNavToggle();
       setupSmoothScrolling();
       setupVideoModal();
-      setupAnalytics();
       setupFuturisticEffects();
       const data = await window.PortfolioStore.loadPortfolioData();
       renderAll(data);
