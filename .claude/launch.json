@@ -10,6 +10,13 @@
         "--compatibility-date=2026-08-08"
       ],
       "port": 8788
+    },
+    {
+      "name": "redirect-site",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8111", "--directory", "redirect-site"],
+      "port": 8111,
+      "autoPort": false
     }
   ]
 }
